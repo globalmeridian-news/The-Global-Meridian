@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Global Meridian – International News &amp; Newsroom CMS</title>
+    <meta name="description" content="Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS." />
+    <meta name="google-site-verification" content="NC3lXtfQQGaLR5S4hY9GGg_h1u1iDYFimfJILyqv3pw" />
+    <meta name="google-site-verification" content="_4Sw1bUtUP-mZ3yQK_k-TpyGYuefRD2PTrXsdNme_00" />
+    <meta name="google-site-verification" content="pka-Bof9wEcTPM93bAEi0nlreHL_XJDkH2rI8pOrSSw" />
+    <link rel="canonical" href="https://meridian-news.org/" />
+    
+    <!-- Google Search, Google News, and Google Discover Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot-news" content="index, follow" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="news_keywords" content="world news, geopolitics, technology, business, breaking news, analysis, journalism" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- OpenGraph Metadata -->
+    <meta property="og:title" content="The Global Meridian – International News &amp; Newsroom CMS" />
+    <meta property="og:description" content="Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Global Meridian" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Twitter / X Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@GlobalMeridian" />
+    <meta name="twitter:title" content="The Global Meridian – International News &amp; Newsroom CMS" />
+    <meta name="twitter:description" content="Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80" />
+    
+    <!-- Theme & Feed Links -->
+    <link rel="alternate" type="application/rss+xml" title="The Global Meridian RSS Feed" href="/rss.xml" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" title="Google News Sitemap" href="/news-sitemap.xml" />
+    <link rel="search" type="application/opensearchdescription+xml" title="The Global Meridian Search" href="/opensearch.xml" />
+
+    <!-- Editorial Typography Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Noto+Serif+Bengali:wght@400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- Google Structured Data (NewsMediaOrganization & Sitelinks SearchBox) -->
+    <script type="application/ld+json" id="google-org-website-schema">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "NewsMediaOrganization",
+          "@id": "https://meridian-news.org/#organization",
+          "name": "The Global Meridian",
+          "url": "https://meridian-news.org",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80",
+            "width": 600,
+            "height": 60
+          },
+          "publishingPrinciples": "https://meridian-news.org/editorial-policy",
+          "correctionsPolicy": "https://meridian-news.org/corrections-policy"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://meridian-news.org/#website",
+          "url": "https://meridian-news.org",
+          "name": "The Global Meridian",
+          "description": "Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS.",
+          "publisher": {
+            "@id": "https://meridian-news.org/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://meridian-news.org/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
+    <script>
+      (function() {
+        try {
+          var origin = window.location.origin;
+          if (origin && !origin.includes('meridian-news.org')) {
+            var can = document.querySelector('link[rel="canonical"]');
+            if (can) can.setAttribute('href', origin + '/');
+            var ld = document.getElementById('google-org-website-schema');
+            if (ld) {
+              ld.textContent = ld.textContent.split('https://meridian-news.org').join(origin);
+            }
+          }
+        } catch(e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#fcfbf9] text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-950">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>The Global Meridian – International News Wire</title>
+    <link>https://meridian-news.org</link>
+    <description>Authoritative, verified global journalism from international news bureaus across Geneva, Tokyo, Washington, London, New Delhi, and Dhaka.</description>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 11 Oct 2026 04:30:00 GMT</lastBuildDate>
+    <atom:link href="https://meridian-news.org/rss.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title><![CDATA[UN Security Council and Global Envoys Finalize Historic Middle East Peace and Reconstruction Accord in Geneva]]></title>
+      <link>https://meridian-news.org/?article=art-21</link>
+      <guid isPermaLink="true">https://meridian-news.org/?article=art-21</guid>
+      <pubDate>Sun, 11 Oct 2026 03:30:00 GMT</pubDate>
+      <category><![CDATA[World]]></category>
+      <description><![CDATA[Multilateral peace negotiators in Geneva approve comprehensive reconstruction framework backed by $65 billion humanitarian stabilization pledges.]]></description>
+      <author>e.rostova@meridian-news.org (Elena Rostova)</author>
+      <enclosure url="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2950000" />
+    </item>
+
+    <item>
+      <title><![CDATA[Open Sovereign AI Charter Ratified by 40 Nations: Global Coalition Mandates Transparent Scientific Neural Architecture]]></title>
+      <link>https://meridian-news.org/?article=art-22</link>
+      <guid isPermaLink="true">https://meridian-news.org/?article=art-22</guid>
+      <pubDate>Sun, 11 Oct 2026 02:45:00 GMT</pubDate>
+      <category><![CDATA[Technology]]></category>
+      <description><![CDATA[International scientific consortium in Tokyo and Berlin adopts open-weights verification protocol to ensure frontier artificial intelligence models serve public welfare.]]></description>
+      <author>m.vance@meridian-news.org (Marcus Vance)</author>
+      <enclosure url="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2810000" />
+    </item>
+
+    <item>
+      <title><![CDATA[South Asian Tri-Nation Clean Energy Corridor Finalizes $15B Cross-Border Power Interconnection]]></title>
+      <link>https://meridian-news.org/?article=art-23</link>
+      <guid isPermaLink="true">https://meridian-news.org/?article=art-23</guid>
+      <pubDate>Sun, 11 Oct 2026 01:15:00 GMT</pubDate>
+      <category><![CDATA[Business]]></category>
+      <description><![CDATA[Ministers from Dhaka, Kathmandu, and Thimphu ink historic multilateral grid pact channeling 12,000 megawatts of Himalayan hydropower to coastal manufacturing centers.]]></description>
+      <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
+      <enclosure url="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2640000" />
+    </item>
+
+    <item>
+      <title><![CDATA[James Webb Observatory and Lunar Polar Station Confirm Extensive Subsurface Water-Ice Basins on the Moon]]></title>
+      <link>https://meridian-news.org/?article=art-24</link>
+      <guid isPermaLink="true">https://meridian-news.org/?article=art-24</guid>
+      <pubDate>Sun, 11 Oct 2026 00:30:00 GMT</pubDate>
+      <category><![CDATA[Science]]></category>
+      <description><![CDATA[Spectroscopic mapping from orbital and surface rovers pinpoints millions of metric tons of accessible ice in permanently shadowed craters.]]></description>
+      <author>j.moreau@meridian-news.org (Julian Moreau)</author>
+      <enclosure url="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2540000" />
+    </item>
+  </channel>
+</rss>

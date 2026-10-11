@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>The Global Meridian</ShortName>
+  <Description>Search verified international world news, geopolitical reports, and economic analysis on The Global Meridian.</Description>
+  <Tags>news world politics technology business climate science meridian</Tags>
+  <Contact>newsdesk@meridian-news.org</Contact>
+  <Url type="text/html" template="/?search={searchTerms}"/>
+  <Url type="application/x-suggestions+json" template="/?search={searchTerms}&amp;format=suggest"/>
+  <Image height="16" width="16" type="image/x-icon">/favicon.ico</Image>
+  <Developer>The Global Meridian Publishing Group</Developer>
+  <Language>en</Language>
+  <Language>bn</Language>
+  <InputEncoding>UTF-8</InputEncoding>
+  <OutputEncoding>UTF-8</OutputEncoding>
+</OpenSearchDescription>

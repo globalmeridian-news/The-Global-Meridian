@@ -1,0 +1,6 @@
+{
+  "name": "The Global Meridian – International News & Newsroom CMS",
+  "description": "Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
