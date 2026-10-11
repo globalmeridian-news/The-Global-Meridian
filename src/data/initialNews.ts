@@ -142,7 +142,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 64,
     seoTitle: 'UN Security Council Reaches Historic Middle East Peace Accord in Geneva',
     seoDescription: 'Delegates in Geneva ratify $65B reconstruction trust and immediate humanitarian corridors in comprehensive diplomatic breakthrough.',
-    canonicalUrl: 'https://meridian-news.org/world/un-security-council-geneva-peace-reconstruction-accord-2026',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/world/un-security-council-geneva-peace-reconstruction-accord-2026',
     originalLanguage: 'en',
   },
   {
@@ -217,7 +217,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 42,
     seoTitle: '40 Nations Ratify Open Sovereign AI Charter in Berlin',
     seoDescription: 'Historic international compact establishes open-weights benchmarks and public audit standards for frontier machine learning.',
-    canonicalUrl: 'https://meridian-news.org/technology/open-sovereign-ai-charter-40-nations-transparency-standards',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/technology/open-sovereign-ai-charter-40-nations-transparency-standards',
     originalLanguage: 'en',
   },
   {
@@ -292,7 +292,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 31,
     seoTitle: 'Bangladesh, Nepal, and Bhutan Ink $15B Clean Energy Grid Corridor',
     seoDescription: '12,000 MW of Himalayan hydropower will power industrial zones across South Asia under historic tri-nation agreement.',
-    canonicalUrl: 'https://meridian-news.org/business/south-asia-tri-nation-clean-energy-corridor-15b-power-grid',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/business/south-asia-tri-nation-clean-energy-corridor-15b-power-grid',
     originalLanguage: 'en',
   },
   {
@@ -345,7 +345,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 51,
     seoTitle: 'Water-Ice Basins Confirmed on Lunar South Pole by James Webb and Rover Team',
     seoDescription: 'High-density ice deposits inside shadowed craters guarantee self-sustaining resources for upcoming international moon bases.',
-    canonicalUrl: 'https://meridian-news.org/science/james-webb-lunar-polar-station-water-ice-reservoirs-confirmed',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/science/james-webb-lunar-polar-station-water-ice-reservoirs-confirmed',
     originalLanguage: 'en',
   },
   {
@@ -426,7 +426,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 38,
     seoTitle: 'Nairobi Climate Summit Ratifies Historic $100B Loss and Damage Pact',
     seoDescription: '140 nations agree on rapid 48-hour emergency disbursement protocols for vulnerable economies facing climate extremes.',
-    canonicalUrl: 'https://meridian-news.org/environment/nairobi-global-climate-pact-loss-damage-operational',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/environment/nairobi-global-climate-pact-loss-damage-operational',
     originalLanguage: 'en',
   },
   {
@@ -487,7 +487,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 44,
     seoTitle: 'Physicists Achieve Record 10,000 km Intercontinental Quantum Satellite Link',
     seoDescription: 'Consortium in Tokyo and Zurich establishes unbreakable quantum key distribution with sub-2% error rates.',
-    canonicalUrl: 'https://meridian-news.org/technology/tokyo-zurich-quantum-satellite-entanglement-record',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/technology/tokyo-zurich-quantum-satellite-entanglement-record',
     originalLanguage: 'en',
   },
   {
@@ -548,7 +548,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 31,
     seoTitle: 'South Asian Trilateral Grid Synchronizes 4,000 MW Clean Hydropower Corridor',
     seoDescription: 'Nepal, Bhutan, and Bangladesh complete 780km HVDC transmission link supplying renewable energy.',
-    canonicalUrl: 'https://meridian-news.org/business/south-asia-trilateral-clean-energy-grid-operational',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/business/south-asia-trilateral-clean-energy-grid-operational',
     originalLanguage: 'en',
   },
   {
@@ -601,7 +601,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 56,
     seoTitle: 'WHO Prequalifies Breakthrough Dual mRNA Vaccine for Dengue and Chikungunya',
     seoDescription: 'Clinical trials demonstrate 94.2% efficacy in preventing severe hospitalizations across tropical latitudes.',
-    canonicalUrl: 'https://meridian-news.org/health/who-approves-universal-mrna-combination-vaccine-tropical-diseases',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/health/who-approves-universal-mrna-combination-vaccine-tropical-diseases',
     originalLanguage: 'en',
   },
   {
@@ -654,7 +654,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 92,
     seoTitle: 'World Athletics Validates Historic 1:59:14 Sub-Two-Hour Marathon',
     seoDescription: 'Kenyan distance athlete shatters marathon barrier in certified open road race in Vienna.',
-    canonicalUrl: 'https://meridian-news.org/sports/world-athletics-ratifies-historic-sub-two-hour-marathon-record',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/sports/world-athletics-ratifies-historic-sub-two-hour-marathon-record',
     originalLanguage: 'en',
   },
   {
@@ -763,7 +763,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 84,
     seoTitle: 'UN Ratifies Landmark Geneva Accord on AI Infrastructure Safeguards',
     seoDescription: '64 sovereign nations vote in Geneva to establish mandatory algorithmic inspection mechanisms and retain human control loops in critical infrastructure.',
-    canonicalUrl: 'https://meridian-news.org/world/un-geneva-historic-treaty-artificial-intelligence-safeguards',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/world/un-geneva-historic-treaty-artificial-intelligence-safeguards',
     corrections: [
       {
         timestamp: '2026-10-06T19:30:00Z',

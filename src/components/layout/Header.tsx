@@ -339,17 +339,8 @@ export const Header: React.FC = () => {
                 <span>{getUIText('adminLogin', currentLanguage)}</span>
               </button>
             ) : (
-              /* If Authenticated: Show Visitor Mode Toggle & CMS Switcher & Admin SEO */
+              /* If Authenticated: Show Visitor Mode Toggle & CMS Switcher */
               <div className="flex items-center gap-2">
-                {/* Admin Only: SEO & Sitemaps Hub */}
-                <button
-                  onClick={() => setActiveView('seo')}
-                  className="flex items-center gap-1 bg-indigo-950/70 hover:bg-indigo-900 text-indigo-300 hover:text-indigo-100 border border-indigo-500/40 px-2 py-1 rounded text-xs transition-colors cursor-pointer"
-                  title="Admin: SEO & Sitemaps Hub"
-                >
-                  <Sparkles className="w-3 h-3 text-indigo-400" />
-                  <span className="font-mono text-[11px] font-bold">SEO</span>
-                </button>
 
                 {/* 1. View as Public Reader Toggle */}
                 {activeView === 'cms' ? (
@@ -522,16 +513,6 @@ export const Header: React.FC = () => {
                 <span>{isBn ? 'নিউ সাবমিট' : 'Submit News'}</span>
               </button>
 
-              {isAuthenticated && (
-                <button
-                  onClick={() => setActiveView('seo')}
-                  className="flex items-center gap-1 bg-linear-to-r from-amber-50 to-indigo-50 hover:from-amber-100 hover:to-indigo-100 text-indigo-950 border border-indigo-200/80 px-2 py-1.5 rounded-full text-xs font-bold transition-all shadow-2xs cursor-pointer shrink-0"
-                  title={isBn ? 'এডমিন: গুগল ইনডেক্সিং, সাজেশন ও ডিসকভার হাব' : 'Admin: Google Discover & Indexing Hub'}
-                >
-                  <Sparkles className="w-3 h-3 text-indigo-600" />
-                  <span className="font-mono text-[10px] uppercase font-bold text-indigo-700">SEO</span>
-                </button>
-              )}
 
               <button
                 onClick={() => setActiveView('search')}

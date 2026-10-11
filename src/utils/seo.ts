@@ -5,7 +5,7 @@ export function getSiteUrl(): string {
   if (typeof window !== 'undefined' && window.location.origin) {
     return window.location.origin;
   }
-  return 'https://meridian-news.org';
+  return 'https://the-global-meridian.incognito120120.workers.dev';
 }
 
 export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: string): object {
