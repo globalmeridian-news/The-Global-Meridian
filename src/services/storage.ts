@@ -5,7 +5,7 @@ const ARTICLES_STORAGE_KEY = 'meridian_articles_v5';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
 const MEDIA_STORAGE_KEY = 'meridian_media_v1';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v4';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v6';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
@@ -26,7 +26,7 @@ export const INITIAL_ADS: Advertisement[] = [
     title: 'Global Clean Energy Summit 2026 – Geneva & Zurich',
     sponsorName: 'World Green Technology Forum',
     position: 'header_top',
-    imageUrl: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80',
     targetUrl: 'https://example.com/energy-summit',
     isActive: true,
     clicks: 142,
@@ -124,21 +124,34 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 };
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
-  heroArticleId: 'art-21',
-  breakingArticleIds: ['art-21', 'art-22', 'art-23', 'art-9', 'art-10'],
+  heroArticleId: 'art-30',
+  breakingArticleIds: ['art-30', 'art-31', 'art-33', 'art-25', 'art-35'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
-    { id: 'sec-tech', name: 'Technology & AI', category: 'Technology', visible: true, order: 2, limit: 4 },
-    { id: 'sec-biz', name: 'Markets & Business', category: 'Business', visible: true, order: 3, limit: 4 },
-    { id: 'sec-env', name: 'Environment & Climate', category: 'Environment', visible: true, order: 4, limit: 3 },
-    { id: 'sec-science', name: 'Science & Space', category: 'Science', visible: true, order: 5, limit: 3 },
-    { id: 'sec-defense', name: 'Defense & Geopolitics', category: 'Defense', visible: true, order: 6, limit: 3 },
-    { id: 'sec-health', name: 'Global Health', category: 'Health', visible: true, order: 7, limit: 3 },
-    { id: 'sec-sports', name: 'Sports', category: 'Sports', visible: true, order: 8, limit: 3 },
+    { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },
+    { id: 'sec-tech', name: 'Technology & AI', category: 'Technology', visible: true, order: 3, limit: 4 },
+    { id: 'sec-biz', name: 'Markets & Business', category: 'Business', visible: true, order: 4, limit: 4 },
+    { id: 'sec-env', name: 'Environment & Climate', category: 'Environment', visible: true, order: 5, limit: 3 },
+    { id: 'sec-science', name: 'Science & Space', category: 'Science', visible: true, order: 6, limit: 3 },
+    { id: 'sec-defense', name: 'Defense & Geopolitics', category: 'Defense', visible: true, order: 7, limit: 3 },
+    { id: 'sec-health', name: 'Global Health', category: 'Health', visible: true, order: 8, limit: 3 },
+    { id: 'sec-sports', name: 'Sports', category: 'Sports', visible: true, order: 9, limit: 3 },
+    { id: 'sec-entertainment', name: 'Entertainment & Culture', category: 'Entertainment', visible: true, order: 10, limit: 3 },
   ],
 };
 
 const INITIAL_COMMENTS: Comment[] = [
+  {
+    id: 'comm-25-1',
+    articleId: 'art-25',
+    userName: 'Dr. Ananya Sen',
+    userEmail: 'a.sen@climate-policy.org',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80',
+    content: 'Grant-backed adaptation financing for low-lying coastal deltas like Bangladesh is a decisive breakthrough compared to previous loan-heavy pledges.',
+    createdAt: '2026-11-14T13:05:00Z',
+    likes: 32,
+    status: 'approved',
+  },
   {
     id: 'comm-1',
     articleId: 'art-1',
@@ -230,7 +243,17 @@ export const StorageService = {
   getComments(): Comment[] {
     try {
       const stored = localStorage.getItem(COMMENTS_STORAGE_KEY);
-      if (stored) return JSON.parse(stored);
+      if (stored) {
+        const parsed: Comment[] = JSON.parse(stored);
+        const existingIds = new Set(parsed.map((c) => c.id));
+        const missing = INITIAL_COMMENTS.filter((c) => !existingIds.has(c.id));
+        if (missing.length > 0) {
+          const merged = [...missing, ...parsed];
+          localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(merged));
+          return merged;
+        }
+        return parsed;
+      }
     } catch (e) {
       console.error('Error loading comments:', e);
     }

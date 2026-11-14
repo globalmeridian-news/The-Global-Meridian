@@ -16,7 +16,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
   aspectRatio = 'aspect-16/9',
   placeholderColor = 'bg-slate-800',
   priority = false,
-  fallbackSrc = 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80',
+  fallbackSrc = 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
   className = '',
   onLoaded,
   ...props

@@ -176,7 +176,7 @@ const MainLayout: React.FC = () => {
       if (art) {
         const pageTitle = `${art.title} – The Global Meridian`;
         const canonicalUrl = `${siteUrl}/?article=${art.id}`;
-        const heroImg = art.featuredImage?.url || 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1600&q=80';
+        const heroImg = art.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80';
 
         document.title = pageTitle;
         setMetaTag('description', art.summary);
@@ -205,7 +205,7 @@ const MainLayout: React.FC = () => {
     const defaultCanonical = selectedCategory && selectedCategory !== 'All'
       ? `${siteUrl}/?cat=${encodeURIComponent(selectedCategory)}`
       : `${siteUrl}/`;
-    const defaultImg = 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80';
+    const defaultImg = 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80';
 
     document.title = defaultTitle;
     setMetaTag('description', defaultDesc);

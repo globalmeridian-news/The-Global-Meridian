@@ -48,7 +48,7 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80',
+        url: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=600&q=80',
         width: 600,
         height: 60,
       },

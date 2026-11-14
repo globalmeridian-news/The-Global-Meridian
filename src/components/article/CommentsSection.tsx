@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { useNews } from '../../context/NewsContext';
 import { Comment, SupportedLanguage } from '../../types/news';
-import { formatRelativeTime } from '../../utils/translation';
+import { formatRelativeTime, convertNumeralsToBengali } from '../../utils/translation';
 
 interface Props {
   articleId: string;
@@ -19,6 +19,7 @@ interface Props {
 
 export const CommentsSection: React.FC<Props> = ({ articleId }) => {
   const { comments, addComment, moderateComment, currentRole, currentLanguage } = useNews();
+  const isBn = currentLanguage === 'bn';
 
   const [authorName, setAuthorName] = useState('');
   const [authorEmail, setAuthorEmail] = useState('');
@@ -37,7 +38,7 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
     addComment(
       articleId,
       commentText.trim(),
-      authorName.trim() || 'Verified Reader',
+      authorName.trim() || (isBn ? 'পাঠক' : 'Verified Reader'),
       authorEmail.trim() || 'reader@meridian-news.org'
     );
 
@@ -51,7 +52,7 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
     addComment(
       articleId,
       replyText.trim(),
-      authorName.trim() || 'Reader Contributor',
+      authorName.trim() || (isBn ? 'পাঠক' : 'Reader Contributor'),
       authorEmail.trim() || 'reader@meridian-news.org',
       parentId
     );
@@ -66,15 +67,19 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
   };
 
   return (
-    <section className="border-t border-slate-200 pt-8 mt-10">
+    <section id="comments-section" className="border-t border-slate-200 pt-8 mt-10 scroll-mt-24">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <MessageSquare className="w-5 h-5 text-red-700" />
           <h3 className="font-serif-headline text-xl font-bold text-slate-900">
-            Reader Discussion ({articleComments.length})
+            {isBn
+              ? `পাঠক মন্তব্য (${convertNumeralsToBengali(String(articleComments.length))})`
+              : `Reader Discussion (${articleComments.length})`}
           </h3>
         </div>
-        <span className="text-xs text-slate-500">Moderated Discussion Policy</span>
+        <span className="text-xs text-slate-500">
+          {isBn ? 'মডারেটেড আলোচনা নীতিমালা' : 'Moderated Discussion Policy'}
+        </span>
       </div>
 
       {/* Submission Form */}
@@ -83,19 +88,19 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
         className="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-8"
       >
         <div className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-          Add to the Discussion
+          {isBn ? 'আপনার সুচিন্তিত মন্তব্য লিখুন' : 'Add to the Discussion'}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
           <input
             type="text"
-            placeholder="Your Name / Title (e.g., Diplomatic Analyst)"
+            placeholder={isBn ? 'আপনার নাম / পদবি (যেমন: আন্তর্জাতিক বিশ্লেষক)' : 'Your Name / Title (e.g., Diplomatic Analyst)'}
             value={authorName}
             onChange={(e) => setAuthorName(e.target.value)}
             className="bg-white border border-slate-200 rounded px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-red-700"
           />
           <input
             type="email"
-            placeholder="Your Email (kept private for verification)"
+            placeholder={isBn ? 'আপনার ইমেইল (যাচাইয়ের জন্য গোপনীয় থাকবে)' : 'Your Email (kept private for verification)'}
             value={authorEmail}
             onChange={(e) => setAuthorEmail(e.target.value)}
             className="bg-white border border-slate-200 rounded px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-red-700"
@@ -104,7 +109,7 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
 
         <textarea
           rows={3}
-          placeholder="Share your substantiated analysis or commentary on this dispatch..."
+          placeholder={isBn ? 'এই সংবাদ সম্পর্কে আপনার সুচিন্তিত মতামত বা বিশ্লেষণ লিখুন...' : 'Share your substantiated analysis or commentary on this dispatch...'}
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
           required
@@ -113,13 +118,15 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
 
         <div className="flex items-center justify-between">
           <span className="text-[11px] text-slate-500">
-            Adhere to civilized discourse standards. Unverified defamatory claims are auto-filtered.
+            {isBn
+              ? 'শালীন ও গঠনমূলক মন্তব্য বজায় রাখুন। আপত্তিকর মন্তব্য স্বয়ংক্রিয়ভাবে ফিল্টার করা হয়।'
+              : 'Adhere to civilized discourse standards. Unverified defamatory claims are auto-filtered.'}
           </span>
           <button
             type="submit"
             className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 py-2 rounded text-xs transition-colors cursor-pointer"
           >
-            Post Comment
+            {isBn ? 'মন্তব্য প্রকাশ করুন' : 'Post Comment'}
           </button>
         </div>
       </form>
@@ -128,7 +135,9 @@ export const CommentsSection: React.FC<Props> = ({ articleId }) => {
       <div className="space-y-4">
         {articleComments.length === 0 ? (
           <div className="text-center py-6 text-slate-500 text-xs italic">
-            No reader comments recorded yet. Be the first to add verified insight.
+            {isBn
+              ? 'এখনো কোনো মন্তব্য নেই। প্রথম মন্তব্যটি আপনিই করুন।'
+              : 'No reader comments recorded yet. Be the first to add verified insight.'}
           </div>
         ) : (
           articleComments.map((comment) => (

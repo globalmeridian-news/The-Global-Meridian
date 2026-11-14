@@ -11,6 +11,7 @@ import {
   ChevronUp,
   BookOpen,
   Check,
+  MessageSquare,
 } from 'lucide-react';
 import { useNews } from '../../context/NewsContext';
 import {
@@ -52,11 +53,13 @@ export const ArticleView: React.FC = () => {
     readerTheme,
     setReaderTheme,
     liveTick,
+    comments = [],
   } = useNews();
 
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
+  const [isStickyHeaderVisible, setIsStickyHeaderVisible] = useState(false);
   const [saveToast, setSaveToast] = useState<string | null>(null);
   const articleRef = useRef<HTMLElement>(null);
 
@@ -64,11 +67,20 @@ export const ArticleView: React.FC = () => {
   if (!article) return null;
 
   const isSaved = savedArticleIds.includes(article.id);
+  const articleCommentsCount = (comments || []).filter((c) => c.articleId === article.id).length;
+
+  const scrollToComments = () => {
+    const el = document.getElementById('comments-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Dynamic reading progress calculation (tracks article reading accurately)
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      setIsStickyHeaderVisible(scrollTop > 200);
       
       if (articleRef.current) {
         const rect = articleRef.current.getBoundingClientRect();
@@ -129,6 +141,27 @@ export const ArticleView: React.FC = () => {
 
   // Dynamic word count calculation and estimated reading time
   const readingStats = getArticleReadingStats(article, currentLanguage);
+
+  // Dynamic remaining reading time as reader scrolls through the long-form article
+  const remainingMinutes = Math.max(
+    0,
+    Math.ceil(readingStats.minutes * (1 - readingProgress / 100))
+  );
+
+  const formatRemainingTime = () => {
+    if (readingProgress >= 100) {
+      return isBengali ? 'পড়া সম্পন্ন' : currentLanguage === 'ja' ? '読了' : 'Finished reading';
+    }
+    if (isBengali) {
+      return remainingMinutes <= 1
+        ? '১ মিনিটের কম বাকি'
+        : `${convertNumeralsToBengali(String(remainingMinutes))} মিনিট বাকি`;
+    }
+    if (currentLanguage === 'ja') {
+      return `あと約${remainingMinutes}分`;
+    }
+    return remainingMinutes <= 1 ? '< 1 min left' : `~${remainingMinutes} min left`;
+  };
 
   // Related news based on same category or tags
   const relatedArticles = articles
@@ -207,10 +240,9 @@ export const ArticleView: React.FC = () => {
 
   return (
     <div className={`max-w-7xl mx-auto px-4 py-6 ${getThemeClass()}`}>
-      {/* Top Animated Reading Progress Bar Fixed at Top of Screen */}
-      {/* Clean Top Reading Progress Bar Fixed at Top of Screen */}
+      {/* Scroll-Based Reading Progress Bar Fixed at Top of Screen */}
       <div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-slate-200/50 z-50 pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-1 sm:h-1.5 bg-slate-200/60 dark:bg-slate-800/60 z-50 pointer-events-none backdrop-blur-xs"
         role="progressbar"
         aria-valuenow={Math.round(readingProgress)}
         aria-valuemin={0}
@@ -218,9 +250,81 @@ export const ArticleView: React.FC = () => {
         aria-label="Reading progress"
       >
         <div
-          className="h-full bg-gradient-to-r from-red-600 via-amber-500 to-red-600 transition-[width] duration-150 ease-out"
+          className="h-full bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 transition-[width] duration-150 ease-out shadow-[0_1px_8px_rgba(220,38,38,0.45)]"
           style={{ width: `${readingProgress}%` }}
         />
+      </div>
+
+      {/* Sticky Reader Progress Sub-Header (glides in when scrolling down the article) */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-45 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300 transform ${
+          isStickyHeaderVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4 text-xs">
+          <div className="flex items-center gap-2 min-w-0">
+            <button
+              onClick={() => setActiveView('home')}
+              className="text-slate-500 hover:text-red-700 p-1 -ml-1 transition-colors cursor-pointer shrink-0"
+              title={getUIText('backToTopStories', currentLanguage)}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <span className="font-serif font-bold text-slate-900 dark:text-slate-100 truncate text-xs sm:text-sm">
+              {displayTitle}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="hidden sm:flex items-center gap-1.5 text-slate-500 dark:text-slate-400 font-medium text-[11px]">
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              <span>{formatRemainingTime()}</span>
+            </div>
+
+            <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full font-mono font-bold text-slate-800 dark:text-slate-200 text-xs border border-slate-200/80 dark:border-slate-700">
+              {readingProgress >= 100 ? (
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+              ) : (
+                <BookOpen className="w-3.5 h-3.5 text-red-600" />
+              )}
+              <span>
+                {isBengali
+                  ? `${convertNumeralsToBengali(String(Math.round(readingProgress)))}%`
+                  : `${Math.round(readingProgress)}%`}
+              </span>
+            </div>
+
+            {/* Jump to Comments in Sticky Reader Bar */}
+            <button
+              onClick={scrollToComments}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors cursor-pointer"
+              title={isBengali ? 'পাঠক মন্তব্য দেখুন বা লিখুন' : 'Jump to discussion & comments'}
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-red-600 shrink-0" />
+              <span className="font-mono text-[11px]">
+                {isBengali
+                  ? convertNumeralsToBengali(String(articleCommentsCount))
+                  : articleCommentsCount}
+              </span>
+            </button>
+
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer"
+              title={isBengali ? 'শীর্ষে যান' : 'Jump to top'}
+            >
+              <ChevronUp className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Progress bar directly beneath the sticky reader sub-header */}
+        <div className="w-full h-[3px] bg-slate-200/60 dark:bg-slate-800">
+          <div
+            className="h-full bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 transition-[width] duration-150 ease-out shadow-[0_0_8px_rgba(220,38,38,0.5)]"
+            style={{ width: `${readingProgress}%` }}
+          />
+        </div>
       </div>
 
       {/* Sleek, Compact Floating Progress Pill - Unobtrusive, readable, with quick scroll-to-top */}
@@ -379,6 +483,21 @@ export const ArticleView: React.FC = () => {
             <span>{isSaved ? getUIText('saved', currentLanguage) : getUIText('save', currentLanguage)}</span>
           </button>
 
+          {/* Jump to Comments Button */}
+          <button
+            onClick={scrollToComments}
+            className="flex items-center gap-1.5 cursor-pointer px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-slate-100 text-slate-700 border border-slate-200 transition-all hover:border-slate-300"
+            title={isBengali ? 'মন্তব্য বিভাগে যান' : 'Jump to reader comments'}
+          >
+            <MessageSquare className="w-3.5 h-3.5 text-red-600" />
+            <span>{isBengali ? 'মন্তব্য' : 'Comments'}</span>
+            <span className="bg-slate-200 text-slate-800 text-[10px] font-bold px-1.5 py-0.2 rounded-full">
+              {isBengali
+                ? convertNumeralsToBengali(String(articleCommentsCount))
+                : articleCommentsCount}
+            </span>
+          </button>
+
           {/* Print */}
           <button
             onClick={handlePrint}
@@ -387,6 +506,56 @@ export const ArticleView: React.FC = () => {
             <Printer className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">{getUIText('print', currentLanguage)}</span>
           </button>
+        </div>
+      </div>
+
+      {/* Top In-Page Reading Progress Bar at the Top of ArticleView */}
+      <div className="mb-6 p-3 sm:p-4 bg-slate-50 dark:bg-slate-850/80 rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs mb-2.5">
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-4 h-4 text-red-700 dark:text-red-500 shrink-0" />
+            <span className="font-bold text-slate-900 dark:text-slate-100">
+              {isBengali ? 'পড়ার অগ্রগতি' : currentLanguage === 'ja' ? '読書の進捗' : 'Reading Progress'}
+            </span>
+            <span className="text-slate-300 dark:text-slate-700">&middot;</span>
+            <span className="font-mono text-red-700 dark:text-red-400 font-extrabold text-sm">
+              {isBengali
+                ? `${convertNumeralsToBengali(String(Math.round(readingProgress)))}%`
+                : `${Math.round(readingProgress)}%`}
+            </span>
+            {readingProgress >= 100 && (
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/60 dark:text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                <Check className="w-3 h-3" />
+                {isBengali ? 'সম্পূর্ণ' : 'Complete'}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-xs">
+            <div className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              <span>{formatRemainingTime()}</span>
+            </div>
+            <span className="text-slate-300 dark:text-slate-700 hidden sm:inline">&middot;</span>
+            <span className="text-[11px] text-slate-400 hidden sm:inline">
+              {isBengali
+                ? `মোট ${convertNumeralsToBengali(String(readingStats.wordCount))} শব্দ`
+                : `${readingStats.wordCount.toLocaleString()} words total`}
+            </span>
+          </div>
+        </div>
+
+        {/* Scroll-Responsive Progress Track */}
+        <div
+          className="w-full h-2 bg-slate-200/80 dark:bg-slate-750 rounded-full overflow-hidden"
+          role="progressbar"
+          aria-valuenow={Math.round(readingProgress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
+          <div
+            className="h-full bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 rounded-full transition-[width] duration-150 ease-out shadow-[0_0_8px_rgba(220,38,38,0.4)]"
+            style={{ width: `${readingProgress}%` }}
+          />
         </div>
       </div>
 
