@@ -2,7 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://the-global-meridian.incognito120120.workers.dev/</loc>
-    <lastmod>2026-11-14</lastmod>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-38</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-39</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-40</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-41</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-42</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-43</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://the-global-meridian.incognito120120.workers.dev/?article=art-30</loc>
@@ -95,5 +119,9 @@
   <url>
     <loc>https://the-global-meridian.incognito120120.workers.dev/?cat=Entertainment</loc>
     <lastmod>2026-11-14</lastmod>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/?cat=Opinion</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 </urlset>

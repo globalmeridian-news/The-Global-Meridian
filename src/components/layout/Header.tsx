@@ -36,6 +36,7 @@ const CATEGORIES: CategoryType[] = [
   'Environment',
   'Sports',
   'Entertainment',
+  'Opinion',
   'Videos',
   'Photo Stories',
 ];

@@ -5,7 +5,7 @@ const ARTICLES_STORAGE_KEY = 'meridian_articles_v5';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
 const MEDIA_STORAGE_KEY = 'meridian_media_v1';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v6';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v7';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
@@ -124,8 +124,8 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 };
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
-  heroArticleId: 'art-30',
-  breakingArticleIds: ['art-30', 'art-31', 'art-33', 'art-25', 'art-35'],
+  heroArticleId: 'art-38',
+  breakingArticleIds: ['art-38', 'art-39', 'art-40', 'art-30', 'art-31'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
     { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },
@@ -137,6 +137,7 @@ export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
     { id: 'sec-health', name: 'Global Health', category: 'Health', visible: true, order: 8, limit: 3 },
     { id: 'sec-sports', name: 'Sports', category: 'Sports', visible: true, order: 9, limit: 3 },
     { id: 'sec-entertainment', name: 'Entertainment & Culture', category: 'Entertainment', visible: true, order: 10, limit: 3 },
+    { id: 'sec-opinion', name: 'Analysis & Opinion', category: 'Opinion', visible: true, order: 11, limit: 3 },
   ],
 };
 
