@@ -102,6 +102,46 @@ export function generateBreadcrumbJsonLd(article: Article, customSiteUrl?: strin
   };
 }
 
+export function generateArticleFaqJsonLd(article: Article): object {
+  const publishedDate = article.publishedAt.split('T')[0];
+  const leadParagraph = article.blocks.find((b) => b.type === 'paragraph');
+  const keyContext = leadParagraph?.text || article.summary;
+  const sourceNote = article.source
+    ? `This dispatch cites ${article.source} and covers ${article.tags.join(', ')}.`
+    : `Verified by The Global Meridian ${article.category} desk across ${article.tags.join(', ')}.`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `What is the core development in "${article.title}"?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${article.summary} ${keyContext}`.trim(),
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `When and where was this ${article.category} report filed?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Filed from ${article.location} on ${publishedDate} by ${article.author.name} (${article.author.title}) for The Global Meridian.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `What sources verify this report?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: sourceNote,
+        },
+      },
+    ],
+  };
+}
+
 export function generateWebSiteJsonLd(customSiteUrl?: string): object {
   const siteUrl = customSiteUrl || getSiteUrl();
   return {

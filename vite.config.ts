@@ -67,7 +67,7 @@ function seoPrerenderPlugin(): Plugin {
           return `        <article>
           <h2><a href="${articleUrl}">${escapeHtml(art.title)}</a></h2>
           ${titleBn}
-          <p><strong>${escapeHtml(art.category)}</strong> · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time> · By ${escapeHtml(art.author.name)}</p>
+          <p><strong>${escapeHtml(art.category)}</strong> · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time> · By ${escapeHtml(art.author.name)} · Source: ${escapeHtml(art.source)}</p>
           <p>${escapeHtml(art.summary)}</p>
           ${summaryBn}
           ${leadEn}
@@ -105,6 +105,7 @@ ${articleMarkup}
         <a href="${SITE_URL}/sitemap.xml">Sitemap</a> |
         <a href="${SITE_URL}/news-sitemap.xml">Google News Sitemap</a> |
         <a href="${SITE_URL}/rss.xml">RSS Feed</a> |
+        <a href="${SITE_URL}/llms.txt">LLMs Index</a> |
         <a href="${SITE_URL}/?policy=editorial-policy">Editorial Policy</a> |
         <a href="${SITE_URL}/?policy=about-us">About Us</a>
       </footer>

@@ -174,6 +174,19 @@ export function validateRichResultsJsonLd(schema: any, elementId = 'schema'): Sc
     if (!schema.url || !/^https?:\/\//.test(schema.url)) {
       errors.push('WebSite requires a valid absolute "url".');
     }
+  } else if (schemaType === 'FAQPage') {
+    if (!Array.isArray(schema.mainEntity) || schema.mainEntity.length === 0) {
+      errors.push('FAQPage requires a non-empty "mainEntity" array.');
+    } else {
+      schema.mainEntity.forEach((q: any, idx: number) => {
+        if (!q.name) {
+          errors.push(`FAQ item #${idx + 1} requires a question "name".`);
+        }
+        if (!q.acceptedAnswer?.text) {
+          errors.push(`FAQ item #${idx + 1} requires "acceptedAnswer.text".`);
+        }
+      });
+    }
   }
 
   const isValid = errors.length === 0;

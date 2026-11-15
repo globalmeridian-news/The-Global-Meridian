@@ -594,7 +594,7 @@ export const ArticleView: React.FC = () => {
           </h1>
 
           {/* Lead Summary */}
-          <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-serif italic mb-6">
+          <p className="article-lead-summary text-lg md:text-xl text-slate-700 leading-relaxed font-serif italic mb-6">
             {displaySummary}
           </p>
 
@@ -801,6 +801,32 @@ export const ArticleView: React.FC = () => {
             </div>
           )}
 
+          {/* Key Takeaways / AI Search & Reader Executive Brief */}
+          <section
+            aria-label={isBengali ? 'মূল পয়েন্ট ও সারসংক্ষেপ' : 'Key Takeaways'}
+            className="mb-7 p-4 sm:p-5 rounded-lg border border-slate-200 bg-slate-50/90"
+          >
+            <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-red-700 mb-2.5">
+              <FileText className="w-4 h-4 shrink-0" />
+              <span>{isBengali ? 'মূল পয়েন্ট (Key Takeaways)' : 'Key Takeaways'}</span>
+            </div>
+            <ul className="space-y-2 text-sm text-slate-800 leading-relaxed list-disc pl-5">
+              <li>{displaySummary}</li>
+              <li>
+                {isBengali
+                  ? `প্রতিবেদনটি ${displayLocation} থেকে ${getLocalizedCategory(article.category, currentLanguage)} ডেস্কের মাধ্যমে প্রকাশিত।`
+                  : `Filed from ${displayLocation} under the ${article.category} desk (${article.publishedAt.split('T')[0]}).`}
+              </li>
+              {article.source && (
+                <li>
+                  {isBengali
+                    ? `যাচাইকৃত তথ্যসূত্র: ${article.source}`
+                    : `Verified source attribution: ${article.source}`}
+                </li>
+              )}
+            </ul>
+          </section>
+
           {/* Article Blocks Body: Fully localized across all content types */}
           <div className="font-editorial-body text-slate-900 space-y-6 leading-relaxed">
             {translated.blocks.map((block) => {
@@ -890,6 +916,50 @@ export const ArticleView: React.FC = () => {
               Data points, international quotes, and treaties quoted in this dispatch were corroborated across bilateral communiqués and accredited news organizations.
             </p>
           </div>
+
+          {/* Quick Q&A Section (matches FAQPage JSON-LD for Google AI Overviews) */}
+          <section
+            aria-label={isBengali ? 'সংক্ষিপ্ত প্রশ্নোত্তর' : 'Quick Q&A'}
+            className="mt-6 p-4 sm:p-5 bg-white border border-slate-200 rounded-lg space-y-3"
+          >
+            <h3 className="font-serif-headline text-base font-bold text-slate-950">
+              {isBengali ? 'প্রতিবেদনটির সংক্ষিপ্ত প্রশ্নোত্তর (Q&A)' : 'Dispatch Quick Q&A'}
+            </h3>
+            <dl className="space-y-3 text-xs sm:text-sm">
+              <div>
+                <dt className="font-bold text-slate-900">
+                  {isBengali
+                    ? `এই প্রতিবেদনের মূল বিষয়বস্তু কী?`
+                    : `What is the core development in "${displayTitle}"?`}
+                </dt>
+                <dd className="text-slate-700 mt-1 leading-relaxed">
+                  {displaySummary}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-bold text-slate-900">
+                  {isBengali
+                    ? 'প্রতিবেদনটি কোথা থেকে এবং কবে প্রকাশিত হয়েছে?'
+                    : `When and where was this ${article.category} report filed?`}
+                </dt>
+                <dd className="text-slate-700 mt-1 leading-relaxed">
+                  {isBengali
+                    ? `এটি ${displayLocation} থেকে ${article.publishedAt.split('T')[0]} তারিখে ${displayAuthorName} (${displayAuthorTitle}) কর্তৃক দ্য গ্লোবাল মেরিডিয়ানে প্রকাশিত হয়েছে।`
+                    : `Filed from ${displayLocation} on ${article.publishedAt.split('T')[0]} by ${displayAuthorName} (${displayAuthorTitle}) for The Global Meridian.`}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-bold text-slate-900">
+                  {isBengali ? 'তথ্যসূত্র ও বিষয়সমূহ কী?' : 'What sources verify this report?'}
+                </dt>
+                <dd className="text-slate-700 mt-1 leading-relaxed">
+                  {isBengali
+                    ? `তথ্যসূত্র: ${article.source}। সংশ্লিষ্ট বিষয়: ${article.tags.join(', ')}।`
+                    : `This dispatch cites ${article.source} and covers ${article.tags.join(', ')}.`}
+                </dd>
+              </div>
+            </dl>
+          </section>
 
           {/* Tags */}
           <div className="flex flex-wrap items-center gap-2 mt-6">

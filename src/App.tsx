@@ -19,7 +19,7 @@ import { AdminLoginModal } from './components/auth/AdminLoginModal';
 import { AdminFloatingBar } from './components/layout/AdminFloatingBar';
 import { AdBanner } from './components/public/AdBanner';
 import { LazyBoundary } from './components/common/LazyBoundary';
-import { generateNewsArticleJsonLd, generateBreadcrumbJsonLd, generateWebSiteJsonLd, getSiteUrl } from './utils/seo';
+import { generateNewsArticleJsonLd, generateBreadcrumbJsonLd, generateArticleFaqJsonLd, generateWebSiteJsonLd, getSiteUrl } from './utils/seo';
 import { injectValidatedJsonLd, removeValidatedJsonLd } from './utils/schemaValidator';
 import { useCoreWebVitals } from './hooks/useCoreWebVitals';
 
@@ -190,9 +190,10 @@ const MainLayout: React.FC = () => {
         setMetaTag('twitter:image', heroImg);
         setCanonicalTag(canonicalUrl);
 
-        // Inject validated dynamic JSON-LD NewsArticle & Breadcrumbs schemas (Google Rich Results test compliant)
+        // Inject validated dynamic JSON-LD NewsArticle, Breadcrumbs & FAQPage schemas (Google Rich Results & AI Search compliant)
         injectValidatedJsonLd('newsarticle-schema', generateNewsArticleJsonLd(art, siteUrl));
         injectValidatedJsonLd('breadcrumbs-schema', generateBreadcrumbJsonLd(art, siteUrl));
+        injectValidatedJsonLd('faq-schema', generateArticleFaqJsonLd(art));
         return;
       }
     }
@@ -224,6 +225,7 @@ const MainLayout: React.FC = () => {
 
     removeValidatedJsonLd('newsarticle-schema');
     removeValidatedJsonLd('breadcrumbs-schema');
+    removeValidatedJsonLd('faq-schema');
   }, [activeView, selectedArticleId, selectedCategory, articles]);
 
   return (

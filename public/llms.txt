@@ -1,0 +1,41 @@
+# The Global Meridian (দ্য গ্লোবাল মেরিডিয়ান)
+
+> Independent bilingual (English & Bengali) international news journal covering world diplomacy, global politics, macroeconomics, technology, defense, climate policy, science, and South Asian affairs.
+
+## Primary Site & Feeds
+- Homepage: https://the-global-meridian.incognito120120.workers.dev/
+- Sitemap: https://the-global-meridian.incognito120120.workers.dev/sitemap.xml
+- Google News Sitemap: https://the-global-meridian.incognito120120.workers.dev/news-sitemap.xml
+- RSS Feed: https://the-global-meridian.incognito120120.workers.dev/rss.xml
+
+## Editorial Standards & Policies
+- Editorial Policy: https://the-global-meridian.incognito120120.workers.dev/?policy=editorial-policy
+- Corrections Policy: https://the-global-meridian.incognito120120.workers.dev/?policy=corrections-policy
+- About Us: https://the-global-meridian.incognito120120.workers.dev/?policy=about-us
+- Privacy Policy: https://the-global-meridian.incognito120120.workers.dev/?policy=privacy-policy
+
+## Coverage Desks
+- [World](https://the-global-meridian.incognito120120.workers.dev/?cat=World): Geopolitics, diplomacy, Europe, Middle East, Asia-Pacific
+- [Politics](https://the-global-meridian.incognito120120.workers.dev/?cat=Politics): Multilateral summits, elections, South Asian governance
+- [Business](https://the-global-meridian.incognito120120.workers.dev/?cat=Business): Central banks, global trade, OECD macroeconomics
+- [Technology](https://the-global-meridian.incognito120120.workers.dev/?cat=Technology): Physical AI, 6G spectrum, semiconductors, robotics
+- [Science](https://the-global-meridian.incognito120120.workers.dev/?cat=Science): Climate science, mRNA breakthroughs, energy extraction
+- [Defense](https://the-global-meridian.incognito120120.workers.dev/?cat=Defense): Maritime corridors, orbital verification, strategic deterrence
+- [Environment](https://the-global-meridian.incognito120120.workers.dev/?cat=Environment): COP31, WMO climate reports, clean transition finance
+- [Opinion](https://the-global-meridian.incognito120120.workers.dev/?cat=Opinion): Geoeconomic and policy analysis
+
+## Latest Verified Reports (November 2026)
+- [NASA’s Voyager 1 Nears Historic One Light-Day Milestone 26 Billion Kilometers from Earth](https://the-global-meridian.incognito120120.workers.dev/?article=art-44)
+- [Mercedes Clinches 9th F1 Constructors’ Crown as Messi Wins Back-to-Back MLS Golden Boot](https://the-global-meridian.incognito120120.workers.dev/?article=art-45)
+- [World Prematurity Day 2026: WHO Urges Expanded NICU Care for 15 Million Preterm Infants Amid DR Congo Ebola Strain](https://the-global-meridian.incognito120120.workers.dev/?article=art-46)
+- [Orbital Data Centers & MIT AI Climate Emulators Spark Global Tech Policy Debate in Late 2026](https://the-global-meridian.incognito120120.workers.dev/?article=art-47)
+- [Sandip Ray Launches Four-Story Satyajit Ray Anthology Shoot as "Godzilla Minus Zero" Surges Worldwide](https://the-global-meridian.incognito120120.workers.dev/?article=art-48)
+- [Abu Dhabi Trilateral Talks Open as Europe Demands Seat at Table Over US-Brokered Ukraine Security Proposals](https://the-global-meridian.incognito120120.workers.dev/?article=art-38)
+- [Bangladesh Wins 3-Year LDC Graduation Extension to 2029 as Dhaka Presses Climate Justice at COP31 Antalya](https://the-global-meridian.incognito120120.workers.dev/?article=art-39)
+- [Central Banks Face Dual Macro Shock: Fed and BoE Weigh Sticky Energy Inflation Against AI Capex Boom](https://the-global-meridian.incognito120120.workers.dev/?article=art-40)
+- [Satellite Intelligence Shows Iran Rebuilding Strategic Missile Sites Amid Heightened Western Arms Interdiction](https://the-global-meridian.incognito120120.workers.dev/?article=art-41)
+- [Spain’s First General Strike in 14 Years Sparks Debate Over Housing Crisis and Snap Election Politics](https://the-global-meridian.incognito120120.workers.dev/?article=art-42)
+- [Analysis: Central Asia Emerges as Vital Eurasian Trade Corridor Amid Supply Chain Fragmentation and Sanctions](https://the-global-meridian.incognito120120.workers.dev/?article=art-43)
+- [White House Announces Unprecedented US-China-Russia Trilateral Summit at APEC for Strategic Nuclear Talks](https://the-global-meridian.incognito120120.workers.dev/?article=art-30)
+- [WMO Warns at COP31 Antalya That 2026 Ranks Among Warmest Years Amid Super El Niño and Record Ocean Heat](https://the-global-meridian.incognito120120.workers.dev/?article=art-31)
+- [OECD Projects 2.9% Global Economic Growth in 2026 Driven by AI Infrastructure Boom as UK Expands 0.7% in Q3](https://the-global-meridian.incognito120120.workers.dev/?article=art-32)
