@@ -165,9 +165,8 @@ export function generateGoogleNewsSitemapXml(articles: Article[], customSiteUrl?
         <news:name>The Global Meridian</news:name>
         <news:language>${a.originalLanguage === 'bn' ? 'bn' : 'en'}</news:language>
       </news:publication>
-      <news:publication_date>${a.publishedAt}</news:publication_date>
+      <news:publication_date>${a.publishedAt.split('T')[0]}</news:publication_date>
       <news:title><![CDATA[${a.title}]]></news:title>
-      <news:keywords>${a.tags.join(', ')}</news:keywords>
     </news:news>
   </url>`
     )

@@ -61,8 +61,8 @@
             "width": 600,
             "height": 60
           },
-          "publishingPrinciples": "https://the-global-meridian.incognito120120.workers.dev/editorial-policy",
-          "correctionsPolicy": "https://the-global-meridian.incognito120120.workers.dev/corrections-policy"
+          "publishingPrinciples": "https://the-global-meridian.incognito120120.workers.dev/?policy=editorial-policy",
+          "correctionsPolicy": "https://the-global-meridian.incognito120120.workers.dev/?policy=corrections-policy"
         },
         {
           "@type": "WebSite",
@@ -82,13 +82,24 @@
       ]
     }
     </script>
+    <!-- PRERENDERED_ITEMLIST_SCHEMA -->
     <script>
       (function() {
         try {
           var origin = window.location.origin;
           if (origin && !origin.includes('meridian-news.org')) {
             var can = document.querySelector('link[rel="canonical"]');
-            if (can) can.setAttribute('href', origin + '/');
+            if (can) {
+              var params = new URLSearchParams(window.location.search);
+              var article = params.get('article');
+              var cat = params.get('cat');
+              var suffix = article
+                ? '/?article=' + encodeURIComponent(article)
+                : cat
+                  ? '/?cat=' + encodeURIComponent(cat)
+                  : '/';
+              can.setAttribute('href', origin + suffix);
+            }
             var ld = document.getElementById('google-org-website-schema');
             if (ld) {
               ld.textContent = ld.textContent.split('https://the-global-meridian.incognito120120.workers.dev').join(origin);
@@ -99,7 +110,40 @@
     </script>
   </head>
   <body class="bg-[#fcfbf9] text-slate-900 antialiased selection:bg-amber-100 selection:text-amber-950">
-    <div id="root"></div>
+    <div id="root">
+      <!-- PRERENDERED_NEWS_SHELL -->
+      <header>
+        <h1>The Global Meridian – International Journal of Record</h1>
+        <p>Verified international journalism covering world diplomacy, politics, global economics, technology, defense, science, climate, and South Asian affairs in English and Bengali.</p>
+        <nav aria-label="News Categories">
+          <a href="/">Home</a> |
+          <a href="/?cat=World">World</a> |
+          <a href="/?cat=Politics">Politics</a> |
+          <a href="/?cat=Business">Business</a> |
+          <a href="/?cat=Technology">Technology</a> |
+          <a href="/?cat=Science">Science</a> |
+          <a href="/?cat=Health">Health</a> |
+          <a href="/?cat=Defense">Defense</a> |
+          <a href="/?cat=Environment">Environment</a> |
+          <a href="/?cat=Sports">Sports</a> |
+          <a href="/?cat=Entertainment">Entertainment</a> |
+          <a href="/?cat=Opinion">Opinion</a>
+        </nav>
+      </header>
+      <main>
+        <section aria-label="Latest International Dispatches">
+          <h2>Latest Verified Dispatches &amp; Analysis</h2>
+          <p>Loading interactive edition of The Global Meridian...</p>
+        </section>
+      </main>
+      <footer>
+        <a href="/sitemap.xml">Sitemap</a> |
+        <a href="/news-sitemap.xml">Google News Sitemap</a> |
+        <a href="/rss.xml">RSS Feed</a> |
+        <a href="/?policy=editorial-policy">Editorial Policy</a>
+      </footer>
+      <!-- /PRERENDERED_NEWS_SHELL -->
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
