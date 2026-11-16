@@ -5,7 +5,7 @@ const ARTICLES_STORAGE_KEY = 'meridian_articles_v5';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
 const MEDIA_STORAGE_KEY = 'meridian_media_v1';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v8';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v9';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
@@ -54,7 +54,7 @@ export const INITIAL_ADS: Advertisement[] = [
     title: 'Oxford International Diplomatic Fellowship 2026-27',
     sponsorName: 'Oxford Global Institute',
     position: 'article_sidebar',
-    imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80',
     targetUrl: 'https://example.com/diplomacy-fellowship',
     isActive: true,
     clicks: 65,
@@ -124,8 +124,8 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 };
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
-  heroArticleId: 'art-38',
-  breakingArticleIds: ['art-44', 'art-45', 'art-38', 'art-39', 'art-40'],
+  heroArticleId: 'art-49',
+  breakingArticleIds: ['art-49', 'art-50', 'art-51', 'art-44', 'art-38'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
     { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },

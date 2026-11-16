@@ -6,7 +6,7 @@
   <Contact>newsdesk@meridian-news.org</Contact>
   <Url type="text/html" template="/?search={searchTerms}"/>
   <Url type="application/x-suggestions+json" template="/?search={searchTerms}&amp;format=suggest"/>
-  <Image height="16" width="16" type="image/x-icon">/favicon.ico</Image>
+  <Image height="16" width="16" type="image/svg+xml">/favicon.svg</Image>
   <Developer>The Global Meridian Publishing Group</Developer>
   <Language>en</Language>
   <Language>bn</Language>

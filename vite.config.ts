@@ -19,7 +19,7 @@ function seoPrerenderPlugin(): Plugin {
   return {
     name: 'global-meridian-seo-prerender',
     transformIndexHtml(html) {
-      const published = INITIAL_ARTICLES.filter((a) => a.status === 'published').slice(0, 18);
+      const published = INITIAL_ARTICLES.filter((a) => a.status === 'published');
 
       const itemListJsonLd = {
         '@context': 'https://schema.org',
