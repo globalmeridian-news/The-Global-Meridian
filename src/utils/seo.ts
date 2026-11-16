@@ -54,6 +54,8 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
       },
       publishingPrinciples: `${siteUrl}/?policy=editorial-policy`,
       correctionsPolicy: `${siteUrl}/?policy=corrections-policy`,
+      areaServed: ['Europe', 'Middle East', 'Americas', 'Russia', 'China', 'India', 'Japan', 'South Korea', 'Africa'],
+      availableLanguage: ['English', 'Arabic', 'French', 'German', 'Spanish', 'Russian', 'Chinese', 'Hindi', 'Japanese', 'Korean', 'Bengali'],
       sameAs: [
         'https://twitter.com/GlobalMeridian',
         'https://facebook.com/GlobalMeridian',
@@ -154,9 +156,9 @@ export function generateWebSiteJsonLd(customSiteUrl?: string): object {
       'দ্য গ্লোবাল মেরিডিয়ান',
       'Meridian News Wire',
     ],
-    description: 'Trusted international journalism delivering verified breaking world news, geopolitical diplomacy, economics, and science.',
+    description: 'Authoritative international journalism covering Europe, the Middle East, the Americas, Russia, China, India, Japan, South Korea, and Africa.',
     url: siteUrl,
-    inLanguage: ['en', 'bn'],
+    inLanguage: ['en', 'ar', 'fr', 'de', 'es', 'ru', 'zh', 'hi', 'ja', 'ko', 'bn'],
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -242,7 +244,7 @@ export function generateRssFeedXml(articles: Article[], customSiteUrl?: string):
   <channel>
     <title>The Global Meridian – International News Wire</title>
     <link>${siteUrl}</link>
-    <description>Authoritative, verified global journalism from international news bureaus across Geneva, Tokyo, Washington, London, New Delhi, and Dhaka.</description>
+    <description>Authoritative, verified global journalism from international news bureaus across London, Brussels, Washington, Dubai, Moscow, Beijing, Tokyo, Seoul, New Delhi, and Nairobi.</description>
     <language>en-US</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>

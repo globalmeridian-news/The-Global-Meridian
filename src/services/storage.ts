@@ -1,11 +1,11 @@
 import { Article, Comment, HomepageConfig, MediaItem, UserNewsSubmission, AuditLog, Advertisement, TeamUser, WeeklyReport } from '../types/news';
 import { INITIAL_ARTICLES } from '../data/initialNews';
 
-const ARTICLES_STORAGE_KEY = 'meridian_articles_v5';
+const ARTICLES_STORAGE_KEY = 'meridian_articles_v7';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
 const MEDIA_STORAGE_KEY = 'meridian_media_v1';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v9';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v11';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
@@ -107,7 +107,7 @@ export const INITIAL_TEAM_USERS: TeamUser[] = [
     name: 'Tariq Al-Mansoor',
     email: 't.mansoor@meridian-news.org',
     role: 'reporter',
-    title: 'Foreign Correspondent (Middle East & Asia)',
+    title: 'Foreign Correspondent (Middle East & Africa)',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
     isActive: true,
     createdAt: '2026-03-10T00:00:00Z',
@@ -125,7 +125,7 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
   heroArticleId: 'art-49',
-  breakingArticleIds: ['art-49', 'art-50', 'art-51', 'art-44', 'art-38'],
+  breakingArticleIds: ['art-57', 'art-58', 'art-59', 'art-55', 'art-56', 'art-49'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
     { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },
@@ -148,7 +148,7 @@ const INITIAL_COMMENTS: Comment[] = [
     userName: 'Dr. Ananya Sen',
     userEmail: 'a.sen@climate-policy.org',
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80',
-    content: 'Grant-backed adaptation financing for low-lying coastal deltas like Bangladesh is a decisive breakthrough compared to previous loan-heavy pledges.',
+    content: 'Grant-backed adaptation financing for vulnerable coastal and African river-basin economies is a decisive breakthrough compared to previous loan-heavy pledges.',
     createdAt: '2026-11-14T13:05:00Z',
     likes: 32,
     status: 'approved',
@@ -224,6 +224,18 @@ export const StorageService = {
           return merged;
         }
         return parsed;
+      }
+      // Preserve any custom CMS articles created in previous storage version
+      const prevStored = localStorage.getItem('meridian_articles_v6') || localStorage.getItem('meridian_articles_v5');
+      if (prevStored) {
+        const prevParsed: Article[] = JSON.parse(prevStored);
+        const defaultIds = new Set(INITIAL_ARTICLES.map((a) => a.id));
+        const customArticles = prevParsed.filter((a) => !a.id.startsWith('art-') && !defaultIds.has(a.id));
+        if (customArticles.length > 0) {
+          const migrated = [...customArticles, ...INITIAL_ARTICLES];
+          localStorage.setItem(ARTICLES_STORAGE_KEY, JSON.stringify(migrated));
+          return migrated;
+        }
       }
     } catch (e) {
       console.error('Error loading articles from storage:', e);

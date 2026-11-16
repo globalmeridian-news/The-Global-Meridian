@@ -3,10 +3,76 @@
   <channel>
     <title>The Global Meridian – International News Wire</title>
     <link>https://the-global-meridian.incognito120120.workers.dev</link>
-    <description>Authoritative, verified global journalism from international news bureaus across Geneva, Tokyo, Washington, London, New Delhi, and Dhaka.</description>
+    <description>Authoritative, verified global journalism from international news bureaus across London, Brussels, Washington, Dubai, Moscow, Beijing, Tokyo, Seoul, New Delhi, and Nairobi.</description>
     <language>en-US</language>
-    <lastBuildDate>Mon, 16 Nov 2026 01:45:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 02:25:00 GMT</lastBuildDate>
     <atom:link href="https://the-global-meridian.incognito120120.workers.dev/rss.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title><![CDATA[South Korea’s SK Hynix Unveils $1.05B Chip Supplier Hub & Nvidia Reaffirms 260,000 GPUs Amid National Exam AI Audit]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-57</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-57</guid>
+      <pubDate>Mon, 16 Nov 2026 02:20:00 GMT</pubDate>
+      <category><![CDATA[Technology]]></category>
+      <description><![CDATA[SK Hynix pledges ₩1.4 trillion over five years for domestic wafer-equipment makers and its Yongin Trinity Fab as Nvidia advances 260,000-GPU sovereign AI deployments and Seoul orders security audits after a generative-AI exam cheating confession.]]></description>
+      <author>m.vance@meridian-news.org (Marcus Vance)</author>
+      <enclosure url="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2580000" />
+    </item>
+
+    <item>
+      <title><![CDATA[Japan Economy Contracts 0.1% in Q3 as Tokyo Watches ¥160/$ Currency Threshold and Prepares Defense AI Rules]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-58</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-58</guid>
+      <pubDate>Mon, 16 Nov 2026 02:15:00 GMT</pubDate>
+      <category><![CDATA[Business]]></category>
+      <description><![CDATA[Cabinet Office figures show unexpected July–September contraction driven by weaker household spending, while Finance Minister Satsuki Katayama warns on yen intervention and Defense Minister Shinjiro Koizumi readies end-November Defense AI Guidelines.]]></description>
+      <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
+      <enclosure url="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2640000" />
+    </item>
+
+    <item>
+      <title><![CDATA[Seoul FM Visits Beijing for Peninsula Stability Ahead of APEC as North Korean Aide’s Moscow Trip Draws Scrutiny]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-59</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-59</guid>
+      <pubDate>Mon, 16 Nov 2026 02:10:00 GMT</pubDate>
+      <category><![CDATA[Politics]]></category>
+      <description><![CDATA[South Korean Foreign Minister Cho Hyun meets China’s Wang Yi to manage Korean Peninsula stability while top North Korean official Jo Yong Won’s visit to Russia raises strategic alarms in Seoul and Tokyo.]]></description>
+      <author>e.rostova@meridian-news.org (Elena Rostova)</author>
+      <enclosure url="https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2490000" />
+    </item>
+
+    <item>
+      <title><![CDATA[Namdaemun Market’s Viral ‘Scarf Man’ Draws Global Queues in Seoul Amid Northeast Asia Culture & Travel Surge]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-60</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-60</guid>
+      <pubDate>Mon, 16 Nov 2026 02:06:00 GMT</pubDate>
+      <category><![CDATA[Entertainment]]></category>
+      <description><![CDATA[A humorous Seoul street merchant urging visitors not to buy from his stall turns Namdaemun Market into a viral stop, mirroring record cultural travel flows linking Tokyo, Kyoto, and Seoul.]]></description>
+      <author>j.moreau@meridian-news.org (Julian Moreau)</author>
+      <enclosure url="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2450000" />
+    </item>
+
+    <item>
+      <title><![CDATA[India’s Modi Joins ASEAN & East Asia Summits as New Delhi Expands Trade Corridors from Minsk to Cairo]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-55</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-55</guid>
+      <pubDate>Mon, 16 Nov 2026 02:00:00 GMT</pubDate>
+      <category><![CDATA[World]]></category>
+      <description><![CDATA[Prime Minister Narendra Modi leads India’s delegation to Manila for ASEAN-India, East Asia, and Quad talks while New Delhi advances $1B Belarus trade goals and industrial ties with Egypt.]]></description>
+      <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
+      <enclosure url="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2510000" />
+    </item>
+
+    <item>
+      <title><![CDATA[China Balances Russia Ties and Europe Trade Ahead of Shenzhen Summit as Middle East Crisis Anchors Talks]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-56</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-56</guid>
+      <pubDate>Mon, 16 Nov 2026 01:50:00 GMT</pubDate>
+      <category><![CDATA[World]]></category>
+      <description><![CDATA[As Beijing hosts the 2026 World Sailing Conference in Qingdao and prepares for November 19 talks with Trump and Putin, European and Middle Eastern envoys scrutinize China’s diplomatic balancing act.]]></description>
+      <author>e.rostova@meridian-news.org (Elena Rostova)</author>
+      <enclosure url="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2540000" />
+    </item>
 
     <item>
       <title><![CDATA[US Aviation Recovers After Historic FAA Ground Stop as Shenzhen Confirms Nov 19 Trump-Xi-Putin Trilateral]]></title>
@@ -20,23 +86,23 @@
     </item>
 
     <item>
-      <title><![CDATA[Bangladesh Stages Historic 206-Run Test Fightback vs South Africa as Towhid Hridoy Hits 137 & Litton Unbeaten 92]]></title>
+      <title><![CDATA[India Seals Dramatic 22-Run ODI Win in New Zealand as CAF U-23 Africa Cup Qualifiers Peak]]></title>
       <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-50</link>
       <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-50</guid>
       <pubDate>Mon, 16 Nov 2026 01:25:00 GMT</pubDate>
       <category><![CDATA[Sports]]></category>
-      <description><![CDATA[Rescuing the Tigers from 22 for 3 against Kagiso Rabada in Johannesburg, Towhid Hridoy and Litton Das power Bangladesh to 327 for 6 on Day 1 as Mosaddek Hossain sets a domestic double-ton record.]]></description>
+      <description><![CDATA[India clinches a thrilling 22-run victory in Mount Maunganui to cap its New Zealand tour as Zambia, Nigeria, and Ghana headline intense second-round U-23 AFCON qualifiers across Africa.]]></description>
       <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
-      <enclosure url="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2480000" />
+      <enclosure url="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2490000" />
     </item>
 
     <item>
-      <title><![CDATA[Japan Economy Contracts 0.1% in Q3 as Cox’s Bazar ADB Debt Conference Tackles Bangladesh’s $113B External Obligations]]></title>
+      <title><![CDATA[Brazil-China Trade Jumps 20% Amid US Tariffs as India-Egypt Pact & Canada’s $560M Fund Reshape Commerce]]></title>
       <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-51</link>
       <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-51</guid>
       <pubDate>Mon, 16 Nov 2026 01:12:00 GMT</pubDate>
       <category><![CDATA[Business]]></category>
-      <description><![CDATA[Fresh cabinet data shows Japan’s Q3 GDP dipped unexpectedly on household cost pressures while Bangladesh and the ADB convene international debt experts in Cox’s Bazar amid Gazipur industrial talks.]]></description>
+      <description><![CDATA[President Lula spotlights shifting Americas-China trade flows and secures $560M from Canada’s Mark Carney, while India’s Piyush Goyal visits Cairo and Japan posts a 0.1% Q3 contraction.]]></description>
       <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
       <enclosure url="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2470000" />
     </item>
@@ -53,14 +119,14 @@
     </item>
 
     <item>
-      <title><![CDATA[Bangladesh’s Runa Khan Receives 2026 Ramon Magsaysay Award in Manila Amid Domestic Security Focus in Dhaka & Gopalganj]]></title>
+      <title><![CDATA[‘Yalta 2.0’ Fears Grip Europe as EU & Kyiv Demand Guarantees Ahead of Shenzhen Trump-Xi-Putin Summit]]></title>
       <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-53</link>
       <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-53</guid>
       <pubDate>Mon, 16 Nov 2026 00:35:00 GMT</pubDate>
       <category><![CDATA[Politics]]></category>
-      <description><![CDATA[Friendship NGO founder Runa Khan accepts Asia’s premier humanitarian honor in Manila even as Dhaka authorities step up law-and-order monitoring following localized unrest in Gopalganj.]]></description>
-      <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
-      <enclosure url="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2410000" />
+      <description><![CDATA[European capitals push back against superpower sphere-of-influence deals while Moscow signals openness to a European seat in Ukraine peace talks and battles persist near Kupyansk.]]></description>
+      <author>e.rostova@meridian-news.org (Elena Rostova)</author>
+      <enclosure url="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2450000" />
     </item>
 
     <item>
@@ -141,14 +207,14 @@
     </item>
 
     <item>
-      <title><![CDATA[Bangladesh Wins 3-Year LDC Graduation Extension to 2029 as Dhaka Presses Climate Justice at COP31 Antalya]]></title>
+      <title><![CDATA[Africa CDC Sounds Alarm on Six-Month Ebola Crisis as African Ministers Demand Climate & Infrastructure Finance]]></title>
       <link>https://the-global-meridian.incognito120120.workers.dev/?article=art-39</link>
       <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/?article=art-39</guid>
       <pubDate>Sun, 15 Nov 2026 06:15:00 GMT</pubDate>
-      <category><![CDATA[Politics]]></category>
-      <description><![CDATA[Following UN approval shifting graduation to November 2029, economists urge structural tax and banking reforms while Prime Minister Tarique Rahman champions adaptation grants in Türkiye.]]></description>
-      <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
-      <enclosure url="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2490000" />
+      <category><![CDATA[Health]]></category>
+      <description><![CDATA[Africa CDC warns DRC Ebola cases have crossed 11,200 alongside border vigilance in Kenya and Nigeria, while African environment ministers forge a unified COP31 finance coalition.]]></description>
+      <author>t.mansoor@meridian-news.org (Dr. Tariq Al-Mansoor)</author>
+      <enclosure url="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&amp;fit=crop&amp;w=1600&amp;q=85" type="image/jpeg" length="2490000" />
     </item>
 
     <item>

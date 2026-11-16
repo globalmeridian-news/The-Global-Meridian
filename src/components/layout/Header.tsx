@@ -92,16 +92,22 @@ export const Header: React.FC = () => {
       ? 'PDT'
       : selectedTimeZone === 'Asia/Kolkata'
       ? 'IST'
-      : selectedTimeZone === 'Asia/Dhaka'
-      ? 'BST'
+      : selectedTimeZone === 'Europe/Moscow'
+      ? 'MSK'
       : selectedTimeZone === 'Europe/London'
       ? 'GMT'
       : selectedTimeZone === 'Europe/Paris'
       ? 'CET'
+      : selectedTimeZone === 'Asia/Shanghai'
+      ? 'CST'
       : selectedTimeZone === 'Asia/Tokyo'
       ? 'JST'
-      : selectedTimeZone === 'Asia/Riyadh'
-      ? 'AST'
+      : selectedTimeZone === 'Asia/Seoul'
+      ? 'KST'
+      : selectedTimeZone === 'Asia/Dubai'
+      ? 'GST'
+      : selectedTimeZone === 'Africa/Nairobi'
+      ? 'EAT'
       : selectedTimeZone === 'UTC'
       ? 'UTC'
       : 'LOCAL';
@@ -163,7 +169,7 @@ export const Header: React.FC = () => {
               </button>
 
               {bureauClockOpen && (
-                <div className="absolute left-0 mt-2 w-72 bg-slate-950 border border-slate-800 rounded-lg shadow-2xl p-3 z-50 text-slate-200 space-y-3 animate-in fade-in">
+                <div className="absolute left-0 mt-2 w-80 bg-slate-950 border border-slate-800 rounded-lg shadow-2xl p-3 z-50 text-slate-200 space-y-3 animate-in fade-in">
                   <div>
                     <div className="text-[10px] font-bold text-amber-400 uppercase border-b border-slate-800 pb-1 mb-2 flex items-center justify-between">
                       <span>{getUIText('activeTimezoneAndCountry', currentLanguage)}</span>
@@ -182,51 +188,96 @@ export const Header: React.FC = () => {
                         📍 {getUIText('yourDeviceAutoDetect', currentLanguage)} ({userTzInfo.shortName})
                       </button>
 
-                      {/* India Test Option */}
-                      <button
-                        onClick={() => simulateVisitorCountry('Asia/Kolkata', 'hi')}
-                        className={`text-left p-1.5 rounded cursor-pointer ${
-                          selectedTimeZone === 'Asia/Kolkata' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
-                        }`}
-                        title="India Standard Time (UTC+5:30) & Hindi"
-                      >
-                        🇮🇳 {isBn ? 'ভারত (IST)' : 'India (IST)'}
-                      </button>
-
-                      {/* USA Test Option */}
-                      <button
-                        onClick={() => simulateVisitorCountry('America/New_York', 'en')}
-                        className={`text-left p-1.5 rounded cursor-pointer ${
-                          selectedTimeZone === 'America/New_York' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
-                        }`}
-                        title="US Eastern Time (UTC-4) & English"
-                      >
-                        🇺🇸 {isBn ? 'আমেরিকা NY (EDT)' : 'USA / NY (EDT)'}
-                      </button>
-
-                      {/* Bangladesh Option */}
-                      <button
-                        onClick={() => simulateVisitorCountry('Asia/Dhaka', 'bn')}
-                        className={`text-left p-1.5 rounded cursor-pointer ${
-                          selectedTimeZone === 'Asia/Dhaka' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
-                        }`}
-                        title="Bangladesh Standard Time (UTC+6) & Bengali"
-                      >
-                        🇧🇩 {isBn ? 'বাংলাদেশ (BST)' : 'Bangladesh (BST)'}
-                      </button>
-
-                      {/* UK Option */}
                       <button
                         onClick={() => simulateVisitorCountry('Europe/London', 'en')}
                         className={`text-left p-1.5 rounded cursor-pointer ${
                           selectedTimeZone === 'Europe/London' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
                         }`}
-                        title="UK London Time (GMT/BST) & English"
                       >
-                        🇬🇧 {isBn ? 'যুক্তরাজ্য (GMT)' : 'UK London (GMT)'}
+                        🇬🇧 {isBn ? 'ইউরোপ (লন্ডন)' : 'Europe / UK'}
                       </button>
 
-                      {/* International UTC Option */}
+                      <button
+                        onClick={() => simulateVisitorCountry('Europe/Paris', 'fr')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Europe/Paris' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇪🇺 {isBn ? 'ইউরোপ (প্যারিস)' : 'Europe / EU'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('America/New_York', 'en')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'America/New_York' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇺🇸 {isBn ? 'আমেরিকা (NY)' : 'Americas (US)'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Asia/Dubai', 'ar')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Asia/Dubai' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇦🇪 {isBn ? 'মধ্যপ্রাচ্য (দুবাই)' : 'Middle East'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Europe/Moscow', 'ru')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Europe/Moscow' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇷🇺 {isBn ? 'রাশিয়া (মস্কো)' : 'Russia (MSK)'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Asia/Shanghai', 'zh')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Asia/Shanghai' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇨🇳 {isBn ? 'চীন (বেইজিং)' : 'China (CST)'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Asia/Tokyo', 'ja')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Asia/Tokyo' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇯🇵 {isBn ? 'জাপান (টোকিও)' : 'Japan (JST)'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Asia/Seoul', 'ko')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Asia/Seoul' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇰🇷 {isBn ? 'দক্ষিণ কোরিয়া (সিউল)' : 'S. Korea (KST)'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Asia/Kolkata', 'hi')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Asia/Kolkata' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🇮🇳 {isBn ? 'ভারত (IST)' : 'India (IST)'}
+                      </button>
+
+                      <button
+                        onClick={() => simulateVisitorCountry('Africa/Nairobi', 'en')}
+                        className={`text-left p-1.5 rounded cursor-pointer ${
+                          selectedTimeZone === 'Africa/Nairobi' ? 'bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30' : 'hover:bg-slate-800'
+                        }`}
+                      >
+                        🌍 {isBn ? 'আফ্রিকা (নাইরোবি)' : 'Africa (EAT)'}
+                      </button>
+
                       <button
                         onClick={() => {
                           setSelectedTimeZone('UTC');

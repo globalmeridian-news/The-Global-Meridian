@@ -115,8 +115,14 @@ export function formatReadingDuration(minutes: number, lang: SupportedLanguage =
   if (lang === 'ar') {
     return `${safeMinutes} دقائق قراءة`;
   }
+  if (lang === 'ru') {
+    return `${safeMinutes} мин чтения`;
+  }
   if (lang === 'ja') {
     return `${safeMinutes}分で読める`;
+  }
+  if (lang === 'ko') {
+    return `${safeMinutes}분 읽기`;
   }
   if (lang === 'zh') {
     return `${safeMinutes}分钟阅读`;

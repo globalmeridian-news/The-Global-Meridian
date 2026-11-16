@@ -15,7 +15,7 @@ export type CategoryType =
 
 export type ArticleStatus = 'published' | 'draft' | 'pending_review' | 'scheduled';
 
-export type SupportedLanguage = 'en' | 'bn' | 'hi' | 'es' | 'fr' | 'de' | 'ar' | 'ja' | 'zh';
+export type SupportedLanguage = 'en' | 'bn' | 'hi' | 'es' | 'fr' | 'de' | 'ar' | 'ru' | 'ja' | 'ko' | 'zh';
 
 export type UserRole = 'admin' | 'editor' | 'reporter' | 'reader';
 
