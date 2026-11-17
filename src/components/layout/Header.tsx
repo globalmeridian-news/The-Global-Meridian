@@ -516,17 +516,21 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Center Column: Perfectly Centered, Prestigious Newspaper Masthead Title */}
-          <div
-            onClick={() => {
-              viewCategory('All');
-              setActiveView('home');
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                viewCategory('All');
+                setActiveView('home');
+              }
             }}
-            className="cursor-pointer text-center select-none py-1 group px-2 sm:px-4"
+            className="cursor-pointer text-center select-none py-1 group px-2 sm:px-4 block"
           >
             {/* World-Class Newspaper Nameplate */}
-            <h1 className="font-masthead text-4xl md:text-5xl lg:text-[54px] xl:text-[62px] font-black text-slate-950 group-hover:text-red-700 transition-colors tracking-tight leading-none drop-shadow-2xs inline-block">
+            <span className="font-masthead text-4xl md:text-5xl lg:text-[54px] xl:text-[62px] font-black text-slate-950 group-hover:text-red-700 transition-colors tracking-tight leading-none drop-shadow-2xs inline-block">
               The Global Meridian
-            </h1>
+            </span>
 
             {/* Editorial Subtitle & Motto */}
             <div className="mt-2 flex flex-col items-center justify-center">
@@ -546,7 +550,7 @@ export const Header: React.FC = () => {
                 </div>
               )}
             </div>
-          </div>
+          </a>
 
           {/* Right Column: Structured Newspaper Ear Card (Newsroom & Public Submission) */}
           <div className="flex flex-col items-end justify-center p-2.5 rounded-lg border border-slate-200/90 bg-slate-50/70 shadow-2xs gap-1.5">
@@ -580,16 +584,20 @@ export const Header: React.FC = () => {
         {/* Mobile Masthead: Clean, stacked, centered title with accessible buttons */}
         <div className="md:hidden py-3">
           {/* Centered Newspaper Name */}
-          <div
-            onClick={() => {
-              viewCategory('All');
-              setActiveView('home');
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                viewCategory('All');
+                setActiveView('home');
+              }
             }}
-            className="cursor-pointer text-center select-none pb-2.5 border-b border-slate-100"
+            className="cursor-pointer text-center select-none pb-2.5 border-b border-slate-100 block"
           >
-            <h1 className="font-masthead text-3xl sm:text-4xl font-black text-slate-950 hover:text-red-700 transition-colors tracking-tight leading-none drop-shadow-2xs">
+            <span className="font-masthead text-3xl sm:text-4xl font-black text-slate-950 hover:text-red-700 transition-colors tracking-tight leading-none drop-shadow-2xs inline-block">
               The Global Meridian
-            </h1>
+            </span>
             {isBn && (
               <div className="text-xs font-serif font-semibold text-red-700 tracking-wide mt-1">
                 দ্য গ্লোবাল মেরিডিয়ান
@@ -601,7 +609,7 @@ export const Header: React.FC = () => {
               <span>·</span>
               <span className="font-mono text-slate-700 font-bold">{liveTimeString}</span>
             </div>
-          </div>
+          </a>
 
           {/* Quick Action Row on Mobile: Unified 3-Part Command Strip (Menu + Search + Submit) */}
           <div className="flex items-center gap-2 pt-2.5 pb-0.5 px-0.5">
@@ -648,11 +656,17 @@ export const Header: React.FC = () => {
       </div>
 
       {/* 3. Single Unified Category Navigation Bar (একক সুসংহত ক্যাটাগরি ন্যাভিগেশন বার) */}
-      <nav className="border-b border-slate-200 bg-white shadow-2xs">
+      <nav aria-label="News Categories" className="border-b border-slate-200 bg-white shadow-2xs">
         <div className="max-w-7xl mx-auto px-3 sm:px-4">
           <div className="flex items-center gap-1 sm:gap-3.5 overflow-x-auto scrollbar-none py-1.5 sm:py-0 text-xs whitespace-nowrap">
-            <button
-              onClick={() => viewCategory('All')}
+            <a
+              href="/"
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  viewCategory('All');
+                }
+              }}
               className={`transition-all cursor-pointer shrink-0 uppercase tracking-wider font-bold text-xs ${
                 selectedCategory === 'All' && activeView === 'home'
                   ? 'text-red-600 sm:border-b-2 sm:border-red-600 sm:pb-2.5 sm:pt-2 sm:-mb-px px-3 py-1 rounded-full sm:rounded-none bg-red-50 sm:bg-transparent shadow-xs sm:shadow-none'
@@ -660,21 +674,30 @@ export const Header: React.FC = () => {
               }`}
             >
               {getUIText('home', currentLanguage)}
-            </button>
+            </a>
 
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => viewCategory(cat)}
-                className={`transition-all cursor-pointer shrink-0 uppercase tracking-wider text-[11px] sm:text-xs font-semibold ${
-                  selectedCategory === cat && activeView === 'home'
-                    ? 'text-red-600 font-bold sm:border-b-2 sm:border-red-600 sm:pb-2.5 sm:pt-2 sm:-mb-px px-3 py-1 rounded-full sm:rounded-none bg-red-50 sm:bg-transparent shadow-xs sm:shadow-none'
-                    : 'text-slate-700 hover:text-red-600 sm:pb-2.5 sm:pt-2 sm:-mb-px sm:border-b-2 sm:border-transparent sm:hover:border-red-300 px-2.5 py-1'
-                }`}
-              >
-                {getLocalizedCategory(cat, currentLanguage)}
-              </button>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const catHref = `/category/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, '-'))}`;
+              return (
+                <a
+                  key={cat}
+                  href={catHref}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewCategory(cat);
+                    }
+                  }}
+                  className={`transition-all cursor-pointer shrink-0 uppercase tracking-wider text-[11px] sm:text-xs font-semibold ${
+                    selectedCategory === cat && activeView === 'home'
+                      ? 'text-red-600 font-bold sm:border-b-2 sm:border-red-600 sm:pb-2.5 sm:pt-2 sm:-mb-px px-3 py-1 rounded-full sm:rounded-none bg-red-50 sm:bg-transparent shadow-xs sm:shadow-none'
+                      : 'text-slate-700 hover:text-red-600 sm:pb-2.5 sm:pt-2 sm:-mb-px sm:border-b-2 sm:border-transparent sm:hover:border-red-300 px-2.5 py-1'
+                  }`}
+                >
+                  {getLocalizedCategory(cat, currentLanguage)}
+                </a>
+              );
+            })}
           </div>
         </div>
       </nav>
@@ -762,29 +785,40 @@ export const Header: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-1 text-xs">
-            <button
-              onClick={() => {
-                viewCategory('All');
-                setMobileMenuOpen(false);
+            <a
+              href="/"
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  viewCategory('All');
+                  setMobileMenuOpen(false);
+                }
               }}
-              className="text-left px-2 py-2 hover:bg-slate-100 rounded font-semibold text-red-700"
+              className="text-left px-2 py-2 hover:bg-slate-100 rounded font-semibold text-red-700 block"
             >
               {getUIText('frontPage', currentLanguage)}
-            </button>
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  viewCategory(cat);
-                  setMobileMenuOpen(false);
-                }}
-                className={`text-left px-2 py-2 hover:bg-slate-100 rounded ${
-                  selectedCategory === cat ? 'font-bold text-red-700' : 'text-slate-800'
-                }`}
-              >
-                {getLocalizedCategory(cat, currentLanguage)}
-              </button>
-            ))}
+            </a>
+            {CATEGORIES.map((cat) => {
+              const catHref = `/category/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, '-'))}`;
+              return (
+                <a
+                  key={cat}
+                  href={catHref}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewCategory(cat);
+                      setMobileMenuOpen(false);
+                    }
+                  }}
+                  className={`text-left px-2 py-2 hover:bg-slate-100 rounded block ${
+                    selectedCategory === cat ? 'font-bold text-red-700' : 'text-slate-800'
+                  }`}
+                >
+                  {getLocalizedCategory(cat, currentLanguage)}
+                </a>
+              );
+            })}
           </div>
 
           {/* Mobile Admin & Reader Switcher */}

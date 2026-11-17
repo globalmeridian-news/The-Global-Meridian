@@ -25,9 +25,15 @@ export const BreakingTicker: React.FC = () => {
           {breakingArticles.map((art) => {
             const headline = getLocalizedHeadline(art, currentLanguage);
             return (
-              <button
+              <a
                 key={art.id}
-                onClick={() => viewArticle(art.id)}
+                href={`/article/${encodeURIComponent(art.id)}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(art.id);
+                  }
+                }}
                 className="flex items-center gap-2 text-left hover:text-amber-200 transition-colors cursor-pointer group text-xs md:text-sm truncate"
               >
                 <span className="font-semibold">{headline}</span>
@@ -35,7 +41,7 @@ export const BreakingTicker: React.FC = () => {
                   [{art.location}]
                 </span>
                 <ChevronRight className="w-3.5 h-3.5 text-red-300 group-hover:translate-x-0.5 transition-transform" />
-              </button>
+              </a>
             );
           })}
         </div>

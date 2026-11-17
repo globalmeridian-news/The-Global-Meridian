@@ -85,12 +85,18 @@ export const Footer: React.FC = () => {
             <ul className="space-y-1.5">
               {categories.slice(0, 5).map((cat) => (
                 <li key={cat}>
-                  <button
-                    onClick={() => viewCategory(cat)}
+                  <a
+                    href={`/category/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, '-'))}`}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        viewCategory(cat);
+                      }
+                    }}
                     className="hover:text-white transition-colors cursor-pointer"
                   >
                     {getLocalizedCategory(cat, currentLanguage)}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -104,12 +110,18 @@ export const Footer: React.FC = () => {
             <ul className="space-y-1.5">
               {categories.slice(5).map((cat) => (
                 <li key={cat}>
-                  <button
-                    onClick={() => viewCategory(cat)}
+                  <a
+                    href={`/category/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, '-'))}`}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        viewCategory(cat);
+                      }
+                    }}
                     className="hover:text-white transition-colors cursor-pointer"
                   >
                     {getLocalizedCategory(cat, currentLanguage)}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -122,60 +134,102 @@ export const Footer: React.FC = () => {
             </div>
             <ul className="space-y-1.5">
               <li>
-                <button
-                  onClick={() => viewPolicy('editorial-policy')}
+                <a
+                  href="/policy/editorial-policy"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('editorial-policy');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   Editorial Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => viewPolicy('fact-checking')}
+                <a
+                  href="/policy/fact-checking"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('fact-checking');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   Fact-Checking Standard
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => viewPolicy('corrections-policy')}
+                <a
+                  href="/policy/corrections-policy"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('corrections-policy');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   Corrections &amp; Updates
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => viewPolicy('privacy-policy')}
+                <a
+                  href="/policy/privacy-policy"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('privacy-policy');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   Privacy &amp; Data Rights
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => viewPolicy('terms-of-service')}
+                <a
+                  href="/policy/terms-of-service"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('terms-of-service');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   Terms of Service
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => viewPolicy('about-us')}
+                <a
+                  href="/policy/about-us"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('about-us');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   About the Newsroom
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => viewPolicy('contact')}
+                <a
+                  href="/policy/contact"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewPolicy('contact');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer"
                 >
                   Contact &amp; Press Bureau
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -196,9 +250,18 @@ export const Footer: React.FC = () => {
                 <span>&middot;</span>
               </>
             )}
-            <button onClick={() => viewPolicy('cookie-policy')} className="hover:text-slate-300 cursor-pointer">
+            <a
+              href="/policy/cookie-policy"
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  viewPolicy('cookie-policy');
+                }
+              }}
+              className="hover:text-slate-300 cursor-pointer"
+            >
               Cookie Management
-            </button>
+            </a>
           </div>
         </div>
       </div>

@@ -170,21 +170,33 @@ export const RelatedArticlesWidget: React.FC<RelatedArticlesWidgetProps> = ({
               ? story.summary_bn
               : story.summary;
 
+          const storyHref = `/article/${encodeURIComponent(story.id)}`;
           return (
             <article
               key={story.id}
-              onClick={() => handleSelectStory(story.id)}
-              className="group cursor-pointer bg-white border border-slate-200 hover:border-slate-400 rounded-lg p-4 transition-all duration-200 hover:shadow-md flex flex-col justify-between"
+              className="group bg-white border border-slate-200 hover:border-slate-400 rounded-lg p-4 transition-all duration-200 hover:shadow-md flex flex-col justify-between"
             >
               <div>
                 {/* Thumbnail image with subtle hover zoom */}
                 <div className="relative aspect-16/9 w-full rounded overflow-hidden bg-slate-100 mb-3">
-                  <LazyImage
-                    src={story.featuredImage.thumbnailUrl || story.featuredImage.url}
-                    alt={headline}
-                    aspectRatio="aspect-16/9"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <a
+                    href={storyHref}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        handleSelectStory(story.id);
+                      }
+                    }}
+                    aria-label={headline}
+                    className="block w-full h-full"
+                  >
+                    <LazyImage
+                      src={story.featuredImage.thumbnailUrl || story.featuredImage.url}
+                      alt={headline}
+                      aspectRatio="aspect-16/9"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </a>
 
                   {/* Top-right bookmark button */}
                   <button
@@ -207,8 +219,8 @@ export const RelatedArticlesWidget: React.FC<RelatedArticlesWidgetProps> = ({
                     />
                   </button>
 
-                  {/* Clean category indicator on top left */}
-                  <div className="absolute bottom-2 left-2 bg-slate-950/85 backdrop-blur-xs text-amber-300 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                  {/* Clean category indicator on bottom left */}
+                  <div className="absolute bottom-2 left-2 bg-slate-950/85 backdrop-blur-xs text-amber-300 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider pointer-events-none">
                     {getLocalizedCategory(story.category, currentLanguage)}
                   </div>
                 </div>
@@ -229,7 +241,17 @@ export const RelatedArticlesWidget: React.FC<RelatedArticlesWidgetProps> = ({
 
                 {/* Headline */}
                 <h4 className="font-serif-headline text-base sm:text-lg font-bold text-slate-900 group-hover:text-red-700 transition-colors leading-snug line-clamp-2 mb-2">
-                  {headline}
+                  <a
+                    href={storyHref}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        handleSelectStory(story.id);
+                      }
+                    }}
+                  >
+                    {headline}
+                  </a>
                 </h4>
 
                 {/* Summary preview */}
@@ -261,11 +283,21 @@ export const RelatedArticlesWidget: React.FC<RelatedArticlesWidgetProps> = ({
                   )}
                 </div>
 
-                {/* Read story prompt */}
-                <div className="flex items-center gap-1 font-semibold text-red-700 group-hover:text-red-800 text-[11px] shrink-0">
+                {/* Read story link */}
+                <a
+                  href={storyHref}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      handleSelectStory(story.id);
+                    }
+                  }}
+                  aria-label={`${isBn ? 'পড়ুন' : 'Read'}: ${headline}`}
+                  className="flex items-center gap-1 font-semibold text-red-700 group-hover:text-red-800 text-[11px] shrink-0"
+                >
                   <span>{isBn ? 'পড়ুন' : 'Read'}</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                </div>
+                </a>
               </div>
             </article>
           );

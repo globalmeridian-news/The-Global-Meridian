@@ -375,9 +375,9 @@ export const SubmitNewsModal: React.FC = () => {
                       {isBn ? 'সংযুক্ত ছবিসমূহ:' : 'Attached Photos:'}
                     </span>
                     <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                      {photos.map((p) => (
+                      {photos.map((p, idx) => (
                         <div key={p.id} className="relative aspect-16/10 rounded-lg overflow-hidden border border-slate-300 group shadow-xs">
-                          <img src={p.url} alt="Uploaded" className="w-full h-full object-cover" />
+                          <img src={p.url} alt={p.caption || headline || `Submitted news photograph ${idx + 1}`} className="w-full h-full object-cover" />
                           <button
                             type="button"
                             onClick={() => removePhoto(p.id)}

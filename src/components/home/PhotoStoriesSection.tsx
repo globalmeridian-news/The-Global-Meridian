@@ -58,9 +58,16 @@ export const PhotoStoriesSection: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         {/* Gallery Image Display (8 cols) */}
         <div className="lg:col-span-8">
-          <div
-            onClick={() => viewArticle(currentStory.id)}
-            className="group cursor-pointer relative aspect-16/10 rounded overflow-hidden bg-slate-900"
+          <a
+            href={`/article/${encodeURIComponent(currentStory.id)}`}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                viewArticle(currentStory.id);
+              }
+            }}
+            aria-label={getLocalizedHeadline(currentStory, currentLanguage)}
+            className="group cursor-pointer relative aspect-16/10 rounded overflow-hidden bg-slate-900 block"
           >
             <LazyImage
               src={allImages[0].url}
@@ -72,7 +79,7 @@ export const PhotoStoriesSection: React.FC = () => {
               <div className="font-medium">{allImages[0].caption}</div>
               <div className="text-slate-400 text-[11px] mt-1">Photo: {allImages[0].credit}</div>
             </div>
-          </div>
+          </a>
         </div>
 
         {/* Story details & thumbnails (4 cols) */}
@@ -81,11 +88,18 @@ export const PhotoStoriesSection: React.FC = () => {
             <div className="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">
               Visual Essay &middot; {currentStory.category}
             </div>
-            <h3
-              onClick={() => viewArticle(currentStory.id)}
-              className="font-serif-headline text-xl font-bold text-slate-900 hover:text-red-700 cursor-pointer transition-colors leading-tight mb-2"
-            >
-              {getLocalizedHeadline(currentStory, currentLanguage)}
+            <h3 className="font-serif-headline text-xl font-bold text-slate-900 hover:text-red-700 transition-colors leading-tight mb-2">
+              <a
+                href={`/article/${encodeURIComponent(currentStory.id)}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(currentStory.id);
+                  }
+                }}
+              >
+                {getLocalizedHeadline(currentStory, currentLanguage)}
+              </a>
             </h3>
             <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-4">
               {getLocalizedSummary(currentStory, currentLanguage)}

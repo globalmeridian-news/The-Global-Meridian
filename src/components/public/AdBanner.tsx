@@ -18,13 +18,6 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
 
   const isBn = currentLanguage === 'bn';
 
-  const handleClick = () => {
-    recordAdClick(activeAd.id);
-    if (activeAd.targetUrl) {
-      window.open(activeAd.targetUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
     <div
       className={`relative overflow-hidden rounded border border-slate-200/90 bg-slate-50 transition-all hover:border-amber-400 group ${className}`}
@@ -35,8 +28,14 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
         <ExternalLink className="w-2.5 h-2.5" />
       </div>
 
-      <div
-        onClick={handleClick}
+      <a
+        href={activeAd.targetUrl || '#'}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        onClick={(e) => {
+          if (!activeAd.targetUrl) e.preventDefault();
+          recordAdClick(activeAd.id);
+        }}
         className="cursor-pointer block overflow-hidden"
         title={activeAd.title}
       >
@@ -136,7 +135,7 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
             <span className="text-red-700 font-bold shrink-0">{isBn ? 'ভিজিট' : 'Visit'} &rarr;</span>
           </div>
         )}
-      </div>
+      </a>
     </div>
   );
 };

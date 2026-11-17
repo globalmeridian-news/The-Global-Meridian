@@ -259,6 +259,9 @@ export function generateRobotsTxt(customSiteUrl?: string): string {
   return `User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /*?view=cms
+Disallow: /*?view=seo
+Disallow: /*?view=submit
 
 # Google Discover, Googlebot, and Google News directives
 User-agent: Googlebot

@@ -9,14 +9,14 @@ interface Env {
 const SEO_ROBOTS_HEADER =
   'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
-function withSeoHeaders(response: Response): Response {
+function withSeoHeaders(response: Response, noindex = false): Response {
   const contentType = response.headers.get('content-type') || '';
   if (!contentType.includes('text/html')) {
     return response;
   }
 
   const headers = new Headers(response.headers);
-  headers.set('X-Robots-Tag', SEO_ROBOTS_HEADER);
+  headers.set('X-Robots-Tag', noindex ? 'noindex, nofollow' : SEO_ROBOTS_HEADER);
   headers.set('X-Content-Type-Options', 'nosniff');
   return new Response(response.body, {
     status: response.status,
@@ -30,7 +30,14 @@ export default {
     const url = new URL(request.url);
     const cleanPath = url.pathname.replace(/\/+$/, '') || '/';
 
-    // Handle legacy query-parameter article, category, and policy URLs
+    if (cleanPath === '/api/vitals') {
+      return new Response(null, { status: 204 });
+    }
+
+    const viewParam = url.searchParams.get('view');
+    const isInternalView = viewParam === 'cms' || viewParam === 'seo' || viewParam === 'submit';
+
+    // Handle legacy query-parameter article, category, policy, and author URLs
     // by serving the corresponding pre-rendered static HTML directly (HTTP 200)
     // so Googlebot always receives full unique metadata, JSON-LD, and canonical tags.
     if (cleanPath === '/') {
@@ -55,9 +62,16 @@ export default {
         const res = await env.ASSETS.fetch(new Request(target.toString(), request));
         if (res.ok) return withSeoHeaders(res);
       }
+
+      const authorParam = url.searchParams.get('author');
+      if (authorParam) {
+        const target = new URL(`/author/${encodeURIComponent(authorParam)}`, url.origin);
+        const res = await env.ASSETS.fetch(new Request(target.toString(), request));
+        if (res.ok) return withSeoHeaders(res);
+      }
     }
 
     const assetResponse = await env.ASSETS.fetch(request);
-    return withSeoHeaders(assetResponse);
+    return withSeoHeaders(assetResponse, isInternalView);
   },
 };

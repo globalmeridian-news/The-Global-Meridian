@@ -58,9 +58,15 @@ export const VideoReportsSection: React.FC = () => {
               </div>
 
               {/* Title & metadata */}
-              <div
-                onClick={() => viewArticle(art.id)}
-                className="cursor-pointer"
+              <a
+                href={`/article/${encodeURIComponent(art.id)}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(art.id);
+                  }
+                }}
+                className="cursor-pointer block"
               >
                 <div className="text-[11px] text-red-400 font-bold uppercase tracking-wider mb-1">
                   {art.category} &middot; {art.location}
@@ -74,7 +80,7 @@ export const VideoReportsSection: React.FC = () => {
                 <div className="text-[10px] text-slate-500 mt-2">
                   Credit: {video.credit}
                 </div>
-              </div>
+              </a>
             </div>
           );
         })}

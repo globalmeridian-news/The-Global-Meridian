@@ -11,7 +11,7 @@ import { getArticleReadingStats } from '../../utils/readingTime';
 import { LazyImage } from '../common/LazyImage';
 
 export const HeroGrid: React.FC = () => {
-  const { articles, currentLanguage, viewArticle, homepageConfig, liveTick } = useNews();
+  const { articles, currentLanguage, viewArticle, viewAuthor, homepageConfig, liveTick } = useNews();
 
   const isBn = currentLanguage === 'bn';
 
@@ -43,11 +43,18 @@ export const HeroGrid: React.FC = () => {
         {/* Left & Middle: Hero Feature + 2-col sub-features (9 cols) */}
         <div className="lg:col-span-8 flex flex-col">
           {/* Main Hero Card (Accurately Designed from Image 1) */}
-          <article
-            onClick={() => viewArticle(heroArticle.id)}
-            className="group cursor-pointer border-b border-slate-200 pb-6 mb-6"
-          >
-            <div className="relative aspect-16/9 overflow-hidden rounded-xl bg-slate-900 mb-4 shadow-sm group-hover:shadow-md transition-shadow">
+          <article className="group border-b border-slate-200 pb-6 mb-6">
+            <a
+              href={`/article/${encodeURIComponent(heroArticle.id)}`}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  viewArticle(heroArticle.id);
+                }
+              }}
+              aria-label={heroTitle}
+              className="block relative aspect-16/9 overflow-hidden rounded-xl bg-slate-900 mb-4 shadow-sm group-hover:shadow-md transition-shadow"
+            >
               <LazyImage
                 src={heroArticle.featuredImage.url}
                 alt={heroArticle.featuredImage.caption}
@@ -93,7 +100,7 @@ export const HeroGrid: React.FC = () => {
                   {isBn ? 'প্রধান খবর' : 'Lead Dispatch'}
                 </span>
               </div>
-            </div>
+            </a>
 
             {/* Category, Location and Timestamp Metadata Row */}
             <div className="flex items-center gap-2 text-xs font-semibold text-red-600 uppercase tracking-wider mb-2 flex-wrap">
@@ -114,7 +121,17 @@ export const HeroGrid: React.FC = () => {
 
             {/* Main Headline */}
             <h1 className="font-serif-headline text-2xl md:text-4xl font-bold text-slate-950 group-hover:text-red-600 transition-colors leading-tight mb-3">
-              {heroTitle}
+              <a
+                href={`/article/${encodeURIComponent(heroArticle.id)}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(heroArticle.id);
+                  }
+                }}
+              >
+                {heroTitle}
+              </a>
             </h1>
 
             {/* Summary Text */}
@@ -124,7 +141,16 @@ export const HeroGrid: React.FC = () => {
 
             {/* Bottom Row: Author details & Prominent RED Rounded Pill 'Read More' Button */}
             <div className="flex items-center justify-between flex-wrap gap-3 pt-1">
-              <div className="flex items-center gap-2 text-xs text-slate-600">
+              <a
+                href={`/author/${encodeURIComponent(heroArticle.author.id)}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewAuthor(heroArticle.author.id);
+                  }
+                }}
+                className="flex items-center gap-2 text-xs text-slate-600 hover:text-red-700"
+              >
                 <img
                   src={heroArticle.author.avatar}
                   alt={heroArticle.author.name}
@@ -133,19 +159,23 @@ export const HeroGrid: React.FC = () => {
                 <span className="font-semibold text-slate-900">{heroArticle.author.name}</span>
                 <span className="text-slate-400">&middot;</span>
                 <span className="text-slate-500">{heroArticle.author.role}</span>
-              </div>
+              </a>
 
-              {/* Red Rounded Pill 'Read More' Button from Image 1 */}
-              <button
+              {/* Red Rounded Pill 'Read More' Link */}
+              <a
+                href={`/article/${encodeURIComponent(heroArticle.id)}`}
                 onClick={(e) => {
-                  e.stopPropagation();
-                  viewArticle(heroArticle.id);
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(heroArticle.id);
+                  }
                 }}
+                aria-label={`${isBn ? 'আরও পড়ুন' : 'Read Full Story'}: ${heroTitle}`}
                 className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold px-5 py-2 rounded-full text-xs sm:text-sm flex items-center gap-2 shadow-sm hover:shadow-md transition-all cursor-pointer group/btn"
               >
                 <span>{isBn ? 'আরও পড়ুন' : 'Read Full Story'}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           </article>
 
@@ -153,13 +183,22 @@ export const HeroGrid: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {secondaryStories.map((art) => {
               const title = getLocalizedHeadline(art, currentLanguage);
+              const artHref = `/article/${encodeURIComponent(art.id)}`;
               return (
                 <article
                   key={art.id}
-                  onClick={() => viewArticle(art.id)}
-                  className="group cursor-pointer flex flex-col justify-between"
+                  className="group flex flex-col justify-between"
                 >
-                  <div>
+                  <a
+                    href={artHref}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        viewArticle(art.id);
+                      }
+                    }}
+                    className="block cursor-pointer"
+                  >
                     <div className="aspect-16/10 overflow-hidden rounded-lg bg-slate-100 mb-2.5">
                       <LazyImage
                         src={art.featuredImage.thumbnailUrl || art.featuredImage.url}
@@ -174,7 +213,7 @@ export const HeroGrid: React.FC = () => {
                     <h2 className="font-serif-headline text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-3 leading-snug">
                       {title}
                     </h2>
-                  </div>
+                  </a>
 
                   <div className="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5 flex-wrap">
                     <span>{formatRelativeTime(art.publishedAt, currentLanguage)}</span>
@@ -202,10 +241,16 @@ export const HeroGrid: React.FC = () => {
             {developingStories.map((art, idx) => {
               const title = getLocalizedHeadline(art, currentLanguage);
               return (
-                <div
+                <a
                   key={art.id}
-                  onClick={() => viewArticle(art.id)}
-                  className="py-3.5 group cursor-pointer first:pt-0"
+                  href={`/article/${encodeURIComponent(art.id)}`}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewArticle(art.id);
+                    }
+                  }}
+                  className="py-3.5 group cursor-pointer first:pt-0 block"
                 >
                   <div className="flex items-start gap-3">
                     <span className="font-serif-headline text-2xl font-bold text-slate-300 group-hover:text-red-600 transition-colors">
@@ -225,7 +270,7 @@ export const HeroGrid: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>

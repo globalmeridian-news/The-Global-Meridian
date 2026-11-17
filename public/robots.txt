@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /*?view=cms
+Disallow: /*?view=seo
+Disallow: /*?view=submit
 
 User-agent: Googlebot
 Allow: /

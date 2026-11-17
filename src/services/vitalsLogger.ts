@@ -42,8 +42,12 @@ class VitalsLoggingService {
     updatedAt: new Date().toISOString(),
   };
 
-  constructor(endpoint = '/api/vitals') {
-    this.endpoint = endpoint;
+  constructor(endpoint = '') {
+    const envEndpoint =
+      typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_VITALS_ENDPOINT
+        ? String((import.meta as any).env.VITE_VITALS_ENDPOINT)
+        : '';
+    this.endpoint = endpoint || envEndpoint;
     this.loadFromStorage();
   }
 
@@ -110,13 +114,15 @@ class VitalsLoggingService {
     this.saveToStorage();
     this.notifyListeners();
 
-    // Queue for network transmission
-    this.queue.push(metric);
-    this.scheduleFlush();
+    if (this.endpoint) {
+      // Queue for network transmission only when an external vitals endpoint is configured
+      this.queue.push(metric);
+      this.scheduleFlush();
+    }
   }
 
   private scheduleFlush() {
-    if (this.flushTimeout) return;
+    if (this.flushTimeout || !this.endpoint) return;
     this.flushTimeout = setTimeout(() => {
       this.flushTimeout = null;
       this.sendToLoggingService();
@@ -124,10 +130,13 @@ class VitalsLoggingService {
   }
 
   /**
-   * Transmit queued metrics to the telemetry endpoint
+   * Transmit queued metrics to the telemetry endpoint (when configured)
    */
   public async sendToLoggingService(): Promise<void> {
-    if (this.queue.length === 0 || typeof window === 'undefined') return;
+    if (!this.endpoint || this.queue.length === 0 || typeof window === 'undefined') {
+      this.queue = [];
+      return;
+    }
 
     const payload = {
       appId: 'the-global-meridian',

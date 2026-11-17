@@ -564,12 +564,18 @@ export const ArticleView: React.FC = () => {
         <article ref={articleRef} className="lg:col-span-8">
           {/* Category & Location Kicker */}
           <div className="flex items-center gap-2 text-xs font-bold text-red-700 uppercase tracking-wider mb-2">
-            <button
-              onClick={() => viewCategory(article.category)}
+            <a
+              href={`/category/${encodeURIComponent(article.category.toLowerCase().replace(/\s+/g, '-'))}`}
+              onClick={(e) => {
+                if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  viewCategory(article.category);
+                }
+              }}
               className="hover:underline cursor-pointer"
             >
               {getLocalizedCategory(article.category, currentLanguage)}
-            </button>
+            </a>
             <span className="text-slate-300">&middot;</span>
             <span className="text-slate-600 font-normal normal-case flex items-center gap-1">
               <MapPin className="w-3.5 h-3.5 text-slate-400" />
@@ -608,12 +614,18 @@ export const ArticleView: React.FC = () => {
               />
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <button
-                    onClick={() => viewAuthor(article.author.id)}
+                  <a
+                    href={`/author/${encodeURIComponent(article.author.id)}`}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        viewAuthor(article.author.id);
+                      }
+                    }}
                     className="font-bold text-slate-950 text-sm hover:text-red-700 hover:underline cursor-pointer"
                   >
                     {displayAuthorName}
-                  </button>
+                  </a>
                   <span className="text-slate-300">&middot;</span>
                   {/* Estimated 'X minute read' duration next to the article byline */}
                   <span
@@ -715,7 +727,7 @@ export const ArticleView: React.FC = () => {
             <div className="aspect-16/9 overflow-hidden rounded-xs bg-slate-900 mb-2">
               <LazyImage
                 src={article.featuredImage.url}
-                alt={displayCaption}
+                alt={displayCaption || displayTitle}
                 priority={true}
                 aspectRatio="aspect-16/9"
                 className="w-full h-full object-cover"
@@ -866,7 +878,7 @@ export const ArticleView: React.FC = () => {
               }
 
               if (block.type === 'image' && block.media) {
-                const caption = block.media.caption || '';
+                const caption = block.media.caption || displayTitle;
                 return (
                   <figure key={block.id} className="my-8">
                     <LazyImage
@@ -1069,9 +1081,15 @@ export const ArticleView: React.FC = () => {
               {relatedArticles.map((rel) => {
                 const title = getLocalizedHeadline(rel, currentLanguage);
                 return (
-                  <div
+                  <a
                     key={rel.id}
-                    onClick={() => viewArticle(rel.id)}
+                    href={`/article/${encodeURIComponent(rel.id)}`}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        viewArticle(rel.id);
+                      }
+                    }}
                     className="group cursor-pointer flex gap-3 items-start"
                   >
                     <div className="w-18 h-14 shrink-0 rounded overflow-hidden bg-slate-100">
@@ -1093,7 +1111,7 @@ export const ArticleView: React.FC = () => {
                         {formatRelativeTime(rel.publishedAt, currentLanguage)}
                       </div>
                     </div>
-                  </div>
+                  </a>
                 );
               })}
             </div>
@@ -1108,9 +1126,15 @@ export const ArticleView: React.FC = () => {
             </div>
             <div className="divide-y divide-slate-100">
               {mostReadArticles.map((art, idx) => (
-                <div
+                <a
                   key={art.id}
-                  onClick={() => viewArticle(art.id)}
+                  href={`/article/${encodeURIComponent(art.id)}`}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewArticle(art.id);
+                    }
+                  }}
                   className="py-3 first:pt-0 group cursor-pointer flex items-start gap-3"
                 >
                   <span className="font-serif-headline text-xl font-bold text-slate-300 group-hover:text-red-700">
@@ -1124,7 +1148,7 @@ export const ArticleView: React.FC = () => {
                       {art.views.toLocaleString()} {getUIText('reads', currentLanguage)} &middot; {art.location}
                     </span>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>

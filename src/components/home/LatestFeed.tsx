@@ -32,13 +32,22 @@ export const LatestFeed: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {sortedArticles.slice(0, 8).map((art) => {
           const title = getLocalizedHeadline(art, currentLanguage);
+          const artHref = `/article/${encodeURIComponent(art.id)}`;
           return (
             <article
               key={art.id}
-              onClick={() => viewArticle(art.id)}
-              className="group cursor-pointer flex flex-col justify-between border-b md:border-b-0 pb-4 md:pb-0"
+              className="group flex flex-col justify-between border-b md:border-b-0 pb-4 md:pb-0"
             >
-              <div>
+              <a
+                href={artHref}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(art.id);
+                  }
+                }}
+                className="block cursor-pointer"
+              >
                 <div className="relative aspect-16/10 overflow-hidden rounded-lg bg-slate-100 mb-3 shadow-2xs group-hover:shadow-xs transition-shadow">
                   <LazyImage
                     src={art.featuredImage.thumbnailUrl || art.featuredImage.url}
@@ -66,7 +75,7 @@ export const LatestFeed: React.FC = () => {
                 <h3 className="font-serif-headline text-base font-bold text-slate-900 group-hover:text-red-600 transition-colors leading-snug line-clamp-3">
                   {title}
                 </h3>
-              </div>
+              </a>
 
               <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
                 <div className="flex items-center gap-1.5 flex-wrap">
@@ -76,9 +85,19 @@ export const LatestFeed: React.FC = () => {
                     {getArticleReadingStats(art, currentLanguage).displayText}
                   </span>
                 </div>
-                <span className="flex items-center gap-0.5 text-slate-400 group-hover:text-red-600 font-medium">
+                <a
+                  href={artHref}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      viewArticle(art.id);
+                    }
+                  }}
+                  aria-label={`Read: ${title}`}
+                  className="flex items-center gap-0.5 text-slate-500 group-hover:text-red-600 font-medium"
+                >
                   Read <ArrowUpRight className="w-3 h-3" />
-                </span>
+                </a>
               </div>
             </article>
           );

@@ -3,10 +3,29 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import {defineConfig, Plugin} from 'vite';
-import {INITIAL_ARTICLES} from './src/data/initialNews.ts';
+import {AUTHORS, INITIAL_ARTICLES} from './src/data/initialNews.ts';
 import type {Article} from './src/types/news.ts';
 
 const SITE_URL = 'https://the-global-meridian.incognito120120.workers.dev';
+
+function optimizeMetaDescription(text: string, maxLen = 158): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= maxLen) return clean;
+  const sliced = clean.slice(0, maxLen - 1);
+  const lastSpace = sliced.lastIndexOf(' ');
+  return `${(lastSpace > 90 ? sliced.slice(0, lastSpace) : sliced).trim()}…`;
+}
+
+function optimizeTitleTag(title: string, suffix = ' – The Global Meridian', maxLen = 68): string {
+  const clean = title.replace(/\s+/g, ' ').trim();
+  const full = `${clean}${suffix}`;
+  if (full.length <= maxLen) return full;
+  const budget = Math.max(28, maxLen - suffix.length - 1);
+  const sliced = clean.slice(0, budget);
+  const lastSpace = sliced.lastIndexOf(' ');
+  const trimmed = (lastSpace > 20 ? sliced.slice(0, lastSpace) : sliced).trim();
+  return `${trimmed}…${suffix}`;
+}
 
 function escapeHtml(str: string): string {
   return str
@@ -143,9 +162,11 @@ function buildFooterHtml(): string {
         <a href="${SITE_URL}/rss.xml">RSS Feed</a> |
         <a href="${SITE_URL}/llms.txt">LLMs Index</a> |
         <a href="${SITE_URL}/policy/editorial-policy">Editorial Policy</a> |
+        <a href="${SITE_URL}/policy/fact-checking">Fact-Checking Standard</a> |
         <a href="${SITE_URL}/policy/corrections-policy">Corrections Policy</a> |
         <a href="${SITE_URL}/policy/about-us">About Us</a> |
-        <a href="${SITE_URL}/policy/privacy-policy">Privacy Policy</a>
+        <a href="${SITE_URL}/policy/privacy-policy">Privacy Policy</a> |
+        <a href="${SITE_URL}/policy/contact">Contact</a>
       </footer>`;
 }
 
@@ -341,6 +362,7 @@ ${articleMarkup}
           )
           .join('\n            ');
 
+        const captionText = art.featuredImage?.caption || art.title;
         const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
       <header>
         <p><a href="${SITE_URL}/">The Global Meridian</a></p>
@@ -353,8 +375,11 @@ ${articleMarkup}
           <p><a href="${categoryUrl}">${escapeHtml(art.category)}</a> · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
           <h1>${escapeHtml(art.title)}</h1>
           ${art.title_bn ? `<h2 lang="bn">${escapeHtml(art.title_bn)}</h2>` : ''}
-          <p>By ${escapeHtml(art.author.name)} (${escapeHtml(art.author.title)}) · Source: ${escapeHtml(art.source)}</p>
-          <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(art.featuredImage?.caption || art.title)}" />
+          <p>By <a href="${SITE_URL}/author/${encodeURIComponent(art.author.id)}">${escapeHtml(art.author.name)}</a> (${escapeHtml(art.author.title)}) · Source: ${escapeHtml(art.source)}</p>
+          <figure>
+            <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(captionText)}" width="1200" height="675" />
+            <figcaption>${escapeHtml(captionText)}</figcaption>
+          </figure>
           <p class="article-lead-summary"><strong>${escapeHtml(art.summary)}</strong></p>
           ${art.summary_bn ? `<p lang="bn">${escapeHtml(art.summary_bn)}</p>` : ''}
           ${paragraphsHtml}
@@ -366,8 +391,8 @@ ${articleMarkup}
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
         const pageHtml = replaceMetaAndCanonical(baseHtml, {
-          title: `${art.seoTitle || art.title} – The Global Meridian`,
-          description: art.seoDescription || art.summary,
+          title: optimizeTitleTag(art.seoTitle || art.title),
+          description: optimizeMetaDescription(art.seoDescription || art.summary),
           canonicalUrl,
           ogType: 'article',
           imageUrl: imgUrl,
@@ -432,14 +457,26 @@ ${catItemsHtml}
       ${buildFooterHtml()}
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
+        const catBreadcrumbJsonLd = {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {'@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/`},
+            {'@type': 'ListItem', position: 2, name: cat, item: canonicalUrl},
+          ],
+        };
+
         const catHtml = replaceMetaAndCanonical(baseHtml, {
           title: `${cat} World News & Analysis – The Global Meridian`,
-          description: `Latest verified ${cat} news, analysis, and breaking dispatches from The Global Meridian across global bureaus.`,
+          description: optimizeMetaDescription(
+            `Latest verified ${cat} news, analysis, and breaking dispatches from The Global Meridian across Europe, Asia, the Americas, Middle East, and Africa.`,
+          ),
           canonicalUrl,
           ogType: 'website',
           imageUrl:
             catArticles[0]?.featuredImage?.url ||
             'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
+          extraSchemasJsonLd: `<script type="application/ld+json" id="breadcrumbs-schema">${escapeJsonScript(catBreadcrumbJsonLd)}</script>`,
           bodyShell,
         });
 
@@ -448,12 +485,17 @@ ${catItemsHtml}
         fs.writeFileSync(path.join(dir, 'index.html'), catHtml, 'utf8');
       }
 
-      // 3. Pre-render editorial policy pages (/policy/:slug)
+      // 3. Pre-render editorial policy & trust pages (/policy/:slug)
       const policies = [
         {
           slug: 'editorial-policy',
           title: 'Editorial Policy & Verification Standards – The Global Meridian',
           desc: 'Multi-source verification standards, independence charter, and newsroom ethics at The Global Meridian.',
+        },
+        {
+          slug: 'fact-checking',
+          title: 'Fact-Checking & Verification Protocol – The Global Meridian',
+          desc: 'How The Global Meridian verifies diplomatic treaties, field videos, and peer-reviewed data prior to publication.',
         },
         {
           slug: 'corrections-policy',
@@ -470,10 +512,33 @@ ${catItemsHtml}
           title: 'Privacy Policy – The Global Meridian',
           desc: 'Reader privacy, cookie transparency, and local storage policy of The Global Meridian.',
         },
+        {
+          slug: 'terms-of-service',
+          title: 'Terms of Service – The Global Meridian',
+          desc: 'Editorial usage terms, reader discussion rules, and licensing policies for The Global Meridian.',
+        },
+        {
+          slug: 'contact',
+          title: 'Contact & Press Bureau – The Global Meridian',
+          desc: 'Reach The Global Meridian editorial desk, corrections team, and international press bureaus.',
+        },
+        {
+          slug: 'cookie-policy',
+          title: 'Cookie & Preference Policy – The Global Meridian',
+          desc: 'Details on essential language preference storage and privacy-first controls at The Global Meridian.',
+        },
       ];
 
       for (const pol of policies) {
         const canonicalUrl = `${SITE_URL}/policy/${pol.slug}`;
+        const polBreadcrumbJsonLd = {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {'@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/`},
+            {'@type': 'ListItem', position: 2, name: pol.title.split(' – ')[0], item: canonicalUrl},
+          ],
+        };
         const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
       <header>
         <p><a href="${SITE_URL}/">The Global Meridian</a></p>
@@ -492,17 +557,85 @@ ${catItemsHtml}
 
         const polHtml = replaceMetaAndCanonical(baseHtml, {
           title: pol.title,
-          description: pol.desc,
+          description: optimizeMetaDescription(pol.desc),
           canonicalUrl,
           ogType: 'website',
           imageUrl:
             'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
+          extraSchemasJsonLd: `<script type="application/ld+json" id="breadcrumbs-schema">${escapeJsonScript(polBreadcrumbJsonLd)}</script>`,
           bodyShell,
         });
 
         const dir = path.join(outDir, 'policy', pol.slug);
         fs.mkdirSync(dir, {recursive: true});
         fs.writeFileSync(path.join(dir, 'index.html'), polHtml, 'utf8');
+      }
+
+      // 4. Pre-render correspondent author profile pages (/author/:id)
+      for (const author of AUTHORS) {
+        const canonicalUrl = `${SITE_URL}/author/${encodeURIComponent(author.id)}`;
+        const authorArticles = published.filter((a) => a.author.id === author.id);
+        const profileJsonLd = {
+          '@context': 'https://schema.org',
+          '@type': 'ProfilePage',
+          mainEntity: {
+            '@type': 'Person',
+            name: author.name,
+            jobTitle: author.title,
+            description: author.bio,
+            image: author.avatar,
+            url: canonicalUrl,
+          },
+        };
+        const authorBreadcrumbJsonLd = {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {'@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/`},
+            {'@type': 'ListItem', position: 2, name: author.name, item: canonicalUrl},
+          ],
+        };
+        const listHtml = authorArticles
+          .map(
+            (art) => `        <article>
+          <h2><a href="${buildArticleCanonicalUrl(art)}">${escapeHtml(art.title)}</a></h2>
+          <p>${escapeHtml(art.category)} · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
+          <p>${escapeHtml(art.summary)}</p>
+        </article>`,
+          )
+          .join('\n');
+
+        const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
+      <header>
+        <p><a href="${SITE_URL}/">The Global Meridian</a></p>
+        <nav aria-label="News Categories">
+          ${buildNavHtml()}
+        </nav>
+      </header>
+      <main>
+        <section>
+          <h1>${escapeHtml(author.name)} – ${escapeHtml(author.title)}</h1>
+          <p>${escapeHtml(author.bio)}</p>
+          <h2>Published Dispatches (${authorArticles.length})</h2>
+${listHtml}
+        </section>
+      </main>
+      ${buildFooterHtml()}
+      <!-- /PRERENDERED_NEWS_SHELL -->`;
+
+        const authorHtml = replaceMetaAndCanonical(baseHtml, {
+          title: optimizeTitleTag(`${author.name}, ${author.title}`),
+          description: optimizeMetaDescription(author.bio),
+          canonicalUrl,
+          ogType: 'website',
+          imageUrl: author.avatar,
+          extraSchemasJsonLd: `<script type="application/ld+json" id="profile-schema">${escapeJsonScript(profileJsonLd)}</script>\n    <script type="application/ld+json" id="breadcrumbs-schema">${escapeJsonScript(authorBreadcrumbJsonLd)}</script>`,
+          bodyShell,
+        });
+
+        const dir = path.join(outDir, 'author', author.id);
+        fs.mkdirSync(dir, {recursive: true});
+        fs.writeFileSync(path.join(dir, 'index.html'), authorHtml, 'utf8');
       }
     },
   };

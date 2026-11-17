@@ -14,12 +14,18 @@ export const PolicyPages: React.FC = () => {
 
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <button
-          onClick={() => setActiveView('home')}
-          className="flex items-center gap-1 text-xs text-slate-600 hover:text-red-700 font-semibold mb-6 cursor-pointer"
+        <a
+          href="/"
+          onClick={(e) => {
+            if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+              e.preventDefault();
+              setActiveView('home');
+            }
+          }}
+          className="inline-flex items-center gap-1 text-xs text-slate-600 hover:text-red-700 font-semibold mb-6 cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4" /> Back to Newsroom Home
-        </button>
+        </a>
 
         <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-2xs mb-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <img
@@ -49,9 +55,15 @@ export const PolicyPages: React.FC = () => {
           </h2>
           <div className="divide-y divide-slate-100 bg-white border border-slate-200 rounded-lg overflow-hidden">
             {authorArticles.map((art) => (
-              <div
+              <a
                 key={art.id}
-                onClick={() => viewArticle(art.id)}
+                href={`/article/${encodeURIComponent(art.id)}`}
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    viewArticle(art.id);
+                  }
+                }}
                 className="p-4 hover:bg-slate-50 cursor-pointer flex gap-4 items-center"
               >
                 <img
@@ -67,7 +79,7 @@ export const PolicyPages: React.FC = () => {
                     {art.title}
                   </h3>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -211,12 +223,18 @@ export const PolicyPages: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 font-serif">
-      <button
-        onClick={() => setActiveView('home')}
-        className="flex items-center gap-1 font-sans text-xs text-slate-600 hover:text-red-700 font-semibold mb-6 cursor-pointer"
+      <a
+        href="/"
+        onClick={(e) => {
+          if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+            e.preventDefault();
+            setActiveView('home');
+          }
+        }}
+        className="inline-flex items-center gap-1 font-sans text-xs text-slate-600 hover:text-red-700 font-semibold mb-6 cursor-pointer"
       >
         <ChevronLeft className="w-4 h-4" /> Back to Newsroom Home
-      </button>
+      </a>
 
       <div className="bg-white border border-slate-200 rounded-lg p-8 shadow-xs leading-relaxed">
         {renderPolicyContent()}

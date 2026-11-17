@@ -223,15 +223,37 @@ const MainLayout: React.FC = () => {
     }
   }, [routeInitialized, activeView, selectedArticleId, selectedCategory, policyPageSlug, selectedAuthorId]);
 
-  // 3. Dynamic Full Head SEO, OpenGraph, Twitter Cards & JSON-LD Schemas for Google Discover
+  // 3. Dynamic Full Head SEO, OpenGraph, Twitter Cards & JSON-LD Schemas for Google Search & Discover
   useEffect(() => {
     const siteUrl = getSiteUrl();
+    const isInternalView = activeView === 'cms' || activeView === 'seo' || activeView === 'submit';
+
+    setMetaTag(
+      'robots',
+      isInternalView
+        ? 'noindex, nofollow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    );
+    setMetaTag(
+      'googlebot',
+      isInternalView
+        ? 'noindex, nofollow'
+        : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+    );
+
+    const clampDesc = (raw: string, maxLen = 158) => {
+      const clean = raw.replace(/\s+/g, ' ').trim();
+      if (clean.length <= maxLen) return clean;
+      const sliced = clean.slice(0, maxLen - 1);
+      const lastSpace = sliced.lastIndexOf(' ');
+      return `${(lastSpace > 90 ? sliced.slice(0, lastSpace) : sliced).trim()}…`;
+    };
 
     if (activeView === 'article' && selectedArticleId) {
       const art = articles.find((a) => a.id === selectedArticleId);
       if (art) {
         const pageTitle = `${art.seoTitle || art.title} – The Global Meridian`;
-        const pageDesc = art.seoDescription || art.summary;
+        const pageDesc = clampDesc(art.seoDescription || art.summary);
         const canonicalUrl = `${siteUrl}/article/${encodeURIComponent(art.id)}`;
         const heroImg = art.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80';
 
@@ -255,26 +277,46 @@ const MainLayout: React.FC = () => {
       }
     }
 
-    let defaultTitle = 'The Global Meridian – International News & Newsroom CMS';
-    let defaultDesc = 'Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS.';
+    let defaultTitle = 'The Global Meridian – International World News & Analysis';
+    let defaultDesc =
+      'Read verified breaking world news, geopolitics, business, technology, and defense coverage across Europe, Asia, the Americas, Middle East, and Africa.';
     let defaultCanonical = `${siteUrl}/`;
+    let breadcrumbItems: Array<{ name: string; item: string }> | null = null;
 
     if (activeView === 'policy' && policyPageSlug) {
       defaultCanonical = `${siteUrl}/policy/${encodeURIComponent(policyPageSlug)}`;
       const policyTitles: Record<string, string> = {
         'editorial-policy': 'Editorial Policy & Verification Standards – The Global Meridian',
+        'fact-checking': 'Fact-Checking & Verification Protocol – The Global Meridian',
         'corrections-policy': 'Corrections & Accuracy Policy – The Global Meridian',
         'about-us': 'About The Global Meridian – International Newsroom',
         'privacy-policy': 'Privacy Policy – The Global Meridian',
+        'terms-of-service': 'Terms of Service – The Global Meridian',
+        contact: 'Contact & Press Bureau – The Global Meridian',
+        'cookie-policy': 'Cookie & Preference Policy – The Global Meridian',
       };
       defaultTitle = policyTitles[policyPageSlug] || 'Editorial Standards – The Global Meridian';
+      breadcrumbItems = [
+        { name: 'Home', item: `${siteUrl}/` },
+        { name: defaultTitle.split(' – ')[0], item: defaultCanonical },
+      ];
     } else if (activeView === 'author' && selectedAuthorId) {
       defaultCanonical = `${siteUrl}/author/${encodeURIComponent(selectedAuthorId)}`;
       defaultTitle = 'Correspondent Profile – The Global Meridian';
+      breadcrumbItems = [
+        { name: 'Home', item: `${siteUrl}/` },
+        { name: 'Correspondents', item: defaultCanonical },
+      ];
     } else if (selectedCategory && selectedCategory !== 'All') {
       defaultTitle = `${selectedCategory} World News & Analysis – The Global Meridian`;
-      defaultDesc = `Latest verified ${selectedCategory} news, analysis, and breaking dispatches from The Global Meridian across global bureaus.`;
+      defaultDesc = clampDesc(
+        `Latest verified ${selectedCategory} news, analysis, and breaking dispatches from The Global Meridian across Europe, Asia, the Americas, Middle East, and Africa.`,
+      );
       defaultCanonical = `${siteUrl}/category/${encodeURIComponent(getCategorySlug(selectedCategory))}`;
+      breadcrumbItems = [
+        { name: 'Home', item: `${siteUrl}/` },
+        { name: selectedCategory, item: defaultCanonical },
+      ];
     }
 
     const defaultImg = 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80';
@@ -294,8 +336,22 @@ const MainLayout: React.FC = () => {
     // Inject validated WebSite schema for SearchBox rich snippets
     injectValidatedJsonLd('google-website-schema', generateWebSiteJsonLd(siteUrl));
 
+    if (breadcrumbItems) {
+      injectValidatedJsonLd('breadcrumbs-schema', {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbItems.map((el, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: el.name,
+          item: el.item,
+        })),
+      });
+    } else {
+      removeValidatedJsonLd('breadcrumbs-schema');
+    }
+
     removeValidatedJsonLd('newsarticle-schema');
-    removeValidatedJsonLd('breadcrumbs-schema');
     removeValidatedJsonLd('faq-schema');
   }, [activeView, selectedArticleId, selectedCategory, policyPageSlug, selectedAuthorId, articles]);
 
