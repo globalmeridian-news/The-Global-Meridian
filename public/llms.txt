@@ -9,54 +9,54 @@
 - RSS Feed: https://the-global-meridian.incognito120120.workers.dev/rss.xml
 
 ## Editorial Standards & Policies
-- Editorial Policy: https://the-global-meridian.incognito120120.workers.dev/?policy=editorial-policy
-- Corrections Policy: https://the-global-meridian.incognito120120.workers.dev/?policy=corrections-policy
-- About Us: https://the-global-meridian.incognito120120.workers.dev/?policy=about-us
-- Privacy Policy: https://the-global-meridian.incognito120120.workers.dev/?policy=privacy-policy
+- Editorial Policy: https://the-global-meridian.incognito120120.workers.dev/policy/editorial-policy
+- Corrections Policy: https://the-global-meridian.incognito120120.workers.dev/policy/corrections-policy
+- About Us: https://the-global-meridian.incognito120120.workers.dev/policy/about-us
+- Privacy Policy: https://the-global-meridian.incognito120120.workers.dev/policy/privacy-policy
 
 ## Coverage Desks & Target Regions
-- [World](https://the-global-meridian.incognito120120.workers.dev/?cat=World): Europe, Middle East, Americas, Russia, China, India, Africa, Japan, South Korea
-- [Politics](https://the-global-meridian.incognito120120.workers.dev/?cat=Politics): Multilateral summits, EU/Russia diplomacy, Indo-Pacific, Korean Peninsula, Japan & Americas governance
-- [Business](https://the-global-meridian.incognito120120.workers.dev/?cat=Business): US Fed, ECB, Bank of Japan & yen policy, China-Brazil trade, India-Middle East corridors
-- [Technology](https://the-global-meridian.incognito120120.workers.dev/?cat=Technology): SK Hynix & Korean semiconductors, agentic AI security, 6G spectrum, robotics
-- [Science](https://the-global-meridian.incognito120120.workers.dev/?cat=Science): Deep space, climate research, mRNA breakthroughs, energy systems
-- [Defense](https://the-global-meridian.incognito120120.workers.dev/?cat=Defense): Hormuz & Red Sea maritime corridors, European security, orbital verification
-- [Environment](https://the-global-meridian.incognito120120.workers.dev/?cat=Environment): COP31, African adaptation finance, clean transition
-- [Opinion](https://the-global-meridian.incognito120120.workers.dev/?cat=Opinion): Geoeconomic and policy analysis
+- [World](https://the-global-meridian.incognito120120.workers.dev/category/world): Europe, Middle East, Americas, Russia, China, India, Africa, Japan, South Korea
+- [Politics](https://the-global-meridian.incognito120120.workers.dev/category/politics): Multilateral summits, EU/Russia diplomacy, Indo-Pacific, Korean Peninsula, Japan & Americas governance
+- [Business](https://the-global-meridian.incognito120120.workers.dev/category/business): US Fed, ECB, Bank of Japan & yen policy, China-Brazil trade, India-Middle East corridors
+- [Technology](https://the-global-meridian.incognito120120.workers.dev/category/technology): SK Hynix & Korean semiconductors, agentic AI security, 6G spectrum, robotics
+- [Science](https://the-global-meridian.incognito120120.workers.dev/category/science): Deep space, climate research, mRNA breakthroughs, energy systems
+- [Defense](https://the-global-meridian.incognito120120.workers.dev/category/defense): Hormuz & Red Sea maritime corridors, European security, orbital verification
+- [Environment](https://the-global-meridian.incognito120120.workers.dev/category/environment): COP31, African adaptation finance, clean transition
+- [Opinion](https://the-global-meridian.incognito120120.workers.dev/category/opinion): Geoeconomic and policy analysis
 
 ## Latest Verified Reports (November 2026)
-- [Quad Leaders Unveil Indo-Pacific Maritime Pact in Manila as Trump Heads to Shenzhen for Xi–Putin Trilateral](https://the-global-meridian.incognito120120.workers.dev/?article=art-67)
-- [Overnight Missile & Drone Strike Collapses 227-Meter Kerch Bridge Span as EU Defense Ministers Convene in Brussels](https://the-global-meridian.incognito120120.workers.dev/?article=art-68)
-- [South Korea’s Kospi Hits 6-Month Low & Nikkei Drops Ahead of Nvidia Earnings Despite East Asia’s Global Digital Surge](https://the-global-meridian.incognito120120.workers.dev/?article=art-69)
-- [EU Expands Russia Sanctions Package as German FM Urges Immediate Surge in Gaza Winter Aid](https://the-global-meridian.incognito120120.workers.dev/?article=art-70)
-- [Leonid Meteor Shower Peaks Tonight Amid Astronomy Warning That 700+ Overhead Satellites Outnumber Visible Stars](https://the-global-meridian.incognito120120.workers.dev/?article=art-71)
-- [Global Countdown to ‘Grand Theft Auto VI’ Surpasses 15 Million Pre-Orders in Biggest Pop-Culture Launch of 2026](https://the-global-meridian.incognito120120.workers.dev/?article=art-72)
-- [US, Japan, South Korea & India Sign ‘San Francisco Declaration’ Under Pax Silica Amid Global Chip Stock Sell-Off](https://the-global-meridian.incognito120120.workers.dev/?article=art-61)
-- [Estonia Shuts Russia Border Crossings After Foiling Alleged GRU Drone Sabotage Plot as Germany Boosts €139B Defense](https://the-global-meridian.incognito120120.workers.dev/?article=art-62)
-- [US Deploys Third Carrier to Middle East After Bahrain Drone Strikes as Allies Issue Gaza Winter Aid Ultimatum](https://the-global-meridian.incognito120120.workers.dev/?article=art-63)
-- [Africa Tech Festival Opens in Cape Town as COP31 Enters Crucial Second Week Over Clean Finance & Critical Minerals](https://the-global-meridian.incognito120120.workers.dev/?article=art-64)
-- [Finland’s ICEYE Unveils 11cm Gen5 AI Radar Satellites for All-Weather Global Space Monitoring](https://the-global-meridian.incognito120120.workers.dev/?article=art-65)
-- [MotoGP Climax in Portimão, Germany–Netherlands Nations League & Jay Shah’s Unanimous ICC Return Lead Global Sports](https://the-global-meridian.incognito120120.workers.dev/?article=art-66)
-- [South Korea’s SK Hynix Unveils $1.05B Chip Supplier Hub & Nvidia Reaffirms 260,000 GPUs Amid National Exam AI Audit](https://the-global-meridian.incognito120120.workers.dev/?article=art-57)
-- [Japan Economy Contracts 0.1% in Q3 as Tokyo Watches ¥160/$ Currency Threshold and Prepares Defense AI Rules](https://the-global-meridian.incognito120120.workers.dev/?article=art-58)
-- [Seoul FM Visits Beijing for Peninsula Stability Ahead of APEC as North Korean Aide’s Moscow Trip Draws Scrutiny](https://the-global-meridian.incognito120120.workers.dev/?article=art-59)
-- [Namdaemun Market’s Viral ‘Scarf Man’ Draws Global Queues in Seoul Amid Northeast Asia Culture & Travel Surge](https://the-global-meridian.incognito120120.workers.dev/?article=art-60)
-- [India’s Modi Joins ASEAN & East Asia Summits as New Delhi Expands Trade Corridors from Minsk to Cairo](https://the-global-meridian.incognito120120.workers.dev/?article=art-55)
-- [China Balances Russia Ties and Europe Trade Ahead of Shenzhen Summit as Middle East Crisis Anchors Talks](https://the-global-meridian.incognito120120.workers.dev/?article=art-56)
-- [US Aviation Recovers After Historic FAA Ground Stop as Shenzhen Confirms Nov 19 Trump-Xi-Putin Trilateral](https://the-global-meridian.incognito120120.workers.dev/?article=art-49)
-- [India Seals Dramatic 22-Run ODI Win in New Zealand as CAF U-23 Africa Cup Qualifiers Peak](https://the-global-meridian.incognito120120.workers.dev/?article=art-50)
-- [Brazil-China Trade Jumps 20% Amid US Tariffs as India-Egypt Pact & Canada’s $560M Fund Reshape Commerce](https://the-global-meridian.incognito120120.workers.dev/?article=art-51)
-- [AI Coding Security Spotlight: Cursor Third-Party Key Breach and $4B Norwest Fund Fuel "Agentic Cybersecurity"](https://the-global-meridian.incognito120120.workers.dev/?article=art-52)
-- [‘Yalta 2.0’ Fears Grip Europe as EU & Kyiv Demand Guarantees Ahead of Shenzhen Trump-Xi-Putin Summit](https://the-global-meridian.incognito120120.workers.dev/?article=art-53)
-- [Tanker Mine Strikes Near Strait of Hormuz and Bab el-Mandeb Troop Realignment Escalate Maritime Alert](https://the-global-meridian.incognito120120.workers.dev/?article=art-54)
-- [NASA’s Voyager 1 Nears Historic One Light-Day Milestone 26 Billion Kilometers from Earth](https://the-global-meridian.incognito120120.workers.dev/?article=art-44)
-- [Mercedes Clinches 9th F1 Constructors’ Crown as Messi Wins Back-to-Back MLS Golden Boot](https://the-global-meridian.incognito120120.workers.dev/?article=art-45)
-- [World Prematurity Day 2026: WHO Urges Expanded NICU Care for 15 Million Preterm Infants Amid DR Congo Ebola Strain](https://the-global-meridian.incognito120120.workers.dev/?article=art-46)
-- [Orbital Data Centers & MIT AI Climate Emulators Spark Global Tech Policy Debate in Late 2026](https://the-global-meridian.incognito120120.workers.dev/?article=art-47)
-- [Sandip Ray Launches Four-Story Satyajit Ray Anthology Shoot as "Godzilla Minus Zero" Surges Worldwide](https://the-global-meridian.incognito120120.workers.dev/?article=art-48)
-- [Abu Dhabi Trilateral Talks Open as Europe Demands Seat at Table Over US-Brokered Ukraine Security Proposals](https://the-global-meridian.incognito120120.workers.dev/?article=art-38)
-- [Africa CDC Sounds Alarm on Six-Month Ebola Crisis as African Ministers Demand Climate & Infrastructure Finance](https://the-global-meridian.incognito120120.workers.dev/?article=art-39)
-- [Central Banks Face Dual Macro Shock: Fed and BoE Weigh Sticky Energy Inflation Against AI Capex Boom](https://the-global-meridian.incognito120120.workers.dev/?article=art-40)
-- [Satellite Intelligence Shows Iran Rebuilding Strategic Missile Sites Amid Heightened Western Arms Interdiction](https://the-global-meridian.incognito120120.workers.dev/?article=art-41)
-- [Spain’s First General Strike in 14 Years Sparks Debate Over Housing Crisis and Snap Election Politics](https://the-global-meridian.incognito120120.workers.dev/?article=art-42)
-- [Analysis: Central Asia Emerges as Vital Eurasian Trade Corridor Amid Supply Chain Fragmentation and Sanctions](https://the-global-meridian.incognito120120.workers.dev/?article=art-43)
+- [Quad Leaders Unveil Indo-Pacific Maritime Pact in Manila as Trump Heads to Shenzhen for Xi–Putin Trilateral](https://the-global-meridian.incognito120120.workers.dev/article/art-67)
+- [Overnight Missile & Drone Strike Collapses 227-Meter Kerch Bridge Span as EU Defense Ministers Convene in Brussels](https://the-global-meridian.incognito120120.workers.dev/article/art-68)
+- [South Korea’s Kospi Hits 6-Month Low & Nikkei Drops Ahead of Nvidia Earnings Despite East Asia’s Global Digital Surge](https://the-global-meridian.incognito120120.workers.dev/article/art-69)
+- [EU Expands Russia Sanctions Package as German FM Urges Immediate Surge in Gaza Winter Aid](https://the-global-meridian.incognito120120.workers.dev/article/art-70)
+- [Leonid Meteor Shower Peaks Tonight Amid Astronomy Warning That 700+ Overhead Satellites Outnumber Visible Stars](https://the-global-meridian.incognito120120.workers.dev/article/art-71)
+- [Global Countdown to ‘Grand Theft Auto VI’ Surpasses 15 Million Pre-Orders in Biggest Pop-Culture Launch of 2026](https://the-global-meridian.incognito120120.workers.dev/article/art-72)
+- [US, Japan, South Korea & India Sign ‘San Francisco Declaration’ Under Pax Silica Amid Global Chip Stock Sell-Off](https://the-global-meridian.incognito120120.workers.dev/article/art-61)
+- [Estonia Shuts Russia Border Crossings After Foiling Alleged GRU Drone Sabotage Plot as Germany Boosts €139B Defense](https://the-global-meridian.incognito120120.workers.dev/article/art-62)
+- [US Deploys Third Carrier to Middle East After Bahrain Drone Strikes as Allies Issue Gaza Winter Aid Ultimatum](https://the-global-meridian.incognito120120.workers.dev/article/art-63)
+- [Africa Tech Festival Opens in Cape Town as COP31 Enters Crucial Second Week Over Clean Finance & Critical Minerals](https://the-global-meridian.incognito120120.workers.dev/article/art-64)
+- [Finland’s ICEYE Unveils 11cm Gen5 AI Radar Satellites for All-Weather Global Space Monitoring](https://the-global-meridian.incognito120120.workers.dev/article/art-65)
+- [MotoGP Climax in Portimão, Germany–Netherlands Nations League & Jay Shah’s Unanimous ICC Return Lead Global Sports](https://the-global-meridian.incognito120120.workers.dev/article/art-66)
+- [South Korea’s SK Hynix Unveils $1.05B Chip Supplier Hub & Nvidia Reaffirms 260,000 GPUs Amid National Exam AI Audit](https://the-global-meridian.incognito120120.workers.dev/article/art-57)
+- [Japan Economy Contracts 0.1% in Q3 as Tokyo Watches ¥160/$ Currency Threshold and Prepares Defense AI Rules](https://the-global-meridian.incognito120120.workers.dev/article/art-58)
+- [Seoul FM Visits Beijing for Peninsula Stability Ahead of APEC as North Korean Aide’s Moscow Trip Draws Scrutiny](https://the-global-meridian.incognito120120.workers.dev/article/art-59)
+- [Namdaemun Market’s Viral ‘Scarf Man’ Draws Global Queues in Seoul Amid Northeast Asia Culture & Travel Surge](https://the-global-meridian.incognito120120.workers.dev/article/art-60)
+- [India’s Modi Joins ASEAN & East Asia Summits as New Delhi Expands Trade Corridors from Minsk to Cairo](https://the-global-meridian.incognito120120.workers.dev/article/art-55)
+- [China Balances Russia Ties and Europe Trade Ahead of Shenzhen Summit as Middle East Crisis Anchors Talks](https://the-global-meridian.incognito120120.workers.dev/article/art-56)
+- [US Aviation Recovers After Historic FAA Ground Stop as Shenzhen Confirms Nov 19 Trump-Xi-Putin Trilateral](https://the-global-meridian.incognito120120.workers.dev/article/art-49)
+- [India Seals Dramatic 22-Run ODI Win in New Zealand as CAF U-23 Africa Cup Qualifiers Peak](https://the-global-meridian.incognito120120.workers.dev/article/art-50)
+- [Brazil-China Trade Jumps 20% Amid US Tariffs as India-Egypt Pact & Canada’s $560M Fund Reshape Commerce](https://the-global-meridian.incognito120120.workers.dev/article/art-51)
+- [AI Coding Security Spotlight: Cursor Third-Party Key Breach and $4B Norwest Fund Fuel "Agentic Cybersecurity"](https://the-global-meridian.incognito120120.workers.dev/article/art-52)
+- [‘Yalta 2.0’ Fears Grip Europe as EU & Kyiv Demand Guarantees Ahead of Shenzhen Trump-Xi-Putin Summit](https://the-global-meridian.incognito120120.workers.dev/article/art-53)
+- [Tanker Mine Strikes Near Strait of Hormuz and Bab el-Mandeb Troop Realignment Escalate Maritime Alert](https://the-global-meridian.incognito120120.workers.dev/article/art-54)
+- [NASA’s Voyager 1 Nears Historic One Light-Day Milestone 26 Billion Kilometers from Earth](https://the-global-meridian.incognito120120.workers.dev/article/art-44)
+- [Mercedes Clinches 9th F1 Constructors’ Crown as Messi Wins Back-to-Back MLS Golden Boot](https://the-global-meridian.incognito120120.workers.dev/article/art-45)
+- [World Prematurity Day 2026: WHO Urges Expanded NICU Care for 15 Million Preterm Infants Amid DR Congo Ebola Strain](https://the-global-meridian.incognito120120.workers.dev/article/art-46)
+- [Orbital Data Centers & MIT AI Climate Emulators Spark Global Tech Policy Debate in Late 2026](https://the-global-meridian.incognito120120.workers.dev/article/art-47)
+- [Sandip Ray Launches Four-Story Satyajit Ray Anthology Shoot as "Godzilla Minus Zero" Surges Worldwide](https://the-global-meridian.incognito120120.workers.dev/article/art-48)
+- [Abu Dhabi Trilateral Talks Open as Europe Demands Seat at Table Over US-Brokered Ukraine Security Proposals](https://the-global-meridian.incognito120120.workers.dev/article/art-38)
+- [Africa CDC Sounds Alarm on Six-Month Ebola Crisis as African Ministers Demand Climate & Infrastructure Finance](https://the-global-meridian.incognito120120.workers.dev/article/art-39)
+- [Central Banks Face Dual Macro Shock: Fed and BoE Weigh Sticky Energy Inflation Against AI Capex Boom](https://the-global-meridian.incognito120120.workers.dev/article/art-40)
+- [Satellite Intelligence Shows Iran Rebuilding Strategic Missile Sites Amid Heightened Western Arms Interdiction](https://the-global-meridian.incognito120120.workers.dev/article/art-41)
+- [Spain’s First General Strike in 14 Years Sparks Debate Over Housing Crisis and Snap Election Politics](https://the-global-meridian.incognito120120.workers.dev/article/art-42)
+- [Analysis: Central Asia Emerges as Vital Eurasian Trade Corridor Amid Supply Chain Fragmentation and Sanctions](https://the-global-meridian.incognito120120.workers.dev/article/art-43)

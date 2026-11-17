@@ -109,7 +109,7 @@ export const SubmitNewsModal: React.FC = () => {
     const newVideo: MediaVideo = {
       id: 'sub-v-' + Date.now(),
       url: videoUrl,
-      thumbnailUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=400&q=80',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80',
       caption: 'Contributor footage: ' + file.name,
       credit: authorName || 'Citizen Contributor',
       duration: '01:30',

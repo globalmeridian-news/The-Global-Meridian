@@ -103,22 +103,18 @@
       (function() {
         try {
           var origin = window.location.origin;
-          if (origin && !origin.includes('meridian-news.org')) {
+          var prodOrigin = 'https://the-global-meridian.incognito120120.workers.dev';
+          if (origin && origin !== prodOrigin && !origin.includes('meridian-news.org')) {
             var can = document.querySelector('link[rel="canonical"]');
             if (can) {
-              var params = new URLSearchParams(window.location.search);
-              var article = params.get('article');
-              var cat = params.get('cat');
-              var suffix = article
-                ? '/?article=' + encodeURIComponent(article)
-                : cat
-                  ? '/?cat=' + encodeURIComponent(cat)
-                  : '/';
-              can.setAttribute('href', origin + suffix);
+              var currentCan = can.getAttribute('href') || prodOrigin + '/';
+              if (currentCan.indexOf(prodOrigin) === 0) {
+                can.setAttribute('href', origin + currentCan.slice(prodOrigin.length));
+              }
             }
             var ld = document.getElementById('google-org-website-schema');
             if (ld) {
-              ld.textContent = ld.textContent.split('https://the-global-meridian.incognito120120.workers.dev').join(origin);
+              ld.textContent = ld.textContent.split(prodOrigin).join(origin);
             }
           }
         } catch(e) {}

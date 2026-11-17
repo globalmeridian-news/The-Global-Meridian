@@ -20,7 +20,7 @@ export const AUTHORS: Author[] = [
     title: 'Senior Technology & AI Editor',
     title_bn: 'সিনিয়র প্রযুক্তি ও এআই সম্পাদক',
     role: 'Technology Editor',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80',
     bio: 'Specializing in sovereign AI infrastructure, global semiconductor supply networks, and quantum cryptography standards.',
     email: 'm.vance@meridian-news.org',
     twitter: '@marcusv_tech',
@@ -80,8 +80,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-67',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1575225955002-0dbb52a6d1ff?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1575225955002-0dbb52a6d1ff?auto=format&fit=crop&w=400&q=80',
       filename: 'quad_summit_manila_shenzhen_diplomacy_2026.jpg',
       sizeBytes: 2540000,
       caption: 'Quad leaders align on maritime awareness in Manila as global focus turns to Shenzhen’s US–China–Russia summit.',
@@ -114,7 +114,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Quad Leaders Unveil Indo-Pacific Maritime Pact in Manila Ahead of Shenzhen Trump–Xi–Putin Summit',
     seoDescription: 'Trump, Modi, Takaichi, and Albanese launch Indo-Pacific maritime and cyber initiatives in Manila before Nov 19 Trump–Xi–Putin talks in Shenzhen.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-67',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-67',
     originalLanguage: 'en',
   },
   {
@@ -133,8 +133,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-68',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1494376735015-a56e57657406?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1494376735015-a56e57657406?auto=format&fit=crop&w=400&q=80',
       filename: 'european_bridge_defense_brussels_2026.jpg',
       sizeBytes: 2590000,
       caption: 'Strategic logistics infrastructure and European defense readiness dominate emergency talks in Brussels.',
@@ -167,7 +167,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Overnight Strike Damages Kerch Bridge as EU Defense Ministers Meet in Brussels Ahead of Berlin Talks',
     seoDescription: 'Ukrainian missiles and drones collapse a 227m Kerch Bridge span as EU defense chiefs gather in Brussels and envoys ready Berlin security discussions.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-68',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-68',
     originalLanguage: 'en',
   },
   {
@@ -220,7 +220,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Kospi Hits 6-Month Low & Nikkei Slips Ahead of Nvidia Earnings Despite East Asia Digital Surge',
     seoDescription: 'Samsung, SK Hynix, SoftBank, and Advantest lead pre-Nvidia pullbacks while South Korea reaches IMD Top 10 and India scales sovereign enterprise AI.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-69',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-69',
     originalLanguage: 'en',
   },
   {
@@ -273,7 +273,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'EU Widens Russia Sanctions as German FM Wadephul Presses for Gaza Winter Aid Access',
     seoDescription: 'Brussels targets Wildberries-linked figures in expanded Russia sanctions while German Foreign Minister Johann Wadephul calls for immediate Gaza winter aid.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-70',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-70',
     originalLanguage: 'en',
   },
   {
@@ -326,7 +326,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Leonid Meteor Shower Peaks Tonight Amid Warning That 700+ Satellites Outnumber Stars',
     seoDescription: 'The 2026 Leonid meteor shower peaks overnight Nov 17–18 as NASA celebrates Voyager 1 and astronomers warn orbital satellites outnumber visible stars.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-71',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-71',
     originalLanguage: 'en',
   },
   {
@@ -379,7 +379,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Grand Theft Auto VI Countdown Tops 15 Million Pre-Orders in 2026’s Biggest Pop-Culture Launch',
     seoDescription: 'Thirteen years after GTA V, Grand Theft Auto VI surpasses 15 million pre-orders ahead of its release this week across global markets.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-72',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-72',
     originalLanguage: 'en',
   },
   {
@@ -432,7 +432,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'US, Japan, South Korea & India Sign San Francisco Declaration Under Pax Silica Amid Chip Sell-Off',
     seoDescription: 'Ten nations sign the Nov 16 San Francisco Declaration to protect AI and chip supply chains as Kospi and Nikkei tumble in a global semiconductor pullback.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-61',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-61',
     originalLanguage: 'en',
   },
   {
@@ -485,7 +485,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Estonia Shuts Russia Border Over Alleged GRU Drone Sabotage Plot as Germany Boosts Defense Fleet',
     seoDescription: 'Estonia announces Dec 1 Russia border closures after alleging a GRU plot against drone firm Threod Systems while Germany expands A400M procurement.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-62',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-62',
     originalLanguage: 'en',
   },
   {
@@ -504,8 +504,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-63',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=400&q=80',
       filename: 'middle_east_diplomacy_security_2026.jpg',
       sizeBytes: 2520000,
       caption: 'Diplomatic and naval pressures escalate simultaneously across the Gulf, Levant, and Mediterranean.',
@@ -538,7 +538,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'US Deploys USS Theodore Roosevelt After Bahrain Drone Strikes as Allies Issue Gaza Winter Aid Ultimatum',
     seoDescription: 'USS Theodore Roosevelt heads to the Middle East after Bahrain drone alerts while UK, Canada, Italy, and Australia demand 150,000 Gaza winter tents.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-63',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-63',
     originalLanguage: 'en',
   },
   {
@@ -591,7 +591,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Africa Tech Festival Opens in Cape Town as COP31 Enters Week Two Over Green Finance',
     seoDescription: 'MTN, Vodacom, Naspers, and OpenAI headline Africa Tech Festival 2026 in Cape Town while COP31 negotiators wrangle in Antalya over climate finance.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-64',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-64',
     originalLanguage: 'en',
   },
   {
@@ -644,7 +644,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'ICEYE Unveils 11cm Gen5 AI Radar Satellites for All-Weather Global Monitoring',
     seoDescription: 'Finnish space-radar pioneer ICEYE announces its Gen5 SAR constellation offering 11cm resolution and onboard AI edge analytics.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-65',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-65',
     originalLanguage: 'en',
   },
   {
@@ -697,7 +697,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Marc Márquez MotoGP Title Push, Germany–Netherlands & Jay Shah Unanimous ICC Re-Election',
     seoDescription: 'Global sports roundup on Nov 16: MotoGP championship decider in Portimão, UEFA Nations League & AFCON action, and Jay Shah’s unanimous ICC second term.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-66',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-66',
     originalLanguage: 'en',
   },
   {
@@ -756,7 +756,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'SK Hynix Unveils $1.05B Supplier Plan & Nvidia Backs 260K GPUs as Seoul Audits Exams Over AI Cheating',
     seoDescription: 'SK Hynix launches a ₩1.4T Yongin Trinity Fab fund and Nvidia reaffirms 260,000 GPUs for South Korea as Seoul audits national exams over AI use.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-57',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-57',
     originalLanguage: 'en',
   },
   {
@@ -815,7 +815,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Japan Q3 GDP Contracts 0.1% as Yen Passes 160 and Tokyo Finalizes Defense AI Guidelines',
     seoDescription: 'Japan posts surprise 0.1% Q3 GDP contraction, sparking yen intervention warnings under FM Katayama while Defense Minister Koizumi readies AI rules.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-58',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-58',
     originalLanguage: 'en',
   },
   {
@@ -868,7 +868,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Seoul FM Cho Hyun Meets Wang Yi in Beijing as Tokyo and Seoul Track North Korea-Russia Talks',
     seoDescription: 'South Korean FM Cho Hyun meets China’s Wang Yi ahead of APEC while Seoul and Tokyo monitor North Korean aide Jo Yong Won’s visit to Moscow.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-59',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-59',
     originalLanguage: 'en',
   },
   {
@@ -887,8 +887,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-60',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=400&q=80',
       filename: 'japan_korea_culture_street_travel_2026.jpg',
       sizeBytes: 2450000,
       caption: 'Historic market districts across Seoul and Kyoto experience strong late-autumn international visitor turnout.',
@@ -921,7 +921,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Seoul Namdaemun Market’s Viral Scarf Man & Northeast Asia Japan-Korea Culture Travel Boom',
     seoDescription: 'A witty vendor in Seoul’s Namdaemun Market goes viral worldwide as South Korea and Japan see strong late-autumn cultural travel demand.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-60',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-60',
     originalLanguage: 'en',
   },
   {
@@ -974,7 +974,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'India’s Modi Attends ASEAN & East Asia Summits as New Delhi Expands Egypt & Belarus Ties',
     seoDescription: 'PM Narendra Modi leads India’s Indo-Pacific diplomacy while New Delhi advances $1B Belarus trade roadmap and Cairo industrial talks.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-55',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-55',
     originalLanguage: 'en',
   },
   {
@@ -993,8 +993,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-56',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=400&q=80',
       filename: 'middle_east_china_diplomacy_2026.jpg',
       sizeBytes: 2540000,
       caption: 'Middle East trade hubs and Chinese diplomatic venues sit at the heart of mid-November great-power diplomacy.',
@@ -1027,7 +1027,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'China Balances Russia Ties & Europe Trade as Middle East Anchors Shenzhen Summit',
     seoDescription: 'Beijing navigates nuclear arms talks, Middle East energy security, and European trade ties ahead of the Nov 19 Xi-Trump-Putin meeting.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-56',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-56',
     originalLanguage: 'en',
   },
   {
@@ -1080,7 +1080,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'US Aviation Recovers After FAA Ground Stop as Shenzhen Sets Nov 19 Trilateral Summit',
     seoDescription: 'US air travel normalizes after historic FAA ground stop while Trump, Xi, and Putin prepare for November 19 trilateral talks in Shenzhen.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-49',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-49',
     originalLanguage: 'en',
   },
   {
@@ -1133,7 +1133,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'India Edges New Zealand by 22 Runs as CAF U-23 AFCON Qualifiers Peak Across Africa',
     seoDescription: 'India secures 22-run ODI triumph in New Zealand while Zambia, Nigeria, and Ghana headline Africa’s U-23 AFCON qualifiers.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-50',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-50',
     originalLanguage: 'en',
   },
   {
@@ -1152,8 +1152,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-51',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=400&q=80',
       filename: 'global_trade_americas_china_india_2026.jpg',
       sizeBytes: 2470000,
       caption: 'Global equity and commodity desks recalibrate as Americas, China, Middle East, and Indian trade corridors realign.',
@@ -1186,7 +1186,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Brazil-China Trade Jumps 20% Amid US Tariffs as India-Egypt Pact & Canada $560M Fund Advance',
     seoDescription: 'Americas, China, and Middle East commerce realigns around Lula’s trade shift, Canada’s $560M pledge, Cairo talks, and Japan’s Q3 GDP dip.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-51',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-51',
     originalLanguage: 'en',
   },
   {
@@ -1239,7 +1239,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Cursor Key Breach & $4B Fund Drive Agentic Cybersecurity Boom in November 2026',
     seoDescription: 'Third-party extension compromise at Cursor spotlights AI supply-chain risks as Norwest launches $4B fund and Cohere appoints Jaya Baloo CISO.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-52',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-52',
     originalLanguage: 'en',
   },
   {
@@ -1292,7 +1292,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: '‘Yalta 2.0’ Fears Grip Europe as EU & Kyiv Demand Seat Ahead of Trump-Xi-Putin Talks',
     seoDescription: 'European leaders warn against backroom superpower deals ahead of Shenzhen as Moscow weighs a European seat at Ukraine peace talks.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-53',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-53',
     originalLanguage: 'en',
   },
   {
@@ -1345,7 +1345,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Hormuz Tanker Mine Strikes & Bab el-Mandeb Withdrawal Raise Maritime Alert',
     seoDescription: 'Naval mine strikes on oil tankers near Hormuz and Yemeni troop realignment near Bab el-Mandeb heighten shipping lane risks.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-54',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-54',
     originalLanguage: 'en',
   },
   {
@@ -1398,7 +1398,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Voyager 1 Nears One Light-Day Milestone 26 Billion Km from Earth',
     seoDescription: 'NASA Voyager 1 nears 24-hour radio distance alongside Caltech autonomous space assembly and MIT-Harvard Lumina simulation breakthroughs.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-44',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-44',
     originalLanguage: 'en',
   },
   {
@@ -1417,8 +1417,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-45',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1774487672107-f7111d659a02?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1774487672107-f7111d659a02?auto=format&fit=crop&w=400&q=80',
       filename: 'f1_motorsport_championship_2026.jpg',
       sizeBytes: 2490000,
       caption: 'High-speed motorsport spotlight as Mercedes secures its ninth Formula One World Constructors Championship.',
@@ -1451,7 +1451,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Mercedes Wins 9th F1 Constructors Title as Messi Claims Consecutive MLS Golden Boot',
     seoDescription: 'Mercedes seals 9th F1 crown in Brazil, Lionel Messi sets MLS Golden Boot record, and Qingdao opens World Sailing Conference.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-45',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-45',
     originalLanguage: 'en',
   },
   {
@@ -1504,7 +1504,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'World Prematurity Day 2026: WHO Calls for NICU Expansion Amid DRC Ebola Alerts',
     seoDescription: 'WHO highlights care for 15 million preterm babies on Nov 15 as UN agencies warn violence threatens Ebola containment in DR Congo.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-46',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-46',
     originalLanguage: 'en',
   },
   {
@@ -1557,7 +1557,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Orbital Data Centers Debate Grows as MIT & Stanford Unveil Climate and Laser AI',
     seoDescription: 'Experts urge governance for space-based data centers while MIT climate emulators and Stanford 250x laser physics AI redefine scientific computing.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-47',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-47',
     originalLanguage: 'en',
   },
   {
@@ -1610,7 +1610,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Sandip Ray Begins 4-Story Satyajit Ray Anthology Film as Global Cinema Booms',
     seoDescription: 'Sandip Ray adapts Khagam, Batik Babu, Bhuto, and Neel Atanka with an acclaimed Bengali cast while Godzilla Minus Zero leads global box office buzz.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-48',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-48',
     originalLanguage: 'en',
   },
   {
@@ -1629,8 +1629,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-38',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=400&q=80',
       filename: 'abu_dhabi_diplomatic_talks_2026.jpg',
       sizeBytes: 2790000,
       caption: 'Diplomatic envoys convene in Abu Dhabi amid intense negotiations over Ukraine security guarantees and European stability.',
@@ -1671,7 +1671,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Abu Dhabi Trilateral Talks Open as Europe Demands Seat at Table on Ukraine Security',
     seoDescription: 'US-brokered talks in Abu Dhabi spark debate across Kyiv and Brussels over NATO guarantees, Donbas, and European security architecture.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-38',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-38',
     originalLanguage: 'en',
   },
   {
@@ -1724,7 +1724,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Africa CDC Alarms on 6-Month Ebola Crisis as African Ministers Press Climate Finance',
     seoDescription: 'Africa CDC warns of 11,200+ DRC Ebola cases with Kenya/Nigeria vigilance while African delegations unite on COP31 water and health finance.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-39',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-39',
     originalLanguage: 'en',
   },
   {
@@ -1777,7 +1777,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Fed and BoE Navigate Dual Shock of Energy Inflation and AI Investment Boom',
     seoDescription: 'Central banks weigh hawkish inflation vigilance against resilient AI infrastructure spending across the US, UK, and Eurozone.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-40',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-40',
     originalLanguage: 'en',
   },
   {
@@ -1796,8 +1796,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-41',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
       filename: 'orbital_telemetry_defense_analysis_2026.jpg',
       sizeBytes: 2580000,
       caption: 'Satellite telemetry and geospatial verification dashboards tracking structural changes across regional defense complexes.',
@@ -1830,7 +1830,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Satellite Imagery Tracks Reconstruction at Iranian Missile Sites Amid Interdiction Push',
     seoDescription: 'Orbital verification shows repairs at Garmdareh, Shahroud, and Parchin as allied forces target regional weapons smuggling routes.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-41',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-41',
     originalLanguage: 'en',
   },
   {
@@ -1849,8 +1849,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-42',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=400&q=80',
       filename: 'europe_spain_political_analysis_2026.jpg',
       sizeBytes: 2370000,
       caption: 'European political newspapers and broadcast desks dissect Spain’s landmark November general strike.',
@@ -1883,7 +1883,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Analysis: Spain’s First General Strike in 14 Years Spotlights Housing and Election Politics',
     seoDescription: 'European media examine the political dynamics behind Spain’s general strike over housing costs, wages, and looming snap elections.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-42',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-42',
     originalLanguage: 'en',
   },
   {
@@ -1936,7 +1936,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Geoeconomic Analysis: Central Asia Rises as Crucial Eurasian Trade & Mineral Hub',
     seoDescription: 'Supply-chain diversification and Middle Corridor investments position Central Asia at the center of Europe-Asia trade in 2026.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-43',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-43',
     originalLanguage: 'en',
   },
   {
@@ -1955,8 +1955,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-30',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1761301643716-1cf7a6ffb6fe?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1761301643716-1cf7a6ffb6fe?auto=format&fit=crop&w=400&q=80',
       filename: 'apec_trilateral_diplomacy_summit.jpg',
       sizeBytes: 2740000,
       caption: 'International diplomatic flags and conference podium prepared ahead of high-stakes multilateral arms stability talks.',
@@ -1997,7 +1997,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'US, China, and Russia Plan Unprecedented Trilateral Nuclear Talks at APEC',
     seoDescription: 'White House confirms joint APEC summit talks among US, Chinese, and Russian leaders focusing on nuclear arsenals and global stability.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-30',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-30',
     originalLanguage: 'en',
   },
   {
@@ -2050,7 +2050,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'WMO Reports Record Ocean Heat and Super El Niño Impact at COP31 Antalya',
     seoDescription: 'World Meteorological Organization warns at COP31 in Antalya that 2026 ranks among the warmest years on record amid extreme weather.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-31',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-31',
     originalLanguage: 'en',
   },
   {
@@ -2103,7 +2103,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'OECD Sees 2.9% Global Growth in 2026 as AI Spending Lifts UK Output',
     seoDescription: 'Global economic forecasts hold firm at 2.9% on sustained AI capital expenditure while UK Q3 GDP expands 0.7%.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-32',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-32',
     originalLanguage: 'en',
   },
   {
@@ -2156,7 +2156,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Physical AI and Autonomous Robotics Drive Next Wave of Global Tech Investment',
     seoDescription: 'Embodied robotics, agentic engineering tools, and grid-scale compute lead global industrial AI adoption in late 2026.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-33',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-33',
     originalLanguage: 'en',
   },
   {
@@ -2209,7 +2209,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'WEF Highlights Personalized mRNA Cancer Vaccines and Direct Lithium Tech',
     seoDescription: 'Global scientific assessment showcases breakthroughs in mRNA oncology, bidirectional grid EVs, and clean lithium extraction.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-34',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-34',
     originalLanguage: 'en',
   },
   {
@@ -2228,8 +2228,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-35',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=400&q=80',
       filename: 'defense_command_satellite_monitoring.jpg',
       sizeBytes: 2510000,
       caption: 'Strategic defense analysts monitor maritime shipping lanes and orbital telemetry feeds amid heightened regional alerts.',
@@ -2262,7 +2262,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'Global Allies Boost Maritime & Satellite Defense Amid Strait of Hormuz Alerts',
     seoDescription: 'Naval coalitions heighten Gulf of Hormuz monitoring while East Asian and European capitals review strategic defense modernization.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-35',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-35',
     originalLanguage: 'en',
   },
   {
@@ -2315,7 +2315,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'SAFF Championship: India Defeats Bhutan 2-1 to Advance to Final',
     seoDescription: 'Defending champions India secure a 2-1 semifinal win over Bhutan to reach the SAFF Championship final.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-36',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-36',
     originalLanguage: 'en',
   },
   {
@@ -2368,7 +2368,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: '57th IFFI Goa Showcases 159 Films from 86 Countries Under Stories Without Borders',
     seoDescription: 'Paweł Pawlikowski’s Fatherland opens the 2026 International Film Festival of India featuring 159 global cinema selections.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-37',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-37',
     originalLanguage: 'en',
   },
   {
@@ -2435,7 +2435,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 2,
     seoTitle: 'COP31 Summit in Belém Secures $1.3T Annual Climate Finance Accord',
     seoDescription: 'Over 190 countries approve $1.3 trillion yearly green transition and adaptation grant framework for climate-vulnerable nations.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-25',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-25',
     originalLanguage: 'en',
   },
   {
@@ -2496,7 +2496,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'ITU Approves Global 6G Terahertz Spectrum Standard for Satellite Broadband',
     seoDescription: 'Harmonized 6G spectrum enables 100 Gbps ultra-low-latency links bridging terrestrial fiber and low-earth-orbit satellites.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-26',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-26',
     originalLanguage: 'en',
   },
   {
@@ -2549,7 +2549,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: '$42B India & ASEAN Maritime and Digital Trade Corridor Launched',
     seoDescription: 'Twelve Indo-Pacific economies sign automated port and electronic customs treaty to cut Indian Ocean shipping delays by 40%.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-27',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-27',
     originalLanguage: 'en',
   },
   {
@@ -2602,7 +2602,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'WHO Launches 4-Hour AI Genomic Surveillance Network for Superbugs',
     seoDescription: '110 national laboratories join WHO open-access AI pathogen sequencing grid to combat antimicrobial resistance globally.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-28',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-28',
     originalLanguage: 'en',
   },
   {
@@ -2655,7 +2655,7 @@ export const INITIAL_ARTICLES: Article[] = [
     commentsCount: 0,
     seoTitle: 'North Sea Coalition Commissions 18GW Offshore Wind Energy Hub',
     seoDescription: 'Seven European nations launch world’s largest offshore wind energy island delivering clean power to 18 million homes.',
-    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/?article=art-29',
+    canonicalUrl: 'https://the-global-meridian.incognito120120.workers.dev/article/art-29',
     originalLanguage: 'en',
   },
   {
@@ -2674,8 +2674,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-21',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1673296630925-a16a5592cc14?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1673296630925-a16a5592cc14?auto=format&fit=crop&w=400&q=80',
       filename: 'geneva_un_plenary_hall.jpg',
       sizeBytes: 2950000,
       caption: 'Diplomats and Security Council envoys formally ratify the Geneva Peace and Reconstruction Framework.',
@@ -2687,8 +2687,8 @@ export const INITIAL_ARTICLES: Article[] = [
       {
         id: 'media-21b',
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=400&q=80',
+        url: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80',
         filename: 'diplomatic_signing_room.jpg',
         sizeBytes: 2100000,
         caption: 'Envoys finalize terms during the conclusive plenary session in Geneva.',
@@ -2755,8 +2755,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-22',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80',
       filename: 'neural_supercomputing_cluster.jpg',
       sizeBytes: 2810000,
       caption: 'Supercomputing engineers calibrate open neural training clusters complying with the Berlin Sovereign AI Charter.',
@@ -3039,8 +3039,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-10',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80',
       filename: 'tokyo_quantum_optics_lab.jpg',
       sizeBytes: 2430000,
       caption: 'Physicists in Tokyo align laser telemetry tracking the quantum orbital repeater satellite overhead.',
@@ -3267,8 +3267,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-1',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80',
       filename: 'geneva_un_chamber_delegation.jpg',
       sizeBytes: 2420000,
       caption: 'The Assembly Hall at the Palais des Nations during the closing plenary vote on international algorithmic verification.',
@@ -3294,7 +3294,7 @@ export const INITIAL_ARTICLES: Article[] = [
       {
         id: 'vid-1',
         url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=600&q=80',
         caption: 'Live transmission: High Commissioner remarks upon ratification of the Geneva Accords.',
         caption_bn: 'সরাসরি সম্প্রচার: জেনেভা চুক্তি অনুমোদনের পর জাতিসংঘের উচ্চায়ুক্তের ভাষণ।',
         credit: 'UNTV Geneva Broadcast Feed',
@@ -3435,8 +3435,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-3',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80',
       filename: 'stock_market_terminal_screens.jpg',
       sizeBytes: 1950000,
       caption: 'Financial market indicators in Frankfurt reacting positively following the Basel announcement.',
@@ -3481,8 +3481,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-4',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1561553797-81f7083bb21b?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1561553797-81f7083bb21b?auto=format&fit=crop&w=400&q=80',
       filename: 'antarctic_ice_shelf_waters.jpg',
       sizeBytes: 2800000,
       caption: 'Research vessel Polarstern navigating the ice edge during marine biodiversity acoustic surveys.',
@@ -3573,8 +3573,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-6',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=400&q=80',
       filename: 'naval_patrol_vessel_baltic.jpg',
       sizeBytes: 2300000,
       caption: 'Finnish coastal surveillance corvette conducting interoperability drills in the Gulf of Finland.',
@@ -3619,8 +3619,8 @@ export const INITIAL_ARTICLES: Article[] = [
     featuredImage: {
       id: 'media-7',
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=85',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80',
+      url: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=85',
+      thumbnailUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=400&q=80',
       filename: 'stadium_floodlights_crowd.jpg',
       sizeBytes: 2600000,
       caption: 'Packed grandstands during international football championship group stage action.',

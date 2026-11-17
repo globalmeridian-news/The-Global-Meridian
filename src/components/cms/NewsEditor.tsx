@@ -245,7 +245,7 @@ export const NewsEditor: React.FC<Props> = ({ editingArticle, onClose, onPublish
       const newVideo: MediaVideo = {
         id: 'vid-' + Date.now(),
         url: videoUrl,
-        thumbnailUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=400&q=80',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=400&q=80',
         caption: `Broadcast: ${file.name}`,
         credit: 'Meridian Newsroom Wire',
         duration: '02:30',

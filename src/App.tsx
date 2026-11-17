@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NewsProvider, useNews } from './context/NewsContext';
+import { CategoryType } from './types/news';
 import { Header } from './components/layout/Header';
 import { BreakingTicker } from './components/layout/BreakingTicker';
 import { Footer } from './components/layout/Footer';
@@ -23,6 +24,35 @@ import { generateNewsArticleJsonLd, generateBreadcrumbJsonLd, generateArticleFaq
 import { injectValidatedJsonLd, removeValidatedJsonLd } from './utils/schemaValidator';
 import { useCoreWebVitals } from './hooks/useCoreWebVitals';
 
+const ALL_CATEGORIES: CategoryType[] = [
+  'World',
+  'Politics',
+  'Business',
+  'Technology',
+  'Science',
+  'Health',
+  'Defense',
+  'Environment',
+  'Sports',
+  'Entertainment',
+  'Videos',
+  'Photo Stories',
+  'Opinion',
+];
+
+function getCategorySlug(category: string): string {
+  return category.toLowerCase().replace(/\s+/g, '-');
+}
+
+function getCategoryFromParam(raw: string): CategoryType | null {
+  const normalized = decodeURIComponent(raw).trim().toLowerCase();
+  return (
+    ALL_CATEGORIES.find(
+      (cat) => cat.toLowerCase() === normalized || getCategorySlug(cat) === normalized,
+    ) || null
+  );
+}
+
 function setMetaTag(name: string, content: string, isProperty = false) {
   const attr = isProperty ? 'property' : 'name';
   let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null;
@@ -42,6 +72,10 @@ function setCanonicalTag(url: string) {
     document.head.appendChild(el);
   }
   el.setAttribute('href', url);
+
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((alt) => {
+    alt.setAttribute('href', url);
+  });
 }
 
 const MainLayout: React.FC = () => {
@@ -66,106 +100,128 @@ const MainLayout: React.FC = () => {
     currentLanguage,
   } = useNews();
 
+  const [routeInitialized, setRouteInitialized] = useState(false);
+
   // Track Core Web Vitals (LCP, FID/INP, CLS, FCP, TTFB) & report to logging service
   useCoreWebVitals();
 
-  // 1. Initial URL routing from Query Params / Deep Link on Mount
+  // 1. Initial URL routing from Clean Paths & Legacy Query Params on Mount + Popstate
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    const articleParam = params.get('article');
-    const catParam = params.get('cat');
-    const viewParam = params.get('view');
-    const policyParam = params.get('policy');
-    const authorParam = params.get('author');
 
-    if (articleParam) {
-      const art = articles.find((a) => a.id === articleParam || a.slug === articleParam);
-      if (art) {
-        viewArticle(art.id);
+    const applyLocationRoute = () => {
+      const cleanPath = window.location.pathname.replace(/\/+$/, '') || '/';
+      const params = new URLSearchParams(window.location.search);
+
+      const articleMatch = cleanPath.match(/^\/article\/([^/]+)$/);
+      if (articleMatch) {
+        const targetId = decodeURIComponent(articleMatch[1]);
+        const art = articles.find((a) => a.id === targetId || a.slug === targetId);
+        viewArticle(art ? art.id : targetId);
         return;
       }
-    }
-    if (catParam) {
-      viewCategory(catParam as any);
-      return;
-    }
-    if (policyParam) {
-      viewPolicy(policyParam);
-      return;
-    }
-    if (authorParam) {
-      viewAuthor(authorParam);
-      return;
-    }
-    if (viewParam === 'seo') {
-      setActiveView('seo');
-      return;
-    }
-    if (viewParam === 'cms') {
-      setActiveView('cms');
-      return;
-    }
-    if (viewParam === 'submit') {
-      setActiveView('submit');
-      return;
-    }
 
-    const handlePopState = () => {
-      const p = new URLSearchParams(window.location.search);
-      const artP = p.get('article');
-      const viewP = p.get('view');
-      if (artP) {
-        setSelectedArticleId(artP);
-        setActiveView('article');
-      } else if (viewP === 'submit') {
-        setActiveView('submit');
-      } else if (viewP === 'cms') {
-        setActiveView('cms');
-      } else if (viewP === 'seo') {
-        setActiveView('seo');
-      } else {
-        const catP = p.get('cat');
-        if (catP) {
-          setSelectedCategory(catP as any);
-        } else {
-          setSelectedCategory('All');
+      const categoryMatch = cleanPath.match(/^\/category\/([^/]+)$/);
+      if (categoryMatch) {
+        const cat = getCategoryFromParam(categoryMatch[1]);
+        if (cat) {
+          viewCategory(cat);
+          return;
         }
-        setActiveView('home');
       }
+
+      const policyMatch = cleanPath.match(/^\/policy\/([^/]+)$/);
+      if (policyMatch) {
+        viewPolicy(decodeURIComponent(policyMatch[1]));
+        return;
+      }
+
+      const authorMatch = cleanPath.match(/^\/author\/([^/]+)$/);
+      if (authorMatch) {
+        viewAuthor(decodeURIComponent(authorMatch[1]));
+        return;
+      }
+
+      const articleParam = params.get('article');
+      const catParam = params.get('cat');
+      const viewParam = params.get('view');
+      const policyParam = params.get('policy');
+      const authorParam = params.get('author');
+
+      if (articleParam) {
+        const art = articles.find((a) => a.id === articleParam || a.slug === articleParam);
+        viewArticle(art ? art.id : articleParam);
+        return;
+      }
+      if (catParam) {
+        const cat = getCategoryFromParam(catParam);
+        viewCategory((cat || catParam) as CategoryType);
+        return;
+      }
+      if (policyParam) {
+        viewPolicy(policyParam);
+        return;
+      }
+      if (authorParam) {
+        viewAuthor(authorParam);
+        return;
+      }
+      if (viewParam === 'seo') {
+        setActiveView('seo');
+        return;
+      }
+      if (viewParam === 'cms') {
+        setActiveView('cms');
+        return;
+      }
+      if (viewParam === 'submit') {
+        setActiveView('submit');
+        return;
+      }
+
+      setSelectedCategory('All');
+      setSelectedArticleId(null);
+      setActiveView('home');
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    applyLocationRoute();
+    setRouteInitialized(true);
+
+    window.addEventListener('popstate', applyLocationRoute);
+    return () => window.removeEventListener('popstate', applyLocationRoute);
   }, []);
 
-  // 2. Browser URL Synchronization for Deep Linking & Googlebot Indexing
+  // 2. Clean Browser URL Synchronization for Deep Linking & Googlebot Indexing
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    let newPath = window.location.pathname;
+    if (!routeInitialized || typeof window === 'undefined') return;
+
+    let targetRelativeUrl = '/';
 
     if (activeView === 'article' && selectedArticleId) {
-      newPath += `?article=${encodeURIComponent(selectedArticleId)}`;
+      targetRelativeUrl = `/article/${encodeURIComponent(selectedArticleId)}`;
     } else if (activeView === 'home' && selectedCategory !== 'All') {
-      newPath += `?cat=${encodeURIComponent(selectedCategory)}`;
+      targetRelativeUrl = `/category/${encodeURIComponent(getCategorySlug(selectedCategory))}`;
     } else if (activeView === 'seo') {
-      newPath += '?view=seo';
+      targetRelativeUrl = '/?view=seo';
     } else if (activeView === 'cms') {
-      newPath += '?view=cms';
+      targetRelativeUrl = '/?view=cms';
     } else if (activeView === 'submit') {
-      newPath += '?view=submit';
+      targetRelativeUrl = '/?view=submit';
     } else if (activeView === 'policy' && policyPageSlug) {
-      newPath += `?policy=${encodeURIComponent(policyPageSlug)}`;
+      targetRelativeUrl = `/policy/${encodeURIComponent(policyPageSlug)}`;
     } else if (activeView === 'author' && selectedAuthorId) {
-      newPath += `?author=${encodeURIComponent(selectedAuthorId)}`;
+      targetRelativeUrl = `/author/${encodeURIComponent(selectedAuthorId)}`;
     }
 
-    const currentSearch = window.location.search;
-    const targetSearch = newPath.includes('?') ? newPath.slice(newPath.indexOf('?')) : '';
-    if (currentSearch !== targetSearch) {
-      window.history.replaceState({ activeView, selectedArticleId, selectedCategory }, '', newPath);
+    const currentRelativeUrl = `${window.location.pathname.replace(/\/+$/, '') || '/'}${window.location.search}`;
+    if (currentRelativeUrl !== targetRelativeUrl) {
+      window.history.replaceState(
+        { activeView, selectedArticleId, selectedCategory },
+        '',
+        targetRelativeUrl,
+      );
     }
-  }, [activeView, selectedArticleId, selectedCategory, policyPageSlug, selectedAuthorId]);
+  }, [routeInitialized, activeView, selectedArticleId, selectedCategory, policyPageSlug, selectedAuthorId]);
 
   // 3. Dynamic Full Head SEO, OpenGraph, Twitter Cards & JSON-LD Schemas for Google Discover
   useEffect(() => {
@@ -174,19 +230,20 @@ const MainLayout: React.FC = () => {
     if (activeView === 'article' && selectedArticleId) {
       const art = articles.find((a) => a.id === selectedArticleId);
       if (art) {
-        const pageTitle = `${art.title} – The Global Meridian`;
-        const canonicalUrl = `${siteUrl}/?article=${art.id}`;
+        const pageTitle = `${art.seoTitle || art.title} – The Global Meridian`;
+        const pageDesc = art.seoDescription || art.summary;
+        const canonicalUrl = `${siteUrl}/article/${encodeURIComponent(art.id)}`;
         const heroImg = art.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80';
 
         document.title = pageTitle;
-        setMetaTag('description', art.summary);
+        setMetaTag('description', pageDesc);
         setMetaTag('og:title', pageTitle, true);
-        setMetaTag('og:description', art.summary, true);
+        setMetaTag('og:description', pageDesc, true);
         setMetaTag('og:image', heroImg, true);
         setMetaTag('og:url', canonicalUrl, true);
         setMetaTag('og:type', 'article', true);
         setMetaTag('twitter:title', pageTitle);
-        setMetaTag('twitter:description', art.summary);
+        setMetaTag('twitter:description', pageDesc);
         setMetaTag('twitter:image', heroImg);
         setCanonicalTag(canonicalUrl);
 
@@ -198,14 +255,28 @@ const MainLayout: React.FC = () => {
       }
     }
 
-    // Default Homepage & Category Meta
-    const defaultTitle = selectedCategory && selectedCategory !== 'All'
-      ? `${selectedCategory} World News & Analysis – The Global Meridian`
-      : 'The Global Meridian – International News & Newsroom CMS';
-    const defaultDesc = 'Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS.';
-    const defaultCanonical = selectedCategory && selectedCategory !== 'All'
-      ? `${siteUrl}/?cat=${encodeURIComponent(selectedCategory)}`
-      : `${siteUrl}/`;
+    let defaultTitle = 'The Global Meridian – International News & Newsroom CMS';
+    let defaultDesc = 'Trusted international journalism delivering breaking world news, in-depth geopolitical analysis, business, technology, defense, and mobile newsroom CMS.';
+    let defaultCanonical = `${siteUrl}/`;
+
+    if (activeView === 'policy' && policyPageSlug) {
+      defaultCanonical = `${siteUrl}/policy/${encodeURIComponent(policyPageSlug)}`;
+      const policyTitles: Record<string, string> = {
+        'editorial-policy': 'Editorial Policy & Verification Standards – The Global Meridian',
+        'corrections-policy': 'Corrections & Accuracy Policy – The Global Meridian',
+        'about-us': 'About The Global Meridian – International Newsroom',
+        'privacy-policy': 'Privacy Policy – The Global Meridian',
+      };
+      defaultTitle = policyTitles[policyPageSlug] || 'Editorial Standards – The Global Meridian';
+    } else if (activeView === 'author' && selectedAuthorId) {
+      defaultCanonical = `${siteUrl}/author/${encodeURIComponent(selectedAuthorId)}`;
+      defaultTitle = 'Correspondent Profile – The Global Meridian';
+    } else if (selectedCategory && selectedCategory !== 'All') {
+      defaultTitle = `${selectedCategory} World News & Analysis – The Global Meridian`;
+      defaultDesc = `Latest verified ${selectedCategory} news, analysis, and breaking dispatches from The Global Meridian across global bureaus.`;
+      defaultCanonical = `${siteUrl}/category/${encodeURIComponent(getCategorySlug(selectedCategory))}`;
+    }
+
     const defaultImg = 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80';
 
     document.title = defaultTitle;
@@ -226,7 +297,7 @@ const MainLayout: React.FC = () => {
     removeValidatedJsonLd('newsarticle-schema');
     removeValidatedJsonLd('breadcrumbs-schema');
     removeValidatedJsonLd('faq-schema');
-  }, [activeView, selectedArticleId, selectedCategory, articles]);
+  }, [activeView, selectedArticleId, selectedCategory, policyPageSlug, selectedAuthorId, articles]);
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 selection:bg-red-100 selection:text-red-950">

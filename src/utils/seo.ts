@@ -10,9 +10,9 @@ export function getSiteUrl(): string {
 
 export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: string): object {
   const siteUrl = customSiteUrl || getSiteUrl();
-  const permalink = `${siteUrl}/?article=${article.id}`;
+  const permalink = `${siteUrl}/article/${encodeURIComponent(article.id)}`;
 
-  const baseImg = article.featuredImage?.url || 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1600&q=85';
+  const baseImg = article.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
   
   // Google Discover requires high-resolution images with 16x9, 4x3, and 1x1 aspect ratios (min 1200px wide)
   const imageUrls = [
@@ -40,7 +40,7 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
       '@type': 'Person',
       name: article.author.name,
       jobTitle: article.author.title,
-      url: `${siteUrl}/?author=${article.author.id}`,
+      url: `${siteUrl}/author/${encodeURIComponent(article.author.id)}`,
     },
     publisher: {
       '@type': 'NewsMediaOrganization',
@@ -52,8 +52,8 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
         width: 600,
         height: 60,
       },
-      publishingPrinciples: `${siteUrl}/?policy=editorial-policy`,
-      correctionsPolicy: `${siteUrl}/?policy=corrections-policy`,
+      publishingPrinciples: `${siteUrl}/policy/editorial-policy`,
+      correctionsPolicy: `${siteUrl}/policy/corrections-policy`,
       areaServed: ['Europe', 'Middle East', 'Americas', 'Russia', 'China', 'India', 'Japan', 'South Korea', 'Africa'],
       availableLanguage: ['English', 'Arabic', 'French', 'German', 'Spanish', 'Russian', 'Chinese', 'Hindi', 'Japanese', 'Korean', 'Bengali'],
       sameAs: [
@@ -78,6 +78,7 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
 
 export function generateBreadcrumbJsonLd(article: Article, customSiteUrl?: string): object {
   const siteUrl = customSiteUrl || getSiteUrl();
+  const categorySlug = article.category.toLowerCase().replace(/\s+/g, '-');
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -92,13 +93,13 @@ export function generateBreadcrumbJsonLd(article: Article, customSiteUrl?: strin
         '@type': 'ListItem',
         position: 2,
         name: article.category,
-        item: `${siteUrl}/?cat=${encodeURIComponent(article.category)}`,
+        item: `${siteUrl}/category/${encodeURIComponent(categorySlug)}`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: article.title,
-        item: `${siteUrl}/?article=${article.id}`,
+        item: `${siteUrl}/article/${encodeURIComponent(article.id)}`,
       },
     ],
   };
@@ -176,7 +177,7 @@ export function generateSitemapXml(articles: Article[], customSiteUrl?: string):
   const urls = published
     .map(
       (a) => `  <url>
-    <loc>${siteUrl}/?article=${a.id}</loc>
+    <loc>${siteUrl}/article/${encodeURIComponent(a.id)}</loc>
     <lastmod>${(a.updatedAt || a.publishedAt).split('T')[0]}</lastmod>
     <changefreq>daily</changefreq>
     <priority>${a.isFeatured ? '1.0' : '0.8'}</priority>
@@ -201,7 +202,7 @@ export function generateGoogleNewsSitemapXml(articles: Article[], customSiteUrl?
   const items = published
     .map(
       (a) => `  <url>
-    <loc>${siteUrl}/?article=${a.id}</loc>
+    <loc>${siteUrl}/article/${encodeURIComponent(a.id)}</loc>
     <news:news>
       <news:publication>
         <news:name>The Global Meridian</news:name>
@@ -228,8 +229,8 @@ export function generateRssFeedXml(articles: Article[], customSiteUrl?: string):
     .map(
       (a) => `    <item>
       <title><![CDATA[${a.title}]]></title>
-      <link>${siteUrl}/?article=${a.id}</link>
-      <guid isPermaLink="true">${siteUrl}/?article=${a.id}</guid>
+      <link>${siteUrl}/article/${encodeURIComponent(a.id)}</link>
+      <guid isPermaLink="true">${siteUrl}/article/${encodeURIComponent(a.id)}</guid>
       <pubDate>${new Date(a.publishedAt).toUTCString()}</pubDate>
       <category><![CDATA[${a.category}]]></category>
       <description><![CDATA[${a.summary}]]></description>
