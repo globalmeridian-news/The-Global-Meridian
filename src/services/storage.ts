@@ -1,11 +1,11 @@
 import { Article, Comment, HomepageConfig, MediaItem, UserNewsSubmission, AuditLog, Advertisement, TeamUser, WeeklyReport } from '../types/news';
 import { INITIAL_ARTICLES } from '../data/initialNews';
 
-const ARTICLES_STORAGE_KEY = 'meridian_articles_v8';
+const ARTICLES_STORAGE_KEY = 'meridian_articles_v9';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
 const MEDIA_STORAGE_KEY = 'meridian_media_v1';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v12';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v13';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
@@ -124,8 +124,8 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 };
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
-  heroArticleId: 'art-61',
-  breakingArticleIds: ['art-61', 'art-62', 'art-63', 'art-57', 'art-58', 'art-55'],
+  heroArticleId: 'art-67',
+  breakingArticleIds: ['art-67', 'art-68', 'art-69', 'art-61', 'art-62', 'art-57'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
     { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },
@@ -227,6 +227,7 @@ export const StorageService = {
       }
       // Preserve any custom CMS articles created in previous storage version
       const prevStored =
+        localStorage.getItem('meridian_articles_v8') ||
         localStorage.getItem('meridian_articles_v7') ||
         localStorage.getItem('meridian_articles_v6') ||
         localStorage.getItem('meridian_articles_v5');
