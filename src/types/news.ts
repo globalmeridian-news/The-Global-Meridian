@@ -49,6 +49,7 @@ export interface MediaItem {
   height?: number;
   duration?: string;
   articleId?: string;
+  focalPoint?: 'top' | 'upper' | 'center' | 'bottom';
 }
 
 export interface MediaVideo {

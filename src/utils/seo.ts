@@ -8,19 +8,32 @@ export function getSiteUrl(): string {
   return 'https://the-global-meridian.incognito120120.workers.dev';
 }
 
+export function resolveAbsoluteImageUrl(url: string, customSiteUrl?: string): string {
+  if (!url) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  const base = (customSiteUrl || getSiteUrl()).replace(/\/+$/, '');
+  return `${base}${url.startsWith('/') ? url : `/${url}`}`;
+}
+
 export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: string): object {
   const siteUrl = customSiteUrl || getSiteUrl();
   const permalink = `${siteUrl}/article/${encodeURIComponent(article.id)}`;
 
-  const baseImg = article.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
-  
-  // Google Discover requires high-resolution images with 16x9, 4x3, and 1x1 aspect ratios (min 1200px wide)
+  const rawImg = article.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
+  const baseImg = resolveAbsoluteImageUrl(rawImg, siteUrl);
+  const isUnsplash = baseImg.includes('images.unsplash.com');
+
+  // Google Discover requires high-resolution images (min 1200px wide)
   const imageUrls = [
     baseImg,
-    baseImg.includes('?') ? `${baseImg}&ar=16:9&fit=crop` : `${baseImg}?ar=16:9&fit=crop`,
-    baseImg.includes('?') ? `${baseImg}&ar=4:3&fit=crop` : `${baseImg}?ar=4:3&fit=crop`,
-    baseImg.includes('?') ? `${baseImg}&ar=1:1&fit=crop` : `${baseImg}?ar=1:1&fit=crop`,
-    ...(article.additionalImages || []).map((img) => img.url),
+    ...(isUnsplash
+      ? [
+          baseImg.includes('?') ? `${baseImg}&ar=16:9&fit=crop` : `${baseImg}?ar=16:9&fit=crop`,
+          baseImg.includes('?') ? `${baseImg}&ar=4:3&fit=crop` : `${baseImg}?ar=4:3&fit=crop`,
+          baseImg.includes('?') ? `${baseImg}&ar=1:1&fit=crop` : `${baseImg}?ar=1:1&fit=crop`,
+        ]
+      : []),
+    ...(article.additionalImages || []).map((img) => resolveAbsoluteImageUrl(img.url, siteUrl)),
   ].filter(Boolean);
 
   return {
@@ -171,9 +184,69 @@ export function generateWebSiteJsonLd(customSiteUrl?: string): object {
   };
 }
 
+const SITEMAP_CATEGORIES = [
+  'world',
+  'politics',
+  'business',
+  'technology',
+  'science',
+  'health',
+  'defense',
+  'environment',
+  'sports',
+  'entertainment',
+  'videos',
+  'photo-stories',
+  'opinion',
+];
+
+const SITEMAP_POLICIES = [
+  'editorial-policy',
+  'fact-checking',
+  'corrections-policy',
+  'about-us',
+  'privacy-policy',
+  'terms-of-service',
+  'contact',
+  'cookie-policy',
+];
+
 export function generateSitemapXml(articles: Article[], customSiteUrl?: string): string {
   const siteUrl = customSiteUrl || getSiteUrl();
   const published = articles.filter((a) => a.status === 'published');
+  const latestDate = published[0]
+    ? (published[0].updatedAt || published[0].publishedAt).split('T')[0]
+    : new Date().toISOString().split('T')[0];
+
+  const categoryUrls = SITEMAP_CATEGORIES.map(
+    (slug) => `  <url>
+    <loc>${siteUrl}/category/${encodeURIComponent(slug)}</loc>
+    <lastmod>${latestDate}</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.9</priority>
+  </url>`
+  ).join('\n');
+
+  const authorIds = Array.from(new Set(published.map((a) => a.author?.id).filter(Boolean)));
+  const authorUrls = authorIds
+    .map(
+      (id) => `  <url>
+    <loc>${siteUrl}/author/${encodeURIComponent(id)}</loc>
+    <lastmod>${latestDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>`
+    )
+    .join('\n');
+
+  const policyUrls = SITEMAP_POLICIES.map(
+    (slug) => `  <url>
+    <loc>${siteUrl}/policy/${encodeURIComponent(slug)}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>`
+  ).join('\n');
+
   const urls = published
     .map(
       (a) => `  <url>
@@ -189,17 +262,30 @@ export function generateSitemapXml(articles: Article[], customSiteUrl?: string):
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${siteUrl}/</loc>
+    <lastmod>${latestDate}</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
   </url>
+${categoryUrls}
 ${urls}
+${authorUrls}
+${policyUrls}
 </urlset>`;
 }
 
 export function generateGoogleNewsSitemapXml(articles: Article[], customSiteUrl?: string): string {
   const siteUrl = customSiteUrl || getSiteUrl();
-  const published = articles.filter((a) => a.status === 'published');
-  const items = published
+  const published = articles
+    .filter((a) => a.status === 'published')
+    .sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
+
+  // Google News Sitemap guidelines require articles published within the last 48 hours
+  const newestTimestamp = published[0] ? Date.parse(published[0].publishedAt) : Date.now();
+  const cutoffTimestamp = newestTimestamp - 48 * 60 * 60 * 1000;
+  const recentNews = published.filter((a) => Date.parse(a.publishedAt) >= cutoffTimestamp);
+  const newsEntries = recentNews.length > 0 ? recentNews : published.slice(0, 15);
+
+  const items = newsEntries
     .map(
       (a) => `  <url>
     <loc>${siteUrl}/article/${encodeURIComponent(a.id)}</loc>
@@ -235,7 +321,7 @@ export function generateRssFeedXml(articles: Article[], customSiteUrl?: string):
       <category><![CDATA[${a.category}]]></category>
       <description><![CDATA[${a.summary}]]></description>
       <author>${a.author.email} (${a.author.name})</author>
-      <enclosure url="${a.featuredImage.url}" type="image/jpeg" length="${a.featuredImage.sizeBytes || 1200000}" />
+      <enclosure url="${resolveAbsoluteImageUrl(a.featuredImage.url, siteUrl)}" type="image/jpeg" length="${a.featuredImage.sizeBytes || 1200000}" />
     </item>`
     )
     .join('\n');

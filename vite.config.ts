@@ -44,6 +44,13 @@ function buildArticleCanonicalUrl(art: Article): string {
   return `${SITE_URL}/article/${encodeURIComponent(art.id)}`;
 }
 
+function resolveSiteImageUrl(url?: string): string {
+  const fallback = 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
+  const raw = url || fallback;
+  if (/^https?:\/\//i.test(raw)) return raw;
+  return `${SITE_URL}${raw.startsWith('/') ? raw : `/${raw}`}`;
+}
+
 function buildCategorySlug(category: string): string {
   return category.toLowerCase().replace(/\s+/g, '-');
 }
@@ -98,7 +105,11 @@ function replaceMetaAndCanonical(
     )
     .replace(
       /<meta property="og:image" content="[^"]*"\s*\/>/,
-      `<meta property="og:image" content="${safeImg}" />\n    <meta property="og:url" content="${safeUrl}" />`,
+      `<meta property="og:image" content="${safeImg}" />`,
+    )
+    .replace(
+      /<meta property="og:url" content="[^"]*"\s*\/>/,
+      `<meta property="og:url" content="${safeUrl}" />`,
     )
     .replace(
       /<meta name="twitter:title" content="[^"]*"\s*\/>/,
@@ -197,7 +208,7 @@ function seoPrerenderPlugin(): Plugin {
             datePublished: art.publishedAt,
             dateModified: art.updatedAt || art.publishedAt,
             articleSection: art.category,
-            image: art.featuredImage?.url,
+            image: resolveSiteImageUrl(art.featuredImage?.url),
             author: {
               '@type': 'Person',
               name: art.author.name,
@@ -268,9 +279,7 @@ ${articleMarkup}
       for (const art of published) {
         const canonicalUrl = buildArticleCanonicalUrl(art);
         const categoryUrl = buildCategoryCanonicalUrl(art.category);
-        const imgUrl =
-          art.featuredImage?.url ||
-          'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
+        const imgUrl = resolveSiteImageUrl(art.featuredImage?.url);
 
         const newsArticleJsonLd = {
           '@context': 'https://schema.org',
@@ -473,9 +482,7 @@ ${catItemsHtml}
           ),
           canonicalUrl,
           ogType: 'website',
-          imageUrl:
-            catArticles[0]?.featuredImage?.url ||
-            'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
+          imageUrl: resolveSiteImageUrl(catArticles[0]?.featuredImage?.url),
           extraSchemasJsonLd: `<script type="application/ld+json" id="breadcrumbs-schema">${escapeJsonScript(catBreadcrumbJsonLd)}</script>`,
           bodyShell,
         });

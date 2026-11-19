@@ -16,7 +16,7 @@ interface Props {
 export const ShareBar: React.FC<Props> = ({ article }) => {
   const [copied, setCopied] = useState(false);
 
-  const articleUrl = typeof window !== 'undefined' ? window.location.href : `https://meridian-news.org/world/${article.slug}`;
+  const articleUrl = typeof window !== 'undefined' ? window.location.href : `https://the-global-meridian.incognito120120.workers.dev/article/${encodeURIComponent(article.id)}`;
   const shareTitle = article.title;
   const shareSummary = article.summary;
 

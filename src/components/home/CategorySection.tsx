@@ -71,11 +71,14 @@ export const CategorySection: React.FC<Props> = ({ category, limit = 4 }) => {
               <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-slate-100 mb-3 shadow-xs">
                 <LazyImage
                   src={leadStory.featuredImage.url}
-                  alt={leadStory.title}
+                  alt={leadStory.featuredImage.caption || leadStory.title}
                   aspectRatio="aspect-16/10"
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  focalPoint={leadStory.featuredImage.focalPoint || 'upper'}
+                  imgClassName="group-hover:scale-[1.02] transition-transform duration-300"
+                  className="w-full h-full"
                 />
-                <div className="absolute bottom-2 left-2 bg-black/70 text-white text-[10px] px-2.5 py-0.5 rounded-full z-10 pointer-events-none">
+                <div className="absolute inset-x-0 bottom-0 h-12 bg-linear-to-t from-black/65 to-transparent pointer-events-none" />
+                <div className="absolute bottom-2.5 left-2.5 bg-black/75 text-white text-[10px] font-medium px-2.5 py-0.5 rounded z-10 pointer-events-none">
                   {leadStory.location}
                 </div>
               </div>
@@ -134,7 +137,9 @@ export const CategorySection: React.FC<Props> = ({ category, limit = 4 }) => {
                       src={art.featuredImage.thumbnailUrl || art.featuredImage.url}
                       alt={art.title}
                       aspectRatio="aspect-16/10"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      focalPoint={art.featuredImage.focalPoint || 'upper'}
+                      imgClassName="group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full"
                     />
                   </div>
                 </a>

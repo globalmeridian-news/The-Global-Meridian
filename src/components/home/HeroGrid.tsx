@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, MapPin, BookOpen, Globe, ArrowRight } from 'lucide-react';
+import { Clock, MapPin, ArrowRight } from 'lucide-react';
 import { useNews } from '../../context/NewsContext';
 import {
   formatRelativeTime,
@@ -60,44 +60,36 @@ export const HeroGrid: React.FC = () => {
                 alt={heroArticle.featuredImage.caption}
                 priority={true}
                 aspectRatio="aspect-16/9"
-                className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                focalPoint={heroArticle.featuredImage.focalPoint || 'upper'}
+                imgClassName="group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                className="w-full h-full"
               />
 
-              {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10 pointer-events-none" />
+              {/* Subtle Bottom-Only Scrim: keeps upper subject sharp and unobscured */}
+              <div className="absolute inset-x-0 bottom-0 h-[44%] bg-linear-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
-              {/* Top Badges Floating Over Image (Matching Image 1) */}
-              <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2 z-10 pointer-events-none flex-wrap">
-                <div className="flex items-center gap-2 flex-wrap">
-                  {/* Bright Green Category Badge */}
-                  <span className="bg-emerald-500 text-white font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider shadow-sm flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                    {getLocalizedCategory(heroArticle.category, currentLanguage)}
-                  </span>
+              {/* Minimal Top-Left Dispatch Signal & Top-Right Read Time */}
+              <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2 z-10 pointer-events-none">
+                <span className="bg-red-600/95 backdrop-blur-xs text-white font-bold px-3 py-1 rounded text-[11px] uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  {isBn ? 'প্রধান প্রতিবেদন' : 'Lead Dispatch'} &middot; {getLocalizedCategory(heroArticle.category, currentLanguage)}
+                </span>
 
-                  {/* Earth 3D Globe / Location / Tag Badge */}
-                  {heroArticle.tags && heroArticle.tags.length > 0 && (
-                    <span className="bg-sky-600/90 backdrop-blur-xs text-white font-semibold px-2.5 py-1 rounded-full text-xs shadow-sm flex items-center gap-1.5 border border-sky-400/30">
-                      <Globe className="w-3.5 h-3.5 text-sky-200" />
-                      <span>{heroArticle.tags[0]}</span>
-                    </span>
-                  )}
-                </div>
-
-                {/* Read Time Pill Badge */}
-                <div className="bg-black/60 backdrop-blur-xs text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5 font-medium border border-white/10">
+                <div className="bg-black/65 backdrop-blur-xs text-white text-[11px] px-2.5 py-1 rounded flex items-center gap-1.5 font-medium border border-white/10">
                   <Clock className="w-3 h-3 text-amber-300" />
                   <span>{getArticleReadingStats(heroArticle, currentLanguage).displayText}</span>
                 </div>
               </div>
 
-              {/* Bottom Credit & Lead Label */}
-              <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-white text-xs z-10 pointer-events-none">
-                <span className="text-slate-300 text-[11px] font-medium drop-shadow-xs">
+              {/* Bottom Visual Subject Hook + Credit */}
+              <div className="absolute bottom-3 inset-x-3.5 flex items-end justify-between gap-4 text-white text-xs z-10 pointer-events-none">
+                <p className="text-slate-100 text-xs sm:text-[13px] font-medium line-clamp-1 border-l-2 border-red-500 pl-2.5 drop-shadow-sm">
+                  {isBn && heroArticle.featuredImage.caption_bn
+                    ? heroArticle.featuredImage.caption_bn
+                    : heroArticle.featuredImage.caption}
+                </p>
+                <span className="text-slate-300 text-[10px] font-medium shrink-0 drop-shadow-xs hidden sm:inline">
                   {heroArticle.featuredImage.credit}
-                </span>
-                <span className="bg-red-600 text-white font-bold px-2.5 py-0.5 rounded-full text-[11px] uppercase tracking-wider shadow-xs">
-                  {isBn ? 'প্রধান খবর' : 'Lead Dispatch'}
                 </span>
               </div>
             </a>
@@ -199,13 +191,21 @@ export const HeroGrid: React.FC = () => {
                     }}
                     className="block cursor-pointer"
                   >
-                    <div className="aspect-16/10 overflow-hidden rounded-lg bg-slate-100 mb-2.5">
+                    <div className="relative aspect-16/10 overflow-hidden rounded-lg bg-slate-100 mb-2.5">
                       <LazyImage
                         src={art.featuredImage.thumbnailUrl || art.featuredImage.url}
-                        alt={art.title}
+                        alt={art.featuredImage.caption || art.title}
                         aspectRatio="aspect-16/10"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        focalPoint={art.featuredImage.focalPoint || 'upper'}
+                        imgClassName="group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full"
                       />
+                      <div className="absolute inset-x-0 bottom-0 h-8 bg-linear-to-t from-black/50 to-transparent pointer-events-none" />
+                      {art.isBreaking && (
+                        <span className="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">
+                          {isBn ? 'ব্রেকিং' : 'Breaking'}
+                        </span>
+                      )}
                     </div>
                     <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">
                       {getLocalizedCategory(art.category, currentLanguage)} &middot; {art.location.split(',')[0]}

@@ -194,7 +194,9 @@ export const RelatedArticlesWidget: React.FC<RelatedArticlesWidgetProps> = ({
                       src={story.featuredImage.thumbnailUrl || story.featuredImage.url}
                       alt={headline}
                       aspectRatio="aspect-16/9"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      focalPoint={story.featuredImage.focalPoint || 'upper'}
+                      imgClassName="group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full"
                     />
                   </a>
 

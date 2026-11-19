@@ -51,11 +51,14 @@ export const LatestFeed: React.FC = () => {
                 <div className="relative aspect-16/10 overflow-hidden rounded-lg bg-slate-100 mb-3 shadow-2xs group-hover:shadow-xs transition-shadow">
                   <LazyImage
                     src={art.featuredImage.thumbnailUrl || art.featuredImage.url}
-                    alt={art.title}
+                    alt={art.featuredImage.caption || art.title}
                     aspectRatio="aspect-16/10"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    focalPoint={art.featuredImage.focalPoint || 'upper'}
+                    imgClassName="group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full"
                   />
-                  <div className="absolute top-2.5 left-2.5 bg-slate-950/85 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider z-10 pointer-events-none backdrop-blur-xs border border-white/10">
+                  <div className="absolute inset-x-0 bottom-0 h-9 bg-linear-to-t from-black/55 to-transparent pointer-events-none" />
+                  <div className="absolute top-2.5 left-2.5 bg-slate-950/85 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider z-10 pointer-events-none backdrop-blur-xs border border-white/10">
                     {getLocalizedCategory(art.category, currentLanguage)}
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NewsProvider, useNews } from './context/NewsContext';
 import { CategoryType } from './types/news';
 import { Header } from './components/layout/Header';
@@ -20,7 +20,7 @@ import { AdminLoginModal } from './components/auth/AdminLoginModal';
 import { AdminFloatingBar } from './components/layout/AdminFloatingBar';
 import { AdBanner } from './components/public/AdBanner';
 import { LazyBoundary } from './components/common/LazyBoundary';
-import { generateNewsArticleJsonLd, generateBreadcrumbJsonLd, generateArticleFaqJsonLd, generateWebSiteJsonLd, getSiteUrl } from './utils/seo';
+import { generateNewsArticleJsonLd, generateBreadcrumbJsonLd, generateArticleFaqJsonLd, generateWebSiteJsonLd, getSiteUrl, resolveAbsoluteImageUrl } from './utils/seo';
 import { injectValidatedJsonLd, removeValidatedJsonLd } from './utils/schemaValidator';
 import { useCoreWebVitals } from './hooks/useCoreWebVitals';
 
@@ -101,6 +101,8 @@ const MainLayout: React.FC = () => {
   } = useNews();
 
   const [routeInitialized, setRouteInitialized] = useState(false);
+  const articlesRef = useRef(articles);
+  articlesRef.current = articles;
 
   // Track Core Web Vitals (LCP, FID/INP, CLS, FCP, TTFB) & report to logging service
   useCoreWebVitals();
@@ -112,11 +114,12 @@ const MainLayout: React.FC = () => {
     const applyLocationRoute = () => {
       const cleanPath = window.location.pathname.replace(/\/+$/, '') || '/';
       const params = new URLSearchParams(window.location.search);
+      const currentArticles = articlesRef.current;
 
       const articleMatch = cleanPath.match(/^\/article\/([^/]+)$/);
       if (articleMatch) {
         const targetId = decodeURIComponent(articleMatch[1]);
-        const art = articles.find((a) => a.id === targetId || a.slug === targetId);
+        const art = currentArticles.find((a) => a.id === targetId || a.slug === targetId);
         viewArticle(art ? art.id : targetId);
         return;
       }
@@ -149,7 +152,7 @@ const MainLayout: React.FC = () => {
       const authorParam = params.get('author');
 
       if (articleParam) {
-        const art = articles.find((a) => a.id === articleParam || a.slug === articleParam);
+        const art = currentArticles.find((a) => a.id === articleParam || a.slug === articleParam);
         viewArticle(art ? art.id : articleParam);
         return;
       }
@@ -255,7 +258,10 @@ const MainLayout: React.FC = () => {
         const pageTitle = `${art.seoTitle || art.title} – The Global Meridian`;
         const pageDesc = clampDesc(art.seoDescription || art.summary);
         const canonicalUrl = `${siteUrl}/article/${encodeURIComponent(art.id)}`;
-        const heroImg = art.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80';
+        const heroImg = resolveAbsoluteImageUrl(
+          art.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=80',
+          siteUrl,
+        );
 
         document.title = pageTitle;
         setMetaTag('description', pageDesc);

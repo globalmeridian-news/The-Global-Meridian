@@ -64,10 +64,11 @@ export const ArticleView: React.FC = () => {
   const articleRef = useRef<HTMLElement>(null);
 
   const article = articles.find((a) => a.id === selectedArticleId) || articles[0];
-  if (!article) return null;
 
-  const isSaved = savedArticleIds.includes(article.id);
-  const articleCommentsCount = (comments || []).filter((c) => c.articleId === article.id).length;
+  const isSaved = article ? savedArticleIds.includes(article.id) : false;
+  const articleCommentsCount = article
+    ? (comments || []).filter((c) => c.articleId === article.id).length
+    : 0;
 
   const scrollToComments = () => {
     const el = document.getElementById('comments-section');
@@ -78,6 +79,8 @@ export const ArticleView: React.FC = () => {
 
   // Dynamic reading progress calculation (tracks article reading accurately)
   useEffect(() => {
+    if (!article) return;
+
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       setIsStickyHeaderVisible(scrollTop > 200);
@@ -114,7 +117,14 @@ export const ArticleView: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [article.id]);
+  }, [article?.id]);
+
+  // Dynamic live language translation hook for this article
+  const isEnglish = currentLanguage === 'en';
+  const isBengali = currentLanguage === 'bn';
+  const translated = useTranslatedArticle(article, currentLanguage);
+
+  if (!article) return null;
 
   const handleToggleSave = () => {
     toggleSaveArticle(article.id);
@@ -125,11 +135,6 @@ export const ArticleView: React.FC = () => {
     setSaveToast(toastMsg);
     setTimeout(() => setSaveToast(null), 3000);
   };
-
-  // Dynamic live language translation hook for this article
-  const isEnglish = currentLanguage === 'en';
-  const isBengali = currentLanguage === 'bn';
-  const translated = useTranslatedArticle(article, currentLanguage);
 
   const displayTitle = translated.title || article.title;
   const displaySummary = translated.summary || article.summary;
@@ -181,7 +186,8 @@ export const ArticleView: React.FC = () => {
   // Text-to-Speech audio reader
   const handleToggleAudio = () => {
     if (!('speechSynthesis' in window)) {
-      alert(isBengali ? 'আপনার ব্রাউজারে অডিও প্লেব্যাক সমর্থিত নয়।' : currentLanguage === 'ja' ? 'お使いのブラウザは音声読み上げに対応していません。' : 'Text-to-speech is not supported in this browser.');
+      setSaveToast(isBengali ? 'আপনার ব্রাউজারে অডিও প্লেব্যাক সমর্থিত নয়।' : currentLanguage === 'ja' ? 'お使いのブラウザは音声読み上げに対応していません。' : 'Text-to-speech is not supported in this browser.');
+      setTimeout(() => setSaveToast(null), 3000);
       return;
     }
 
@@ -724,16 +730,17 @@ export const ArticleView: React.FC = () => {
 
           {/* Featured Image with LCP priority */}
           <figure className="mb-8">
-            <div className="aspect-16/9 overflow-hidden rounded-xs bg-slate-900 mb-2">
+            <div className="aspect-16/9 overflow-hidden rounded-md bg-slate-900 mb-2.5 shadow-sm">
               <LazyImage
                 src={article.featuredImage.url}
                 alt={displayCaption || displayTitle}
                 priority={true}
                 aspectRatio="aspect-16/9"
-                className="w-full h-full object-cover"
+                focalPoint={article.featuredImage.focalPoint || 'upper'}
+                className="w-full h-full"
               />
             </div>
-            <figcaption className="text-xs text-slate-600 leading-relaxed flex flex-col sm:flex-row sm:items-center justify-between gap-1 pt-1">
+            <figcaption className="text-xs text-slate-700 leading-relaxed flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 border-l-2 border-red-600 pl-3">
               <span>{displayCaption}</span>
               <span className="text-slate-400 font-medium shrink-0">
                 {getUIText('photo', currentLanguage)} {article.featuredImage.credit}

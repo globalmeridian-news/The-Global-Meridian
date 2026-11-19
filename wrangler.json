@@ -8,6 +8,6 @@
     "binding": "ASSETS",
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/", "/article/*", "/category/*", "/policy/*"]
+    "run_worker_first": ["/", "/article/*", "/category/*", "/policy/*", "/author/*"]
   }
 }
