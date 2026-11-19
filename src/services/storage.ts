@@ -1,10 +1,10 @@
 import { Article, Comment, HomepageConfig, MediaItem, UserNewsSubmission, AuditLog, Advertisement, TeamUser, WeeklyReport } from '../types/news';
 import { INITIAL_ARTICLES } from '../data/initialNews';
 
-const ARTICLES_STORAGE_KEY = 'meridian_articles_v14';
+const ARTICLES_STORAGE_KEY = 'meridian_articles_v15';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
-const MEDIA_STORAGE_KEY = 'meridian_media_v3';
+const MEDIA_STORAGE_KEY = 'meridian_media_v4';
 const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v15';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
@@ -227,6 +227,7 @@ export const StorageService = {
       }
       // Preserve any custom CMS articles created in previous storage version
       const prevStored =
+        localStorage.getItem('meridian_articles_v14') ||
         localStorage.getItem('meridian_articles_v13') ||
         localStorage.getItem('meridian_articles_v12') ||
         localStorage.getItem('meridian_articles_v11') ||
