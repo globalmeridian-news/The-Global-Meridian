@@ -1,16 +1,94 @@
 import { Article, Comment, HomepageConfig, MediaItem, UserNewsSubmission, AuditLog, Advertisement, TeamUser, WeeklyReport } from '../types/news';
 import { INITIAL_ARTICLES } from '../data/initialNews';
 
-const ARTICLES_STORAGE_KEY = 'meridian_articles_v15';
+const ARTICLES_CUSTOM_KEY = 'meridian_articles_custom_v1';
+const ARTICLES_DELETED_KEY = 'meridian_articles_deleted_v1';
+const ARTICLES_STATS_KEY = 'meridian_articles_stats_v1';
 const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
-const MEDIA_STORAGE_KEY = 'meridian_media_v4';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v15';
+const MEDIA_CUSTOM_KEY = 'meridian_media_custom_v1';
+const MEDIA_DELETED_KEY = 'meridian_media_deleted_v1';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v16';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
 const ADMIN_CREDENTIALS_KEY = 'meridian_admin_credentials_v1';
 const WEEKLY_REPORTS_KEY = 'meridian_weekly_reports_v1';
+
+interface ArticleStatDelta {
+  views?: number;
+  reactions?: Article['reactions'];
+  userReactions?: Article['userReactions'];
+  commentsCount?: number;
+  isBreaking?: boolean;
+  isFeatured?: boolean;
+  status?: Article['status'];
+}
+
+const LEGACY_STORAGE_KEYS = [
+  ...Array.from({ length: 16 }, (_, i) => `meridian_articles_v${i + 1}`),
+  ...Array.from({ length: 6 }, (_, i) => `meridian_media_v${i + 1}`),
+  ...Array.from({ length: 15 }, (_, i) => `meridian_homepage_config_v${i + 1}`),
+];
+
+function pruneLegacyStorageKeys(clearTransCache = false): void {
+  if (typeof window === 'undefined') return;
+  try {
+    for (const k of LEGACY_STORAGE_KEYS) {
+      if (k !== HOMEPAGE_CONFIG_KEY) {
+        localStorage.removeItem(k);
+      }
+    }
+    if (clearTransCache) {
+      const toRemove: string[] = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('meridian_trans_cache_')) {
+          toRemove.push(key);
+        }
+      }
+      toRemove.forEach((k) => localStorage.removeItem(k));
+    }
+  } catch {
+    // Ignore storage access errors
+  }
+}
+
+function safeSetItem(key: string, value: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    pruneLegacyStorageKeys(true);
+    try {
+      localStorage.setItem(key, value);
+    } catch (retryErr) {
+      console.warn(`Storage quota tight for "${key}", operating in memory:`, retryErr);
+    }
+  }
+}
+
+function safeRemoveItem(key: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // Ignore
+  }
+}
+
+function getDefaultMediaItems(): MediaItem[] {
+  const media: MediaItem[] = [];
+  INITIAL_ARTICLES.forEach((art) => {
+    if (art.featuredImage) {
+      media.push({ ...art.featuredImage, articleId: art.id });
+    }
+    if (art.additionalImages) {
+      art.additionalImages.forEach((img) => media.push({ ...img, articleId: art.id }));
+    }
+  });
+  return media;
+}
 
 export interface AdminCredentials {
   username: string;
@@ -124,8 +202,8 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 };
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
-  heroArticleId: 'art-82',
-  breakingArticleIds: ['art-82', 'art-83', 'art-84', 'art-85', 'art-86', 'art-87'],
+  heroArticleId: 'art-92',
+  breakingArticleIds: ['art-92', 'art-93', 'art-94', 'art-95', 'art-97', 'art-82', 'art-83'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
     { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },
@@ -213,51 +291,142 @@ const INITIAL_AUDIT_LOGS: AuditLog[] = [
 export const StorageService = {
   getArticles(): Article[] {
     try {
-      const stored = localStorage.getItem(ARTICLES_STORAGE_KEY);
-      if (stored) {
-        const parsed: Article[] = JSON.parse(stored);
-        const existingIds = new Set(parsed.map((a) => a.id));
-        const missing = INITIAL_ARTICLES.filter((a) => !existingIds.has(a.id));
-        if (missing.length > 0) {
-          const merged = [...missing, ...parsed];
-          localStorage.setItem(ARTICLES_STORAGE_KEY, JSON.stringify(merged));
-          return merged;
-        }
-        return parsed;
-      }
-      // Preserve any custom CMS articles created in previous storage version
-      const prevStored =
-        localStorage.getItem('meridian_articles_v14') ||
-        localStorage.getItem('meridian_articles_v13') ||
-        localStorage.getItem('meridian_articles_v12') ||
-        localStorage.getItem('meridian_articles_v11') ||
-        localStorage.getItem('meridian_articles_v10') ||
-        localStorage.getItem('meridian_articles_v9') ||
-        localStorage.getItem('meridian_articles_v8') ||
-        localStorage.getItem('meridian_articles_v7') ||
-        localStorage.getItem('meridian_articles_v6') ||
-        localStorage.getItem('meridian_articles_v5');
-      if (prevStored) {
-        const prevParsed: Article[] = JSON.parse(prevStored);
-        const defaultIds = new Set(INITIAL_ARTICLES.map((a) => a.id));
-        const customArticles = prevParsed.filter((a) => !a.id.startsWith('art-') && !defaultIds.has(a.id));
-        if (customArticles.length > 0) {
-          const migrated = [...customArticles, ...INITIAL_ARTICLES];
-          localStorage.setItem(ARTICLES_STORAGE_KEY, JSON.stringify(migrated));
-          return migrated;
+      const defaultIds = new Set(INITIAL_ARTICLES.map((a) => a.id));
+
+      // One-time migration from any bloated legacy meridian_articles_v* key
+      if (!localStorage.getItem(ARTICLES_CUSTOM_KEY)) {
+        for (let v = 16; v >= 5; v--) {
+          const legacyRaw = localStorage.getItem(`meridian_articles_v${v}`);
+          if (legacyRaw) {
+            try {
+              const legacyParsed: Article[] = JSON.parse(legacyRaw);
+              const customFromLegacy = legacyParsed.filter(
+                (a) => !a.id.startsWith('art-') && !defaultIds.has(a.id)
+              );
+              if (customFromLegacy.length > 0) {
+                safeSetItem(ARTICLES_CUSTOM_KEY, JSON.stringify(customFromLegacy));
+              }
+            } catch {
+              // Ignore corrupt legacy JSON
+            }
+            break;
+          }
         }
       }
+
+      // Always reclaim space from bulky legacy caches
+      pruneLegacyStorageKeys(false);
+
+      const customRaw = localStorage.getItem(ARTICLES_CUSTOM_KEY);
+      const customOrEdited: Article[] = customRaw ? JSON.parse(customRaw) : [];
+
+      const deletedRaw = localStorage.getItem(ARTICLES_DELETED_KEY);
+      const deletedSet = new Set<string>(deletedRaw ? JSON.parse(deletedRaw) : []);
+
+      const statsRaw = localStorage.getItem(ARTICLES_STATS_KEY);
+      const statsMap: Record<string, ArticleStatDelta> = statsRaw ? JSON.parse(statsRaw) : {};
+
+      const overrideMap = new Map<string, Article>();
+      const newCustomArticles: Article[] = [];
+
+      for (const item of customOrEdited) {
+        if (defaultIds.has(item.id)) {
+          overrideMap.set(item.id, item);
+        } else {
+          newCustomArticles.push(item);
+        }
+      }
+
+      const mergedDefaults = INITIAL_ARTICLES.filter((a) => !deletedSet.has(a.id)).map((base) => {
+        const edited = overrideMap.get(base.id);
+        const article = edited ? edited : base;
+        const delta = statsMap[base.id];
+        if (!delta) return article;
+        return {
+          ...article,
+          views: delta.views ?? article.views,
+          reactions: delta.reactions ?? article.reactions,
+          userReactions: delta.userReactions ?? article.userReactions,
+          commentsCount: delta.commentsCount ?? article.commentsCount,
+          isBreaking: delta.isBreaking ?? article.isBreaking,
+          isFeatured: delta.isFeatured ?? article.isFeatured,
+          status: delta.status ?? article.status,
+        };
+      });
+
+      return [...newCustomArticles, ...mergedDefaults];
     } catch (e) {
       console.error('Error loading articles from storage:', e);
+      return INITIAL_ARTICLES;
     }
-    // Default to verified initial articles
-    localStorage.setItem(ARTICLES_STORAGE_KEY, JSON.stringify(INITIAL_ARTICLES));
-    return INITIAL_ARTICLES;
   },
 
   saveArticles(articles: Article[]): void {
     try {
-      localStorage.setItem(ARTICLES_STORAGE_KEY, JSON.stringify(articles));
+      const defaultMap = new Map(INITIAL_ARTICLES.map((a) => [a.id, a]));
+      const currentIds = new Set(articles.map((a) => a.id));
+
+      const deletedIds = INITIAL_ARTICLES.filter((a) => !currentIds.has(a.id)).map((a) => a.id);
+      const customOrEdited: Article[] = [];
+      const statsMap: Record<string, ArticleStatDelta> = {};
+
+      for (const art of articles) {
+        const orig = defaultMap.get(art.id);
+        if (!orig) {
+          customOrEdited.push(art);
+          continue;
+        }
+
+        // Check whether editorial content itself was edited vs simple counters/flags
+        const isContentEdited =
+          art.title !== orig.title ||
+          art.title_bn !== orig.title_bn ||
+          art.summary !== orig.summary ||
+          art.summary_bn !== orig.summary_bn ||
+          art.category !== orig.category ||
+          art.location !== orig.location ||
+          art.updatedAt !== orig.updatedAt ||
+          art.featuredImage?.url !== orig.featuredImage?.url ||
+          art.blocks?.length !== orig.blocks?.length;
+
+        if (isContentEdited) {
+          customOrEdited.push(art);
+        } else {
+          const delta: ArticleStatDelta = {};
+          let hasDelta = false;
+          if (art.views !== orig.views) { delta.views = art.views; hasDelta = true; }
+          if (art.commentsCount !== orig.commentsCount) { delta.commentsCount = art.commentsCount; hasDelta = true; }
+          if (art.isBreaking !== orig.isBreaking) { delta.isBreaking = art.isBreaking; hasDelta = true; }
+          if (art.isFeatured !== orig.isFeatured) { delta.isFeatured = art.isFeatured; hasDelta = true; }
+          if (art.status !== orig.status) { delta.status = art.status; hasDelta = true; }
+          if (art.userReactions && Object.keys(art.userReactions).length > 0) {
+            delta.userReactions = art.userReactions;
+            delta.reactions = art.reactions;
+            hasDelta = true;
+          }
+          if (hasDelta) {
+            statsMap[art.id] = delta;
+          }
+        }
+      }
+
+      if (customOrEdited.length > 0) {
+        safeSetItem(ARTICLES_CUSTOM_KEY, JSON.stringify(customOrEdited));
+      } else {
+        safeRemoveItem(ARTICLES_CUSTOM_KEY);
+      }
+
+      if (deletedIds.length > 0) {
+        safeSetItem(ARTICLES_DELETED_KEY, JSON.stringify(deletedIds));
+      } else {
+        safeRemoveItem(ARTICLES_DELETED_KEY);
+      }
+
+      if (Object.keys(statsMap).length > 0) {
+        safeSetItem(ARTICLES_STATS_KEY, JSON.stringify(statsMap));
+      } else {
+        safeRemoveItem(ARTICLES_STATS_KEY);
+      }
     } catch (e) {
       console.error('Error saving articles to storage:', e);
     }
@@ -272,7 +441,7 @@ export const StorageService = {
         const missing = INITIAL_COMMENTS.filter((c) => !existingIds.has(c.id));
         if (missing.length > 0) {
           const merged = [...missing, ...parsed];
-          localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(merged));
+          safeSetItem(COMMENTS_STORAGE_KEY, JSON.stringify(merged));
           return merged;
         }
         return parsed;
@@ -280,13 +449,13 @@ export const StorageService = {
     } catch (e) {
       console.error('Error loading comments:', e);
     }
-    localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(INITIAL_COMMENTS));
+    safeSetItem(COMMENTS_STORAGE_KEY, JSON.stringify(INITIAL_COMMENTS));
     return INITIAL_COMMENTS;
   },
 
   saveComments(comments: Comment[]): void {
     try {
-      localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(comments));
+      safeSetItem(COMMENTS_STORAGE_KEY, JSON.stringify(comments));
     } catch (e) {
       console.error('Error saving comments:', e);
     }
@@ -328,13 +497,13 @@ export const StorageService = {
         videos: [],
       },
     ];
-    localStorage.setItem(SUBMISSIONS_STORAGE_KEY, JSON.stringify(sampleSubmissions));
+    safeSetItem(SUBMISSIONS_STORAGE_KEY, JSON.stringify(sampleSubmissions));
     return sampleSubmissions;
   },
 
   saveSubmissions(submissions: UserNewsSubmission[]): void {
     try {
-      localStorage.setItem(SUBMISSIONS_STORAGE_KEY, JSON.stringify(submissions));
+      safeSetItem(SUBMISSIONS_STORAGE_KEY, JSON.stringify(submissions));
     } catch (e) {
       console.error('Error saving submissions:', e);
     }
@@ -342,28 +511,60 @@ export const StorageService = {
 
   getMediaLibrary(): MediaItem[] {
     try {
-      const stored = localStorage.getItem(MEDIA_STORAGE_KEY);
-      if (stored) return JSON.parse(stored);
+      const defaults = getDefaultMediaItems();
+      const customRaw = localStorage.getItem(MEDIA_CUSTOM_KEY);
+      const customOrEdited: MediaItem[] = customRaw ? JSON.parse(customRaw) : [];
+
+      const deletedRaw = localStorage.getItem(MEDIA_DELETED_KEY);
+      const deletedSet = new Set<string>(deletedRaw ? JSON.parse(deletedRaw) : []);
+
+      const defaultIds = new Set(defaults.map((m) => m.id));
+      const overrideMap = new Map<string, MediaItem>();
+      const newCustom: MediaItem[] = [];
+
+      for (const item of customOrEdited) {
+        if (defaultIds.has(item.id)) {
+          overrideMap.set(item.id, item);
+        } else {
+          newCustom.push(item);
+        }
+      }
+
+      const mergedDefaults = defaults
+        .filter((m) => !deletedSet.has(m.id))
+        .map((m) => overrideMap.get(m.id) || m);
+
+      return [...newCustom, ...mergedDefaults];
     } catch (e) {
       console.error('Error loading media:', e);
+      return getDefaultMediaItems();
     }
-    // Extract media from initial articles
-    const media: MediaItem[] = [];
-    INITIAL_ARTICLES.forEach((art) => {
-      if (art.featuredImage) {
-        media.push({ ...art.featuredImage, articleId: art.id });
-      }
-      if (art.additionalImages) {
-        art.additionalImages.forEach((img) => media.push({ ...img, articleId: art.id }));
-      }
-    });
-    localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(media));
-    return media;
   },
 
   saveMediaLibrary(media: MediaItem[]): void {
     try {
-      localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(media));
+      const defaults = getDefaultMediaItems();
+      const defaultMap = new Map(defaults.map((m) => [m.id, m]));
+      const currentIds = new Set(media.map((m) => m.id));
+
+      const deletedIds = defaults.filter((m) => !currentIds.has(m.id)).map((m) => m.id);
+      const customOrEdited = media.filter((m) => {
+        const orig = defaultMap.get(m.id);
+        if (!orig) return true;
+        return m.url !== orig.url || m.caption !== orig.caption || m.credit !== orig.credit;
+      });
+
+      if (customOrEdited.length > 0) {
+        safeSetItem(MEDIA_CUSTOM_KEY, JSON.stringify(customOrEdited));
+      } else {
+        safeRemoveItem(MEDIA_CUSTOM_KEY);
+      }
+
+      if (deletedIds.length > 0) {
+        safeSetItem(MEDIA_DELETED_KEY, JSON.stringify(deletedIds));
+      } else {
+        safeRemoveItem(MEDIA_DELETED_KEY);
+      }
     } catch (e) {
       console.error('Error saving media:', e);
     }
@@ -376,13 +577,13 @@ export const StorageService = {
     } catch (e) {
       console.error('Error loading homepage config:', e);
     }
-    localStorage.setItem(HOMEPAGE_CONFIG_KEY, JSON.stringify(DEFAULT_HOMEPAGE_CONFIG));
+    safeSetItem(HOMEPAGE_CONFIG_KEY, JSON.stringify(DEFAULT_HOMEPAGE_CONFIG));
     return DEFAULT_HOMEPAGE_CONFIG;
   },
 
   saveHomepageConfig(config: HomepageConfig): void {
     try {
-      localStorage.setItem(HOMEPAGE_CONFIG_KEY, JSON.stringify(config));
+      safeSetItem(HOMEPAGE_CONFIG_KEY, JSON.stringify(config));
     } catch (e) {
       console.error('Error saving homepage config:', e);
     }
@@ -395,7 +596,7 @@ export const StorageService = {
     } catch (e) {
       console.error('Error loading audit logs:', e);
     }
-    localStorage.setItem(AUDIT_LOGS_KEY, JSON.stringify(INITIAL_AUDIT_LOGS));
+    safeSetItem(AUDIT_LOGS_KEY, JSON.stringify(INITIAL_AUDIT_LOGS));
     return INITIAL_AUDIT_LOGS;
   },
 
@@ -408,7 +609,7 @@ export const StorageService = {
         timestamp: new Date().toISOString(),
       };
       const updated = [newEntry, ...existing].slice(0, 100);
-      localStorage.setItem(AUDIT_LOGS_KEY, JSON.stringify(updated));
+      safeSetItem(AUDIT_LOGS_KEY, JSON.stringify(updated));
     } catch (e) {
       console.error('Error adding audit log:', e);
     }
@@ -421,13 +622,13 @@ export const StorageService = {
     } catch (e) {
       console.error('Error loading ads:', e);
     }
-    localStorage.setItem(ADS_STORAGE_KEY, JSON.stringify(INITIAL_ADS));
+    safeSetItem(ADS_STORAGE_KEY, JSON.stringify(INITIAL_ADS));
     return INITIAL_ADS;
   },
 
   saveAds(ads: Advertisement[]): void {
     try {
-      localStorage.setItem(ADS_STORAGE_KEY, JSON.stringify(ads));
+      safeSetItem(ADS_STORAGE_KEY, JSON.stringify(ads));
     } catch (e) {
       console.error('Error saving ads:', e);
     }
@@ -440,13 +641,13 @@ export const StorageService = {
     } catch (e) {
       console.error('Error loading team users:', e);
     }
-    localStorage.setItem(TEAM_USERS_KEY, JSON.stringify(INITIAL_TEAM_USERS));
+    safeSetItem(TEAM_USERS_KEY, JSON.stringify(INITIAL_TEAM_USERS));
     return INITIAL_TEAM_USERS;
   },
 
   saveTeamUsers(users: TeamUser[]): void {
     try {
-      localStorage.setItem(TEAM_USERS_KEY, JSON.stringify(users));
+      safeSetItem(TEAM_USERS_KEY, JSON.stringify(users));
     } catch (e) {
       console.error('Error saving team users:', e);
     }
@@ -459,20 +660,20 @@ export const StorageService = {
         const parsed = JSON.parse(stored);
         if (parsed.email === 'admin@meridian-news.org') {
           parsed.email = 'incognito120120@gmail.com';
-          localStorage.setItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(parsed));
+          safeSetItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(parsed));
         }
         return parsed;
       }
     } catch (e) {
       console.error('Error loading admin credentials:', e);
     }
-    localStorage.setItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(DEFAULT_ADMIN_CREDENTIALS));
+    safeSetItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(DEFAULT_ADMIN_CREDENTIALS));
     return DEFAULT_ADMIN_CREDENTIALS;
   },
 
   saveAdminCredentials(creds: AdminCredentials): void {
     try {
-      localStorage.setItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(creds));
+      safeSetItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(creds));
     } catch (e) {
       console.error('Error saving admin credentials:', e);
     }
@@ -485,13 +686,13 @@ export const StorageService = {
     } catch (e) {
       console.error('Error loading weekly reports:', e);
     }
-    localStorage.setItem(WEEKLY_REPORTS_KEY, JSON.stringify(INITIAL_WEEKLY_REPORTS));
+    safeSetItem(WEEKLY_REPORTS_KEY, JSON.stringify(INITIAL_WEEKLY_REPORTS));
     return INITIAL_WEEKLY_REPORTS;
   },
 
   saveWeeklyReports(reports: WeeklyReport[]): void {
     try {
-      localStorage.setItem(WEEKLY_REPORTS_KEY, JSON.stringify(reports));
+      safeSetItem(WEEKLY_REPORTS_KEY, JSON.stringify(reports));
     } catch (e) {
       console.error('Error saving weekly reports:', e);
     }

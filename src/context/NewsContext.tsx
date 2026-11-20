@@ -175,8 +175,12 @@ export const NewsProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const loginUser = (role: UserRole = 'admin', email?: string) => {
     setCurrentRole(role);
     setIsAuthenticated(true);
-    localStorage.setItem('meridian_auth', 'true');
-    localStorage.setItem('meridian_role', role);
+    try {
+      localStorage.setItem('meridian_auth', 'true');
+      localStorage.setItem('meridian_role', role);
+    } catch {
+      // Ignore storage quota errors
+    }
     StorageService.addAuditLog({
       action: 'USER_LOGIN',
       actorName: email || `${role.toUpperCase()} User`,
@@ -200,7 +204,11 @@ export const NewsProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const updated = prev.includes(articleId)
         ? prev.filter((id) => id !== articleId)
         : [...prev, articleId];
-      localStorage.setItem('meridian_saved_articles', JSON.stringify(updated));
+      try {
+        localStorage.setItem('meridian_saved_articles', JSON.stringify(updated));
+      } catch {
+        // Ignore storage quota errors
+      }
       return updated;
     });
   };

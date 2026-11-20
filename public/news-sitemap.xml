@@ -2,6 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-92</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[ICJ Delivers Historic Verdict Ruling Myanmar Committed Genocide Against the Rohingya]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-93</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[Severe Cyclone Akvan Nears India’s East Coast, Prompting Mass Evacuations and Rail Suspensions]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-94</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[US and Thailand Seal Landmark 99% Tariff-Free Trade Deal Alongside HIMARS Defense Package]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-95</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[Houthi Missile Strike Hits Riyadh’s Public Investment Fund Tower Amid Escalating Gulf Hostilities]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-96</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[Over 150 Nations and $4 Trillion Corporate Coalition Launch Global Electrification Package as COP31 Closes]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-97</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[Bangladesh Garment Hub Protests Disrupt Factories Over ৳30,000 Minimum Wage Demand]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-98</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-20</news:publication_date>
+      <news:title><![CDATA[EU Mobilizes €24 Billion Under STEP Tech Platform as Economists Debate Data Center Bubble Risks]]></news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-82</loc>
     <news:news>
       <news:publication>
@@ -208,72 +285,6 @@
       </news:publication>
       <news:publication_date>2026-11-18</news:publication_date>
       <news:title><![CDATA[EU and Australia Sign Landmark Horizon Europe Association Pact for Joint Scientific Research]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-67</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-17</news:publication_date>
-      <news:title><![CDATA[Quad Leaders Unveil Indo-Pacific Maritime Security and Undersea Cable Pact in Manila]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-68</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-17</news:publication_date>
-      <news:title><![CDATA[Overnight Missile and Drone Strike Collapses 227-Meter Span of Crimea’s Kerch Bridge]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-69</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-17</news:publication_date>
-      <news:title><![CDATA[South Korea’s KOSPI and Japan’s Nikkei Slide on AI Export Curbs and Chip-Sector Volatility]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-70</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-17</news:publication_date>
-      <news:title><![CDATA[EU Widens Russia Sanctions to Target Wildberries CEO Tatyana Kim and Nearly 50 Banks]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-71</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-17</news:publication_date>
-      <news:title><![CDATA[Leonid Meteor Shower Peaks as Astronomers Warn Satellite Mega-Constellations Threaten Dark Skies]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-72</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-17</news:publication_date>
-      <news:title><![CDATA[Global Gaming Industry Braces for ‘Grand Theft Auto VI’ Launch After Record Digital Pre-Loads]]></news:title>
     </news:news>
   </url>
 </urlset>
