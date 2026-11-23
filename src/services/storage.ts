@@ -8,7 +8,7 @@ const COMMENTS_STORAGE_KEY = 'meridian_comments_v1';
 const SUBMISSIONS_STORAGE_KEY = 'meridian_submissions_v1';
 const MEDIA_CUSTOM_KEY = 'meridian_media_custom_v1';
 const MEDIA_DELETED_KEY = 'meridian_media_deleted_v1';
-const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v18';
+const HOMEPAGE_CONFIG_KEY = 'meridian_homepage_config_v19';
 const AUDIT_LOGS_KEY = 'meridian_audit_logs_v1';
 const ADS_STORAGE_KEY = 'meridian_ads_v1';
 const TEAM_USERS_KEY = 'meridian_team_users_v1';
@@ -28,7 +28,7 @@ interface ArticleStatDelta {
 const LEGACY_STORAGE_KEYS = [
   ...Array.from({ length: 16 }, (_, i) => `meridian_articles_v${i + 1}`),
   ...Array.from({ length: 6 }, (_, i) => `meridian_media_v${i + 1}`),
-  ...Array.from({ length: 17 }, (_, i) => `meridian_homepage_config_v${i + 1}`),
+  ...Array.from({ length: 18 }, (_, i) => `meridian_homepage_config_v${i + 1}`),
 ];
 
 function pruneLegacyStorageKeys(clearTransCache = false): void {
@@ -202,8 +202,8 @@ export const DEFAULT_ADMIN_CREDENTIALS: AdminCredentials = {
 };
 
 export const DEFAULT_HOMEPAGE_CONFIG: HomepageConfig = {
-  heroArticleId: 'art-106',
-  breakingArticleIds: ['art-106', 'art-107', 'art-108', 'art-109', 'art-111', 'art-99', 'art-100'],
+  heroArticleId: 'art-113',
+  breakingArticleIds: ['art-113', 'art-114', 'art-115', 'art-116', 'art-118', 'art-106', 'art-107'],
   sections: [
     { id: 'sec-world', name: 'World News', category: 'World', visible: true, order: 1, limit: 4 },
     { id: 'sec-politics', name: 'Global Politics', category: 'Politics', visible: true, order: 2, limit: 3 },
