@@ -1,5 +1,6 @@
 import { Article } from '../types/news';
 import { AUTHORS } from './authors';
+import { BATCH_NOV24_TRENDING } from './batches/batch_nov24';
 import { BATCH_NOV23_TRENDING } from './batches/batch_nov23';
 import { BATCH_NOV22_TRENDING } from './batches/batch_nov22';
 import { BATCH_NOV21_TRENDING } from './batches/batch_nov21';
@@ -16,6 +17,7 @@ import { BATCH_5B_ARTICLES } from './batches/batch5b_oct';
 export { AUTHORS };
 
 export const INITIAL_ARTICLES: Article[] = [
+  ...BATCH_NOV24_TRENDING,
   ...BATCH_NOV23_TRENDING,
   ...BATCH_NOV22_TRENDING,
   ...BATCH_NOV21_TRENDING,

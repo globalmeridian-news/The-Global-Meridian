@@ -2,6 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-120</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[Nvidia Skyrockets 35% After Board Reinstates Jensen Huang as CEO With Trump’s Public Backing, Sparking Nasdaq Rally]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-121</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[US Blacklists Singapore’s Megaspeed and Six Asian Firms Over Alleged Nvidia AI Chip Smuggling to China]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-122</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[Iran Vows to Counter US Naval Blockade With “All Means” After Bahrain Radar Strikes and Qeshm Island Raids]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-123</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[China Names Pakistani Astronaut Muhammad Zeeshan Ali to Shenzhou 24 Crew—First Foreigner Bound for Tiangong Station]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-124</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[Bangladesh Skittled for 91 in Centurion as Marques Ackerman’s Towering 150+ Powers South Africa Command]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-125</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[Russia Unleashes Nearly 100 Drones Across Ukraine Overnight, Killing Civilians in Zaporizhzhia]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-126</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-24</news:publication_date>
+      <news:title><![CDATA[Middle East Documentaries “The Settlers,” “Breaking Ranks,” and “Prisoner 951” Sweep Top Honors at 54th International Emmy Awards]]></news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-113</loc>
     <news:news>
       <news:publication>
@@ -76,83 +153,6 @@
       </news:publication>
       <news:publication_date>2026-11-23</news:publication_date>
       <news:title><![CDATA[Carlos Alcaraz Defeats World No. 1 Alexander Zverev in Turin to Capture Maiden ATP Finals Crown]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-106</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[Russian Cargo Vessel Sparta II Struck by Drones Near Gulf of Finland, Forcing Crew Rescue Operation]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-107</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[SpaceX Dragon Splashes Down Off Los Angeles Carrying Over 6,300 Pounds of Bioprinted Blood Vessels and Cancer Organoids]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-108</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[COP31 Climate Talks Crash Into Second Day of Overtime in Antalya as Draft Drops Fossil-Fuel Phaseout]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-109</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[Mexican Forces Capture FBI Most-Wanted Cartel Boss “El Chapo Isidro” in Sinaloa Military Raid]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-110</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[Thousands March Through Pouring Rain in Lisbon as Cost-of-Living and Housing Protests Ripple Across Europe]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-111</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[India Smash Record 720-9 Declared in Wellington as Rishabh Pant Blazes 128 Against New Zealand]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-112</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-22</news:publication_date>
-      <news:title><![CDATA[Newcastle Hold Arsenal 2–2 at St James’ Park as Leeds Stun Chelsea 4–1 in Dramatic Premier League Weekend]]></news:title>
     </news:news>
   </url>
 </urlset>
