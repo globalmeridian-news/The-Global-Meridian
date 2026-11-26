@@ -5,8 +5,78 @@
     <link>https://the-global-meridian.incognito120120.workers.dev</link>
     <description>Authoritative, verified global journalism from international news bureaus across London, Brussels, Washington, Dubai, Moscow, Beijing, Tokyo, Seoul, New Delhi, and Nairobi.</description>
     <language>en-US</language>
-    <lastBuildDate>Wed, 25 Nov 2026 06:15:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 06:20:00 GMT</lastBuildDate>
     <atom:link href="https://the-global-meridian.incognito120120.workers.dev/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title><![CDATA[Ukraine Sinks Russian Corvette Merkury in Libya’s Benghazi Port as Poland Plans Eastern Border No-Fly Zone]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-134</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-134</guid>
+      <pubDate>Thu, 26 Nov 2026 05:55:00 GMT</pubDate>
+      <category><![CDATA[Defense]]></category>
+      <description><![CDATA[Long-range Ukrainian drone strikes reportedly sank the Russian Navy corvette Merkury while docked in Benghazi, Libya, disrupting Moscow’s Mediterranean-to-Africa logistics corridor—hours after Russian ballistic missiles struck a Kyiv shopping mall and Poland announced plans for an eastern border no-fly zone by early 2027.]]></description>
+      <author>j.moreau@meridian-news.org (Julian Moreau)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-134-benghazi-merkury-poland-nofly.jpg" type="image/jpeg" length="130690" />
+    </item>
+    <item>
+      <title><![CDATA[Houthis Escalate Attacks Near Saudi Ras Tanura Terminal as EU Blacklists 15 Russian Arms Firms and Israeli Judges Urge Netanyahu Trial Closure]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-135</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-135</guid>
+      <pubDate>Thu, 26 Nov 2026 05:20:00 GMT</pubDate>
+      <category><![CDATA[World]]></category>
+      <description><![CDATA[Yemen’s Houthi forces launched fresh drone and missile salvos intercepted near Saudi Arabia’s Ras Tanura oil terminal and Red Sea shipping lanes, on the same day the European Council sanctioned 15 additional Russian military-industrial entities and Israeli judges advised prosecutors to wrap up PM Benjamin Netanyahu’s long-running corruption trial.]]></description>
+      <author>t.mansoor@meridian-news.org (Dr. Tariq Al-Mansoor)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-135-houthis-ras-tanura-gulf-alert.jpg" type="image/jpeg" length="194077" />
+    </item>
+    <item>
+      <title><![CDATA[Asian Chip & AI Stocks Tumble After Anthropic Filing Reveals Multi-Cloud Silicon Shift Beyond Nvidia to AWS, Google, and AMD]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-136</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-136</guid>
+      <pubDate>Thu, 26 Nov 2026 04:45:00 GMT</pubDate>
+      <category><![CDATA[Technology]]></category>
+      <description><![CDATA[Semiconductor and AI equities slid sharply across Hong Kong and Mainland China—pulling down Zhipu, MiniMax, and major foundry stocks—as institutional analysts parsed Anthropic’s Nasdaq S-1 filing showing deliberate diversification away from Nvidia GPUs toward Amazon, Alphabet, and AMD custom silicon.]]></description>
+      <author>m.vance@meridian-news.org (Marcus Vance)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-136-asia-chips-anthropic-diversifies.jpg" type="image/jpeg" length="222129" />
+    </item>
+    <item>
+      <title><![CDATA[Champions League Shocks: Lille Topple Bayern Munich 2–1 as Holders PSG Held 2–2 by Roma and Liverpool Rout Brugge 3–0]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-137</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-137</guid>
+      <pubDate>Thu, 26 Nov 2026 04:10:00 GMT</pubDate>
+      <category><![CDATA[Sports]]></category>
+      <description><![CDATA[UEFA Champions League Matchday 5 delivered major upsets across Europe as Lille handed injury-hit Bayern Munich their first defeat 2–1, AS Roma held reigning champions Paris Saint-Germain 2–2 at Parc des Princes, Liverpool cruised 3–0 at Club Brugge, and Barcelona routed Sabah FC 4–1.]]></description>
+      <author>j.moreau@meridian-news.org (Julian Moreau)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-137-ucl-matchday5-upsets-results.jpg" type="image/jpeg" length="299378" />
+    </item>
+    <item>
+      <title><![CDATA[Astronomers Spot “Phoebe,” a 13-Billion-Year-Old Primordial Black Hole Candidate Born Moments After the Big Bang]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-138</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-138</guid>
+      <pubDate>Thu, 26 Nov 2026 03:30:00 GMT</pubDate>
+      <category><![CDATA[Science]]></category>
+      <description><![CDATA[Astrophysicists identified an ultra-compact cosmic relic nicknamed “Phoebe”—weighing roughly three times the mass of Earth’s Moon—whose gravitational microlensing briefly magnified a distant star, potentially marking the clearest observational clue yet of 13-billion-year-old primordial black holes linked to dark matter.]]></description>
+      <author>t.mansoor@meridian-news.org (Dr. Tariq Al-Mansoor)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-138-phoebe-primordial-black-hole.jpg" type="image/jpeg" length="301655" />
+    </item>
+    <item>
+      <title><![CDATA[Japan’s JAXA Unveils Joint Lunar Rover Test Model With India to Hunt Water Ice at Moon’s South Pole]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-139</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-139</guid>
+      <pubDate>Thu, 26 Nov 2026 02:55:00 GMT</pubDate>
+      <category><![CDATA[Science]]></category>
+      <description><![CDATA[The Japan Aerospace Exploration Agency (JAXA) showcased a full-scale engineering test model of the joint Indo-Japanese LUPEX lunar rover engineered to drill beneath permanently shadowed craters near the Moon’s south pole in search of usable water ice.]]></description>
+      <author>a.chowdhury@meridian-news.org (Aisha Chowdhury)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-139-jaxa-india-lunar-rover.jpg" type="image/jpeg" length="258027" />
+    </item>
+    <item>
+      <title><![CDATA[New England Flash-Flood Danger Surges as Warming Shifts Summer Rains From Gentle Showers to Extreme Cloudbursts]]></title>
+      <link>https://the-global-meridian.incognito120120.workers.dev/article/art-140</link>
+      <guid isPermaLink="true">https://the-global-meridian.incognito120120.workers.dev/article/art-140</guid>
+      <pubDate>Thu, 26 Nov 2026 02:20:00 GMT</pubDate>
+      <category><![CDATA[Environment]]></category>
+      <description><![CDATA[A new study published in Science Advances shows climate warming is systematically transforming New England’s summer rainfall—replacing steady, soil-soaking showers with intense, short-duration cloudbursts that overwhelm urban drainage and heighten flash-flood hazards.]]></description>
+      <author>t.mansoor@meridian-news.org (Dr. Tariq Al-Mansoor)</author>
+      <enclosure url="https://the-global-meridian.incognito120120.workers.dev/assets/news/art-140-new-england-flash-flood-study.jpg" type="image/jpeg" length="318902" />
+    </item>
     <item>
       <title><![CDATA[Anthropic Tumbles Below $83 IPO Price as Nvidia Sheds Over 6% and Wall Street’s AI Relief Rally Fizzles]]></title>
       <link>https://the-global-meridian.incognito120120.workers.dev/article/art-127</link>

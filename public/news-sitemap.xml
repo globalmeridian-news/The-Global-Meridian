@@ -2,6 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-134</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[Ukraine Sinks Russian Corvette Merkury in Libya’s Benghazi Port as Poland Plans Eastern Border No-Fly Zone]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-135</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[Houthis Escalate Attacks Near Saudi Ras Tanura Terminal as EU Blacklists 15 Russian Arms Firms and Israeli Judges Urge Netanyahu Trial Closure]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-136</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[Asian Chip & AI Stocks Tumble After Anthropic Filing Reveals Multi-Cloud Silicon Shift Beyond Nvidia to AWS, Google, and AMD]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-137</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[Champions League Shocks: Lille Topple Bayern Munich 2–1 as Holders PSG Held 2–2 by Roma and Liverpool Rout Brugge 3–0]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-138</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[Astronomers Spot “Phoebe,” a 13-Billion-Year-Old Primordial Black Hole Candidate Born Moments After the Big Bang]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-139</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[Japan’s JAXA Unveils Joint Lunar Rover Test Model With India to Hunt Water Ice at Moon’s South Pole]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-140</loc>
+    <news:news>
+      <news:publication>
+        <news:name>The Global Meridian</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-26</news:publication_date>
+      <news:title><![CDATA[New England Flash-Flood Danger Surges as Warming Shifts Summer Rains From Gentle Showers to Extreme Cloudbursts]]></news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-127</loc>
     <news:news>
       <news:publication>
@@ -153,83 +230,6 @@
       </news:publication>
       <news:publication_date>2026-11-24</news:publication_date>
       <news:title><![CDATA[Middle East Documentaries “The Settlers,” “Breaking Ranks,” and “Prisoner 951” Sweep Top Honors at 54th International Emmy Awards]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-113</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[COP31 Climate Summit Collapses in Antalya Without a Final Pact, First UN Breakdown Since 2009 Copenhagen]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-114</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[Ukraine Drone Strike Hits Russian Navy Corvette Merkury and Arms Freighter Off Libya’s Benghazi Coast]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-115</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[NYT Report Deepens Nvidia Scandal Over Chinese Intelligence Contact and Illicit AI Chip Smuggling Probe]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-116</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[Oxfam and Environmental Monitors Warn Over 99% of Gaza’s Land and Water Is Now Contaminated]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-117</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[Asian Tech Stocks Slide as KOSPI Drops 4%, While Gold Rebounds Above $3,625 and Bitcoin Reclaims $60,000]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-118</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[Max Verstappen Wins Las Vegas Grand Prix From Pole to Hand Red Bull Ford Historic First US Victory]]></news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://the-global-meridian.incognito120120.workers.dev/article/art-119</loc>
-    <news:news>
-      <news:publication>
-        <news:name>The Global Meridian</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2026-11-23</news:publication_date>
-      <news:title><![CDATA[Carlos Alcaraz Defeats World No. 1 Alexander Zverev in Turin to Capture Maiden ATP Finals Crown]]></news:title>
     </news:news>
   </url>
 </urlset>
