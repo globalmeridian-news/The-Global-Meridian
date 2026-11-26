@@ -1,5 +1,5 @@
-import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Globe2 } from 'lucide-react';
 import { useNews } from '../../context/NewsContext';
 import { AdPosition } from '../../types/news';
 
@@ -10,6 +10,7 @@ interface Props {
 
 export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
   const { ads, recordAdClick, currentLanguage } = useNews();
+  const [imgError, setImgError] = useState(false);
 
   // Find active ad for this position
   const activeAd = ads.find((a) => a.position === position && a.isActive);
@@ -42,12 +43,17 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
         {position === 'header_top' && (
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2.5 sm:p-3.5 bg-linear-to-r from-emerald-950 via-emerald-900 to-teal-950 text-white min-h-[64px] border border-emerald-700/40 rounded-lg shadow-xs">
             <div className="flex items-center gap-3.5 w-full sm:w-auto">
-              {activeAd.imageUrl && (
+              {activeAd.imageUrl && !imgError ? (
                 <img
                   src={activeAd.imageUrl}
                   alt={activeAd.title}
+                  onError={() => setImgError(true)}
                   className="w-16 h-12 sm:w-20 sm:h-12 object-cover rounded-md shadow-sm shrink-0 border border-emerald-500/30"
                 />
+              ) : (
+                <div className="w-12 h-12 rounded-md bg-emerald-800/70 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-300">
+                  <Globe2 className="w-5 h-5" />
+                </div>
               )}
               <div className="min-w-0 pr-16 sm:pr-0">
                 <span className="text-[10px] text-emerald-300 font-bold uppercase tracking-wider block">
@@ -66,11 +72,14 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
 
         {position === 'home_middle' && (
           <div className="relative aspect-21/9 sm:aspect-16/5 w-full bg-slate-900 overflow-hidden">
-            <img
-              src={activeAd.imageUrl}
-              alt={activeAd.title}
-              className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-90"
-            />
+            {activeAd.imageUrl && !imgError && (
+              <img
+                src={activeAd.imageUrl}
+                alt={activeAd.title}
+                onError={() => setImgError(true)}
+                className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-90"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-4 sm:p-6 text-white">
               <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider">
                 {activeAd.sponsorName}
@@ -84,10 +93,11 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
 
         {position === 'article_inline' && (
           <div className="my-6 p-4 rounded-lg bg-amber-50/60 border border-amber-200 flex flex-col sm:flex-row items-center gap-4">
-            {activeAd.imageUrl && (
+            {activeAd.imageUrl && !imgError && (
               <img
                 src={activeAd.imageUrl}
                 alt={activeAd.title}
+                onError={() => setImgError(true)}
                 className="w-full sm:w-40 h-28 object-cover rounded-md shadow-2xs"
               />
             )}
@@ -107,11 +117,14 @@ export const AdBanner: React.FC<Props> = ({ position, className = '' }) => {
 
         {position === 'article_sidebar' && (
           <div className="bg-slate-900 text-white rounded overflow-hidden">
-            <img
-              src={activeAd.imageUrl}
-              alt={activeAd.title}
-              className="w-full aspect-16/10 object-cover"
-            />
+            {activeAd.imageUrl && !imgError && (
+              <img
+                src={activeAd.imageUrl}
+                alt={activeAd.title}
+                onError={() => setImgError(true)}
+                className="w-full aspect-16/10 object-cover"
+              />
+            )}
             <div className="p-3">
               <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider block mb-0.5">
                 {activeAd.sponsorName}

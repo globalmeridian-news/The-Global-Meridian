@@ -163,11 +163,11 @@ function buildNavHtml(): string {
   return [
     `<a href="${SITE_URL}/">Home</a>`,
     ...cats.map((c) => `<a href="${buildCategoryCanonicalUrl(c)}">${escapeHtml(c)}</a>`),
-  ].join(' | ');
+  ].join('\n          ');
 }
 
 function buildFooterHtml(): string {
-  return `<footer>
+  return `<footer class="ssr-footer">
         <a href="${SITE_URL}/sitemap.xml">Sitemap</a> |
         <a href="${SITE_URL}/news-sitemap.xml">Google News Sitemap</a> |
         <a href="${SITE_URL}/rss.xml">RSS Feed</a> |
@@ -224,41 +224,63 @@ function seoPrerenderPlugin(): Plugin {
 
       const schemaTag = `<script type="application/ld+json" id="google-home-itemlist-schema">\n${escapeJsonScript(itemListJsonLd)}\n    </script>`;
 
-      const articleMarkup = published
-        .map((art) => {
-          const leadParagraph = art.blocks.find((b) => b.type === 'paragraph');
-          const leadEn = leadParagraph?.text ? `<p>${escapeHtml(leadParagraph.text)}</p>` : '';
-          const leadBn = leadParagraph?.text_bn ? `<p lang="bn">${escapeHtml(leadParagraph.text_bn)}</p>` : '';
+      const topDispatches = published.slice(0, 12);
+      const archiveDispatches = published.slice(12);
+      const leadArticle = topDispatches[0];
+
+      const articleMarkup = topDispatches
+        .map((art, idx) => {
+          const isLead = idx === 0;
+          const imgUrl = art.featuredImage?.url || '';
+          const heroImgHtml =
+            isLead && imgUrl
+              ? `<img class="ssr-hero-img" src="${escapeHtml(imgUrl)}" alt="${escapeHtml(art.featuredImage?.caption || art.title)}" fetchpriority="high" />`
+              : '';
           const titleBn = art.title_bn ? `<h3 lang="bn">${escapeHtml(art.title_bn)}</h3>` : '';
-          const summaryBn = art.summary_bn ? `<p lang="bn">${escapeHtml(art.summary_bn)}</p>` : '';
           const articleUrl = buildArticleCanonicalUrl(art);
-          return `        <article>
+          return `        <article class="ssr-card${isLead ? ' ssr-hero' : ''}">
+          ${heroImgHtml}
+          <p class="ssr-meta">${escapeHtml(art.category)} · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
           <h2><a href="${articleUrl}">${escapeHtml(art.title)}</a></h2>
           ${titleBn}
-          <p><strong>${escapeHtml(art.category)}</strong> · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time> · By ${escapeHtml(art.author.name)} · Source: ${escapeHtml(art.source)}</p>
           <p>${escapeHtml(art.summary)}</p>
-          ${summaryBn}
-          ${leadEn}
-          ${leadBn}
         </article>`;
         })
         .join('\n');
 
+      const archiveLinksHtml = archiveDispatches.length
+        ? `<div class="ssr-archive">
+            <h2 class="ssr-section-title">International News Archive (${archiveDispatches.length})</h2>
+            <ul>
+              ${archiveDispatches
+                .map((art) => `<li><a href="${buildArticleCanonicalUrl(art)}">${escapeHtml(art.title)}</a></li>`)
+                .join('\n              ')}
+            </ul>
+          </div>`
+        : '';
+
       const prerenderedShell = `<!-- PRERENDERED_NEWS_SHELL -->
-      <header>
-        <h1>The Global Meridian – International Journal of Record</h1>
-        <p>Verified international journalism covering Europe, the Middle East, the Americas, Russia, China, India, Japan, South Korea, and Africa across diplomacy, politics, economics, technology, defense, and science.</p>
-        <nav aria-label="News Categories">
-          ${buildNavHtml()}
-        </nav>
-      </header>
-      <main>
-        <section aria-label="Latest International Dispatches">
-          <h2>Latest Verified International Dispatches &amp; Analysis</h2>
+      <div class="meridian-ssr">
+        <div class="ssr-topbar"><span><span class="ssr-topbar-dot"></span>GLOBAL EDITION</span><span>${escapeHtml(leadArticle?.publishedAt.split('T')[0] || '2026-11-26')}</span></div>
+        <header class="ssr-header">
+          <h1 class="ssr-brand">The Global Meridian</h1>
+          <p class="ssr-tagline">Verified international journalism covering Europe, the Middle East, the Americas, Russia, China, India, Japan, South Korea, and Africa.</p>
+          <nav class="ssr-nav" aria-label="News Categories">
+            ${buildNavHtml()}
+          </nav>
+        </header>
+        <div class="ssr-ticker">BREAKING NEWS · ${escapeHtml(leadArticle?.title || 'Live International Wire')}</div>
+        <main class="ssr-main">
+          <section aria-label="Latest International Dispatches">
+            <h2 class="ssr-section-title">Latest Verified International Dispatches &amp; Analysis</h2>
+            <div class="ssr-grid">
 ${articleMarkup}
-        </section>
-      </main>
-      ${buildFooterHtml()}
+            </div>
+            ${archiveLinksHtml}
+          </section>
+        </main>
+        ${buildFooterHtml()}
+      </div>
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
       let output = html.replace('<!-- PRERENDERED_ITEMLIST_SCHEMA -->', schemaTag);
@@ -373,30 +395,33 @@ ${articleMarkup}
 
         const captionText = art.featuredImage?.caption || art.title;
         const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
-      <header>
-        <p><a href="${SITE_URL}/">The Global Meridian</a></p>
-        <nav aria-label="News Categories">
-          ${buildNavHtml()}
-        </nav>
-      </header>
-      <main>
-        <article>
-          <p><a href="${categoryUrl}">${escapeHtml(art.category)}</a> · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
-          <h1>${escapeHtml(art.title)}</h1>
-          ${art.title_bn ? `<h2 lang="bn">${escapeHtml(art.title_bn)}</h2>` : ''}
-          <p>By <a href="${SITE_URL}/author/${encodeURIComponent(art.author.id)}">${escapeHtml(art.author.name)}</a> (${escapeHtml(art.author.title)}) · Source: ${escapeHtml(art.source)}</p>
-          <figure>
-            <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(captionText)}" width="1200" height="675" />
-            <figcaption>${escapeHtml(captionText)}</figcaption>
-          </figure>
-          <p class="article-lead-summary"><strong>${escapeHtml(art.summary)}</strong></p>
-          ${art.summary_bn ? `<p lang="bn">${escapeHtml(art.summary_bn)}</p>` : ''}
-          ${paragraphsHtml}
-          <p>Topics: ${escapeHtml(art.tags.join(', '))}</p>
-        </article>
-        ${relatedHtml ? `<aside><h2>Related ${escapeHtml(art.category)} Reports</h2><ul>\n            ${relatedHtml}\n          </ul></aside>` : ''}
-      </main>
-      ${buildFooterHtml()}
+      <div class="meridian-ssr">
+        <div class="ssr-topbar"><span><span class="ssr-topbar-dot"></span>GLOBAL EDITION</span><span>${escapeHtml(art.category)}</span></div>
+        <header class="ssr-header">
+          <p class="ssr-brand"><a href="${SITE_URL}/">The Global Meridian</a></p>
+          <nav class="ssr-nav" aria-label="News Categories">
+            ${buildNavHtml()}
+          </nav>
+        </header>
+        <main class="ssr-main">
+          <article class="ssr-card ssr-article-body">
+            <p class="ssr-meta"><a href="${categoryUrl}">${escapeHtml(art.category)}</a> · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
+            <h1>${escapeHtml(art.title)}</h1>
+            ${art.title_bn ? `<h3 lang="bn">${escapeHtml(art.title_bn)}</h3>` : ''}
+            <p>By <a href="${SITE_URL}/author/${encodeURIComponent(art.author.id)}">${escapeHtml(art.author.name)}</a> (${escapeHtml(art.author.title)}) · Source: ${escapeHtml(art.source)}</p>
+            <figure>
+              <img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(captionText)}" width="1200" height="675" />
+              <figcaption>${escapeHtml(captionText)}</figcaption>
+            </figure>
+            <p class="article-lead-summary"><strong>${escapeHtml(art.summary)}</strong></p>
+            ${art.summary_bn ? `<p lang="bn">${escapeHtml(art.summary_bn)}</p>` : ''}
+            ${paragraphsHtml}
+            <p>Topics: ${escapeHtml(art.tags.join(', '))}</p>
+          </article>
+          ${relatedHtml ? `<aside class="ssr-archive"><h2 class="ssr-section-title">Related ${escapeHtml(art.category)} Reports</h2><ul>\n            ${relatedHtml}\n          </ul></aside>` : ''}
+        </main>
+        ${buildFooterHtml()}
+      </div>
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
         const pageHtml = replaceMetaAndCanonical(baseHtml, {
@@ -439,31 +464,37 @@ ${articleMarkup}
         const canonicalUrl = buildCategoryCanonicalUrl(cat);
         const catArticles = published.filter((a) => a.category === cat);
         const catItemsHtml = catArticles
+          .slice(0, 16)
           .map(
-            (art) => `        <article>
+            (art) => `        <article class="ssr-card">
+          <p class="ssr-meta">${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
           <h2><a href="${buildArticleCanonicalUrl(art)}">${escapeHtml(art.title)}</a></h2>
           ${art.title_bn ? `<h3 lang="bn">${escapeHtml(art.title_bn)}</h3>` : ''}
-          <p>${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
           <p>${escapeHtml(art.summary)}</p>
         </article>`,
           )
           .join('\n');
 
         const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
-      <header>
-        <p><a href="${SITE_URL}/">The Global Meridian</a></p>
-        <nav aria-label="News Categories">
-          ${buildNavHtml()}
-        </nav>
-      </header>
-      <main>
-        <section>
-          <h1>${escapeHtml(cat)} World News &amp; Analysis – The Global Meridian</h1>
-          <p>Latest verified ${escapeHtml(cat.toLowerCase())} dispatches across Europe, Middle East, Americas, Russia, China, India, Japan, South Korea, and Africa.</p>
+      <div class="meridian-ssr">
+        <div class="ssr-topbar"><span><span class="ssr-topbar-dot"></span>GLOBAL EDITION</span><span>${escapeHtml(cat)}</span></div>
+        <header class="ssr-header">
+          <p class="ssr-brand"><a href="${SITE_URL}/">The Global Meridian</a></p>
+          <nav class="ssr-nav" aria-label="News Categories">
+            ${buildNavHtml()}
+          </nav>
+        </header>
+        <main class="ssr-main">
+          <section>
+            <h1 class="ssr-section-title">${escapeHtml(cat)} World News &amp; Analysis – The Global Meridian</h1>
+            <p>Latest verified ${escapeHtml(cat.toLowerCase())} dispatches across Europe, Middle East, Americas, Russia, China, India, Japan, South Korea, and Africa.</p>
+            <div class="ssr-grid">
 ${catItemsHtml}
-        </section>
-      </main>
-      ${buildFooterHtml()}
+            </div>
+          </section>
+        </main>
+        ${buildFooterHtml()}
+      </div>
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
         const catBreadcrumbJsonLd = {
@@ -547,19 +578,22 @@ ${catItemsHtml}
           ],
         };
         const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
-      <header>
-        <p><a href="${SITE_URL}/">The Global Meridian</a></p>
-        <nav aria-label="News Categories">
-          ${buildNavHtml()}
-        </nav>
-      </header>
-      <main>
-        <section>
-          <h1>${escapeHtml(pol.title)}</h1>
-          <p>${escapeHtml(pol.desc)}</p>
-        </section>
-      </main>
-      ${buildFooterHtml()}
+      <div class="meridian-ssr">
+        <div class="ssr-topbar"><span><span class="ssr-topbar-dot"></span>GLOBAL EDITION</span><span>TRUST &amp; POLICY</span></div>
+        <header class="ssr-header">
+          <p class="ssr-brand"><a href="${SITE_URL}/">The Global Meridian</a></p>
+          <nav class="ssr-nav" aria-label="News Categories">
+            ${buildNavHtml()}
+          </nav>
+        </header>
+        <main class="ssr-main">
+          <section class="ssr-card ssr-article-body">
+            <h1>${escapeHtml(pol.title)}</h1>
+            <p>${escapeHtml(pol.desc)}</p>
+          </section>
+        </main>
+        ${buildFooterHtml()}
+      </div>
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
         const polHtml = replaceMetaAndCanonical(baseHtml, {
@@ -603,31 +637,39 @@ ${catItemsHtml}
           ],
         };
         const listHtml = authorArticles
+          .slice(0, 16)
           .map(
-            (art) => `        <article>
+            (art) => `        <article class="ssr-card">
+          <p class="ssr-meta">${escapeHtml(art.category)} · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
           <h2><a href="${buildArticleCanonicalUrl(art)}">${escapeHtml(art.title)}</a></h2>
-          <p>${escapeHtml(art.category)} · ${escapeHtml(art.location)} · <time datetime="${escapeHtml(art.publishedAt)}">${escapeHtml(art.publishedAt.split('T')[0])}</time></p>
           <p>${escapeHtml(art.summary)}</p>
         </article>`,
           )
           .join('\n');
 
         const bodyShell = `<!-- PRERENDERED_NEWS_SHELL -->
-      <header>
-        <p><a href="${SITE_URL}/">The Global Meridian</a></p>
-        <nav aria-label="News Categories">
-          ${buildNavHtml()}
-        </nav>
-      </header>
-      <main>
-        <section>
-          <h1>${escapeHtml(author.name)} – ${escapeHtml(author.title)}</h1>
-          <p>${escapeHtml(author.bio)}</p>
-          <h2>Published Dispatches (${authorArticles.length})</h2>
+      <div class="meridian-ssr">
+        <div class="ssr-topbar"><span><span class="ssr-topbar-dot"></span>GLOBAL EDITION</span><span>CORRESPONDENT</span></div>
+        <header class="ssr-header">
+          <p class="ssr-brand"><a href="${SITE_URL}/">The Global Meridian</a></p>
+          <nav class="ssr-nav" aria-label="News Categories">
+            ${buildNavHtml()}
+          </nav>
+        </header>
+        <main class="ssr-main">
+          <section>
+            <div class="ssr-card" style="margin-bottom:16px">
+              <h1>${escapeHtml(author.name)} – ${escapeHtml(author.title)}</h1>
+              <p>${escapeHtml(author.bio)}</p>
+            </div>
+            <h2 class="ssr-section-title">Published Dispatches (${authorArticles.length})</h2>
+            <div class="ssr-grid">
 ${listHtml}
-        </section>
-      </main>
-      ${buildFooterHtml()}
+            </div>
+          </section>
+        </main>
+        ${buildFooterHtml()}
+      </div>
       <!-- /PRERENDERED_NEWS_SHELL -->`;
 
         const authorHtml = replaceMetaAndCanonical(baseHtml, {
