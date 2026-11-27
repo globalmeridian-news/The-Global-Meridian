@@ -9,7 +9,7 @@ interface Env {
 const SEO_ROBOTS_HEADER =
   'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
-function withSeoHeaders(response: Response, noindex = false): Response {
+function withSeoHeaders(response: Response, noindex = false, canonicalUrl?: string): Response {
   const contentType = response.headers.get('content-type') || '';
   if (!contentType.includes('text/html')) {
     return response;
@@ -18,12 +18,17 @@ function withSeoHeaders(response: Response, noindex = false): Response {
   const headers = new Headers(response.headers);
   headers.set('X-Robots-Tag', noindex ? 'noindex, nofollow' : SEO_ROBOTS_HEADER);
   headers.set('X-Content-Type-Options', 'nosniff');
+  if (!noindex && canonicalUrl) {
+    headers.set('Link', `<${canonicalUrl}>; rel="canonical"`);
+  }
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
     headers,
   });
 }
+
+const CANONICAL_ORIGIN = 'https://the-global-meridian.incognito120120.workers.dev';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -43,35 +48,51 @@ export default {
     if (cleanPath === '/') {
       const articleParam = url.searchParams.get('article');
       if (articleParam) {
-        const target = new URL(`/article/${encodeURIComponent(articleParam)}`, url.origin);
+        const targetPath = `/article/${encodeURIComponent(articleParam)}`;
+        const target = new URL(targetPath, url.origin);
         const res = await env.ASSETS.fetch(new Request(target.toString(), request));
-        if (res.ok) return withSeoHeaders(res);
+        if (res.ok) return withSeoHeaders(res, false, `${CANONICAL_ORIGIN}${targetPath}`);
       }
 
       const catParam = url.searchParams.get('cat');
       if (catParam) {
         const slug = catParam.toLowerCase().replace(/\s+/g, '-');
-        const target = new URL(`/category/${encodeURIComponent(slug)}`, url.origin);
+        const targetPath = `/category/${encodeURIComponent(slug)}`;
+        const target = new URL(targetPath, url.origin);
         const res = await env.ASSETS.fetch(new Request(target.toString(), request));
-        if (res.ok) return withSeoHeaders(res);
+        if (res.ok) return withSeoHeaders(res, false, `${CANONICAL_ORIGIN}${targetPath}`);
       }
 
       const policyParam = url.searchParams.get('policy');
       if (policyParam) {
-        const target = new URL(`/policy/${encodeURIComponent(policyParam)}`, url.origin);
+        const targetPath = `/policy/${encodeURIComponent(policyParam)}`;
+        const target = new URL(targetPath, url.origin);
         const res = await env.ASSETS.fetch(new Request(target.toString(), request));
-        if (res.ok) return withSeoHeaders(res);
+        if (res.ok) return withSeoHeaders(res, false, `${CANONICAL_ORIGIN}${targetPath}`);
       }
 
       const authorParam = url.searchParams.get('author');
       if (authorParam) {
-        const target = new URL(`/author/${encodeURIComponent(authorParam)}`, url.origin);
+        const targetPath = `/author/${encodeURIComponent(authorParam)}`;
+        const target = new URL(targetPath, url.origin);
         const res = await env.ASSETS.fetch(new Request(target.toString(), request));
-        if (res.ok) return withSeoHeaders(res);
+        if (res.ok) return withSeoHeaders(res, false, `${CANONICAL_ORIGIN}${targetPath}`);
       }
     }
 
+    const isKnownCanonicalRoute =
+      cleanPath === '/' ||
+      cleanPath.startsWith('/article/') ||
+      cleanPath.startsWith('/category/') ||
+      cleanPath.startsWith('/policy/') ||
+      cleanPath.startsWith('/author/');
+
+    const canonicalUrl =
+      !isInternalView && isKnownCanonicalRoute
+        ? `${CANONICAL_ORIGIN}${cleanPath === '/' ? '/' : cleanPath}`
+        : undefined;
+
     const assetResponse = await env.ASSETS.fetch(request);
-    return withSeoHeaders(assetResponse, isInternalView);
+    return withSeoHeaders(assetResponse, isInternalView, canonicalUrl);
   },
 };

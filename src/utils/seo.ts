@@ -19,7 +19,7 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
   const siteUrl = customSiteUrl || getSiteUrl();
   const permalink = `${siteUrl}/article/${encodeURIComponent(article.id)}`;
 
-  const rawImg = article.featuredImage?.url || 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
+  const rawImg = article.featuredImage?.url || '/assets/news/art-141-spacex-starmind-orbital-ai.jpg';
   const baseImg = resolveAbsoluteImageUrl(rawImg, siteUrl);
   const isUnsplash = baseImg.includes('images.unsplash.com');
 
@@ -61,7 +61,7 @@ export function generateNewsArticleJsonLd(article: Article, customSiteUrl?: stri
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=600&q=80',
+        url: `${siteUrl}/logo.png`,
         width: 600,
         height: 60,
       },

@@ -45,7 +45,7 @@ function buildArticleCanonicalUrl(art: Article): string {
 }
 
 function resolveSiteImageUrl(url?: string): string {
-  const fallback = 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1600&q=85';
+  const fallback = `${SITE_URL}/assets/news/art-141-spacex-starmind-orbital-ai.jpg`;
   const raw = url || fallback;
   if (/^https?:\/\//i.test(raw)) return raw;
   return `${SITE_URL}${raw.startsWith('/') ? raw : `/${raw}`}`;
@@ -329,7 +329,7 @@ ${articleMarkup}
             url: SITE_URL,
             logo: {
               '@type': 'ImageObject',
-              url: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=600&q=80',
+              url: `${SITE_URL}/logo.png`,
               width: 600,
               height: 60,
             },
@@ -601,8 +601,7 @@ ${catItemsHtml}
           description: optimizeMetaDescription(pol.desc),
           canonicalUrl,
           ogType: 'website',
-          imageUrl:
-            'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80',
+          imageUrl: `${SITE_URL}/assets/news/art-141-spacex-starmind-orbital-ai.jpg`,
           extraSchemasJsonLd: `<script type="application/ld+json" id="breadcrumbs-schema">${escapeJsonScript(polBreadcrumbJsonLd)}</script>`,
           bodyShell,
         });
